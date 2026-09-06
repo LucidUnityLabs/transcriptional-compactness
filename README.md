@@ -29,10 +29,10 @@ Preprint manuscript, not peer reviewed. No DOI yet.
 - **Held-out breast (GSE161529), epithelial comparator:** reverses —
   pooled delta = -0.41 (1/11 patients positive).
 
-The effect is robust but heterogeneous, tissue- and comparator-dependent,
-and in breast sensitive to annotation choices. It does not constitute a
-universal cancer detector. Full narrative, methods, and limitations:
-`manuscript/MANUSCRIPT.md`.
+The effect replicates in lung but is heterogeneous, tissue- and
+comparator-dependent, and in breast sensitive to annotation choices. It does
+not constitute a universal cancer detector. Full narrative, methods, and
+limitations: `manuscript/MANUSCRIPT.md`.
 
 ## Repository layout
 
