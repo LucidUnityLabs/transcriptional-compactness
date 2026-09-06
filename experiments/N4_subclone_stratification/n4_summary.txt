@@ -1,0 +1,40 @@
+N4 - per-cell OR kappa across CNV-defined subclones, Tirosh 2016 melanoma
+==============================================================================
+seed: 20260508
+malignant cells loaded:    1257
+immune-ref cells (T+B+M):  2671
+chromosome arms used:      43  (['1p', '1q', '2p', '2q', '3p', '3q', '4p', '4q', '5p', '5q', '6p', '6q', '7p', '7q', '8p', '8q', '9p', '9q', '10p', '10q', '11p', '11q', '12p', '12q', '13q', '14q', '15q', '16p', '16q', '17p', '17q', '18p', '18q', '19p', '19q', '20p', '20q', '21q', '22q', 'Xp', 'Xq', 'Yp', 'Yq'])
+HVG: 2000, PCA: 50, kNN k: 15, OR alpha: 0.5, sampled edges: 4000
+
+patients with malignant cells:                15
+patients with >=2 testable subclones (>=10 cells each): 8
+... of those, KW p<0.05:                       2  (25.0%)
+
+|Cliff's delta| (max subclone vs min subclone) across testable tumors:
+  median |delta|: +0.294
+  mean   |delta|: +0.303
+  max    |delta|: +0.744
+  min    |delta|: +0.008
+  fraction with |delta|>=0.33 (medium effect): 4/8
+
+Aggressive-CNV enrichment (high-kappa - low-kappa subclones)
+Wilcoxon paired test across testable tumors:
+  arm 8q:  hi-mean=+0.242  lo-mean=+0.163  hi-lo=+0.079  Wilcoxon p=0.312   (more amp/loss in high-kappa)
+  arm 17p:  hi-mean=+0.069  lo-mean=+0.006  hi-lo=+0.063  Wilcoxon p=0.312   (more amp/loss in high-kappa)
+  arm 9p:  hi-mean=+0.091  lo-mean=+0.048  hi-lo=+0.044  Wilcoxon p=0.547   (more amp/loss in high-kappa)
+
+Per-tumor results (testable only):
+------------------------------------------------------------------------------
+ patient_id  n_cells  n_subclones_testable     kw_p max_pairwise_cliff_delta  high_kappa_subclone  low_kappa_subclone high_kappa_mean low_kappa_mean         high_subclone_top_cnv
+         59       54                     4  0.00245                   +0.744                    4                   1         +0.2912        +0.2003   18p=+0.26;Yp=-0.21;4p=-0.17
+         71       54                     2    0.963                   +0.008                    2                   1         +0.2316        +0.2191  17q=+0.21;20q=+0.20;8q=+0.17
+         78      120                     4    0.062                   +0.396                    3                   1         +0.1789        +0.0761   21q=+0.34;2p=+0.32;Xp=+0.30
+         79      468                     5 3.51e-10                   +0.551                    1                   3         +0.0669        -0.0101 19p=-0.20;19q=-0.17;13q=-0.16
+         80      125                     3    0.729                   -0.123                    2                   1         +0.0918        +0.0629   3p=+0.59;8q=+0.55;21q=+0.53
+         81      133                     3    0.985                   -0.010                    3                   1         +0.1147        +0.1038  20q=+0.57;19p=+0.54;7p=+0.52
+         88      117                     5    0.311                   +0.404                    2                   5         +0.1187        +0.0585  22q=+0.51;1q=+0.42;21q=+0.30
+         89       98                     3    0.512                   +0.191                    2                   1         +0.1061        +0.0829    1q=+0.27;2p=+0.23;8q=+0.22
+
+VERDICT: PARTIAL ITH READOUT: 2/8 (25%) tumors show KW p<0.05; median |delta|=0.294. Kappa stratifies subclones in some but not all tumors.
+
+runtime: 6.5s

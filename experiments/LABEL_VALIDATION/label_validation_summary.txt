@@ -1,0 +1,29 @@
+LABEL_VALIDATION -- annotation-scheme sensitivity summary
+================================================================
+Seed: 20260508
+
+prostate_chen_GSE176031  (published delta = +0.21)
+----------------------------------------------------------------
+  original          delta=+0.169  (mal_original kappa -0.0345 vs comp_original -0.0612;  n=600/599; p_welch=0.00014)
+  alt1_broad        delta=+0.421  (mal_alt1_broad kappa +0.0035 vs comp_alt1_broad -0.0744;  n=600/569; p_welch=4.8e-30)
+  alt2_cluster      delta=-0.005  (mal_alt2_cluster kappa -0.0141 vs comp_alt2_cluster -0.0080;  n=597/599; p_welch=0.37)
+  -> recovered deltas: [0.169, 0.421, -0.005]  span=0.426
+  fixed-comparator decomposition (mal_S vs original immune/T, fixed embedding):
+    original          delta=+0.047  (mal_original kappa -0.1050 vs comp_original_fixed -0.1164;  n=598/597; p_welch=0.13)
+    alt1_broad        delta=+0.210  (mal_alt1_broad kappa -0.0796 vs comp_original_fixed -0.1227;  n=598/598; p_welch=3.5e-08)
+    alt2_cluster      delta=+0.062  (mal_alt2_cluster kappa -0.1209 vs comp_original_fixed -0.1287;  n=597/598; p_welch=0.3)
+  VERDICT: ROBUST IN DIRECTION: 2/3 schemes significantly positive, 1 null (alt2_cluster), 0 reversed. deltas [0.169, 0.421, -0.005]; fixed-comparator decomposition confirms all schemes positive when comparator is controlled
+
+ovarian_olalekan_GSE147082  (published delta = +0.48)
+----------------------------------------------------------------
+  original          delta=+0.628  (mal_original kappa +0.0911 vs comp_original -0.0382;  n=600/599; p_welch=2.7e-72)
+  alt1_broad        delta=+0.613  (mal_alt1_broad kappa +0.1022 vs comp_alt1_broad -0.0284;  n=599/598; p_welch=6.4e-74)
+  alt2_cluster      delta=+0.373  (mal_alt2_cluster kappa +0.0812 vs comp_alt2_cluster +0.0145;  n=599/598; p_welch=4.7e-22)
+  -> recovered deltas: [0.628, 0.613, 0.373]  span=0.256
+  fixed-comparator decomposition (mal_S vs original immune/T, fixed embedding):
+    original          delta=+0.568  (mal_original kappa +0.0383 vs comp_original_fixed -0.0933;  n=599/599; p_welch=7.5e-51)
+    alt1_broad        delta=+0.529  (mal_alt1_broad kappa +0.0410 vs comp_original_fixed -0.0921;  n=600/599; p_welch=1.8e-46)
+    alt2_cluster      delta=+0.515  (mal_alt2_cluster kappa +0.0251 vs comp_original_fixed -0.0988;  n=599/599; p_welch=4.5e-43)
+  VERDICT: ROBUST: all 3 schemes significantly positive (delta in [+0.373, +0.628], span 0.256)
+
+Total wallclock: 1172.7s

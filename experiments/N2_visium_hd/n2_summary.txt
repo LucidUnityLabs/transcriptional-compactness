@@ -1,0 +1,8 @@
+========================================================================
+N2 -- HEADLINE
+========================================================================
+bin size: 8.0 um   tile: array_row [250,370) x array_col [250,370)
+G_phys : diff=-0.0018  p=0.76  d=+0.004  (mal<str small/null)
+G_trans: diff=-0.0436  p=1.06e-16  d=-0.161  (mal<str small)
+VERDICT: SUBSTRATE-SPECIFIC confirmed at single-cell resolution: the kappa malignant-vs-stroma direction lives only on the transcriptomic-similarity graph; physical-neighbor kappa is null (Cliff d~0). T4's null replicates at 8 um, so it was NOT a resolution artifact.
+total runtime: 206.6s

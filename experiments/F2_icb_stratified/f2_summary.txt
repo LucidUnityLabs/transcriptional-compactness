@@ -1,0 +1,74 @@
+F2 ICB-response biomarker: per-cell Ollivier-Ricci kappa, therapy-stratified
+========================================================================
+seed=20260508  hvg=2000  pcs=50  k=15  alpha=0.5  n_edges=4000
+
+Datasets:
+  Yost 2019 BCC (GSE123813), anti-PD1, n=11 patients
+  Sade-Feldman 2018 (GSE120575), n=19 patients (mixed therapy)
+
+Yost per-patient kappa table:
+patient_id  n_cells  mean_kappa  std_kappa      response      dataset  therapy
+     su001      147   -0.295858   0.208067     Responder Yost2019_BCC anti-PD1
+     su002       34   -0.186135   0.193922     Responder Yost2019_BCC anti-PD1
+     su003       28   -0.209734   0.201214     Responder Yost2019_BCC anti-PD1
+     su004      217   -0.166857   0.203890     Responder Yost2019_BCC anti-PD1
+     su005      345   -0.164029   0.189692 Non-responder Yost2019_BCC anti-PD1
+     su006      240   -0.210430   0.195851 Non-responder Yost2019_BCC anti-PD1
+     su007      736   -0.107498   0.170142 Non-responder Yost2019_BCC anti-PD1
+     su008      417   -0.215995   0.194114 Non-responder Yost2019_BCC anti-PD1
+     su009     2285   -0.168356   0.168804     Responder Yost2019_BCC anti-PD1
+     su010       40   -0.248563   0.147153 Non-responder Yost2019_BCC anti-PD1
+     su012      384   -0.181116   0.171193     Responder Yost2019_BCC anti-PD1
+
+Combined per-patient table:
+            dataset patient_id        therapy      response  n_cells  mean_kappa
+       Yost2019_BCC      su001       anti-PD1     Responder      147   -0.295858
+       Yost2019_BCC      su002       anti-PD1     Responder       34   -0.186135
+       Yost2019_BCC      su003       anti-PD1     Responder       28   -0.209734
+       Yost2019_BCC      su004       anti-PD1     Responder      217   -0.166857
+       Yost2019_BCC      su005       anti-PD1 Non-responder      345   -0.164029
+       Yost2019_BCC      su006       anti-PD1 Non-responder      240   -0.210430
+       Yost2019_BCC      su007       anti-PD1 Non-responder      736   -0.107498
+       Yost2019_BCC      su008       anti-PD1 Non-responder      417   -0.215995
+       Yost2019_BCC      su009       anti-PD1     Responder     2285   -0.168356
+       Yost2019_BCC      su010       anti-PD1 Non-responder       40   -0.248563
+       Yost2019_BCC      su012       anti-PD1     Responder      384   -0.181116
+SadeFeldman2018_Mel         P1     anti-CTLA4     Responder      119   -0.037814
+SadeFeldman2018_Mel        P12       anti-PD1 Non-responder      182   -0.203605
+SadeFeldman2018_Mel        P15       anti-PD1 Non-responder       81   -0.198287
+SadeFeldman2018_Mel         P2       anti-PD1 Non-responder      213   -0.216388
+SadeFeldman2018_Mel        P20       anti-PD1 Non-responder      171   -0.212097
+SadeFeldman2018_Mel        P24       anti-PD1     Responder      140   -0.212156
+SadeFeldman2018_Mel        P25       anti-PD1 Non-responder      162   -0.175562
+SadeFeldman2018_Mel        P26 anti-CTLA4+PD1     Responder       42   -0.187283
+SadeFeldman2018_Mel        P27       anti-PD1 Non-responder      217   -0.153850
+SadeFeldman2018_Mel        P28 anti-CTLA4+PD1     Responder      115   -0.242869
+SadeFeldman2018_Mel        P29       anti-PD1     Responder       67   -0.254309
+SadeFeldman2018_Mel         P3       anti-PD1 Non-responder       81   -0.139299
+SadeFeldman2018_Mel        P31       anti-PD1 Non-responder      227   -0.145569
+SadeFeldman2018_Mel        P33       anti-PD1     Responder      184   -0.154714
+SadeFeldman2018_Mel        P35       anti-PD1     Responder       40   -0.276653
+SadeFeldman2018_Mel         P4 anti-CTLA4+PD1 Non-responder      115   -0.181933
+SadeFeldman2018_Mel         P6     anti-CTLA4 Non-responder       31   -0.172630
+SadeFeldman2018_Mel         P7 anti-CTLA4+PD1     Responder      132   -0.254241
+SadeFeldman2018_Mel         P8 anti-CTLA4+PD1     Responder       84   -0.035901
+
+Per-arm summary (mean kappa as single-feature classifier):
+               arm  n_R  n_NR  mwu_U    mwu_p    auc_R   auc_NR  auc_best                  direction    mean_R   mean_NR  n_cells_total
+      Yost_antiPD1    6     5   15.0 1.000000 0.500000 0.500000  0.500000     high-kappa = Responder -0.201343 -0.189303           4873
+   N1_antiPD1_only    4     8    6.0 0.109091 0.187500 0.812500  0.812500 high-kappa = Non-responder -0.224458 -0.180582           1765
+ N1_antiCTLA4_only    1     1    NaN      NaN      NaN      NaN       NaN               insufficient -0.037814 -0.172630            150
+N1_combo_CTLA4_PD1    4     1    NaN      NaN      NaN      NaN       NaN               insufficient -0.180074 -0.181933            488
+ Mega_antiPD1_only   10    13   47.0 0.277787 0.361538 0.638462  0.638462 high-kappa = Non-responder -0.210589 -0.183936           6638
+          Mega_all   15    15   92.0 0.406787 0.408889 0.591111  0.591111 high-kappa = Non-responder -0.190933 -0.183049           7276
+
+VERDICTS
+------------------------------------------------------------------------
+  Yost_antiPD1              AUC=0.500  (high-kappa = Responder)  -> NO SIGNAL (<=0.55)
+  N1_antiPD1_only           AUC=0.812  (high-kappa = Non-responder)  -> REAL BIOMARKER SIGNAL (AUC>=0.70)
+  N1_antiCTLA4_only         AUC=nan  (insufficient)  -> INSUFFICIENT DATA
+  N1_combo_CTLA4_PD1        AUC=nan  (insufficient)  -> INSUFFICIENT DATA
+  Mega_antiPD1_only         AUC=0.638  (high-kappa = Non-responder)  -> WEAK TREND (0.55-0.70)
+  Mega_all                  AUC=0.591  (high-kappa = Non-responder)  -> WEAK TREND (0.55-0.70)
+
+Total time: 53.4s

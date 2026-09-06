@@ -1,0 +1,19 @@
+======================================================================
+T5 — Proliferating-immune control for malignant kappa
+seed=20260507
+======================================================================
+
+Cell-cycle markers used: 17/17 (MKI67, TOP2A, CCNB1, CCNA2, CDK1, CDC20, BIRC5, AURKA, AURKB, CENPF, MCM2, MCM3, MCM4, MCM5, MCM6, MCM7, PCNA)
+
+Per-group n and mean kappa:
+  Malignant     n= 597  kappa = +0.1184  std=0.1362
+  Prolif_imm    n= 146  kappa = +0.0266  std=0.1313
+  Rest_imm      n= 600  kappa = -0.0073  std=0.1327
+
+Pairwise contrasts (Cliff's delta with first group as reference):
+  Mal vs Prolif: diff=+0.0918  Welch p=1.49e-12  MWU p=2.89e-12  Cliff d=+0.373
+  Mal vs Rest:   diff=+0.1257  Welch p=3.08e-53  MWU p=1.31e-54  Cliff d=+0.520
+  Prolif vs Rest: diff=+0.0339  Welch p=0.00584  MWU p=0.000207  Cliff d=+0.198
+
+VERDICT: PARTIAL_PROLIFERATION_CONTRIBUTION
+  Cell-cycle accounts for part of the malignant kappa elevation, but a residual malignant-vs-proliferating gap remains.

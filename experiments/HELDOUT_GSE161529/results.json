@@ -1,0 +1,1551 @@
+{
+  "cohort": "GSE161529 (Pal et al. 2021 breast cancer atlas)",
+  "analysis": "pre-registered primary held-out validation (PREREGISTRATION.md 2026-06-29); two comparator arms",
+  "prereg_locked_params": {
+    "pca_dims": 50,
+    "hvg": 2000,
+    "knn_k": 15,
+    "or_alpha": 0.5,
+    "edge_sampling": 4000,
+    "min_cells_per_patient_per_group": 10,
+    "min_patients_per_cohort": 5,
+    "meta_method": "DerSimonian-Laird random-effects",
+    "significance": "one-sided p < 0.05"
+  },
+  "seed": 20260507,
+  "download": {
+    "n_files": 55,
+    "total_bytes": 1057519917,
+    "errors": [],
+    "gzip_verified": true
+  },
+  "matched_cell_audit": {
+    "ER_0001": {
+      "gsm": "GSM4909296",
+      "stem": "GSM4909296_ER-MH0001",
+      "n_barcodes_tsv": 7375,
+      "n_cells_mtx_header": 7375,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 964,
+      "n_matched_primary": 11,
+      "n_labels_absent_from_mtx_primary": 953,
+      "n_mtx_absent_from_labels_primary": 7364,
+      "n_labels_secondary": 875,
+      "n_matched_secondary": 10,
+      "n_labels_absent_from_mtx_secondary": 865,
+      "n_mtx_absent_from_labels_secondary": 7365
+    },
+    "ER_0025": {
+      "gsm": "GSM4909302",
+      "stem": "GSM4909302_ER-MH0025",
+      "n_barcodes_tsv": 10592,
+      "n_cells_mtx_header": 10592,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 714,
+      "n_matched_primary": 714,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 9878,
+      "n_labels_secondary": 528,
+      "n_matched_secondary": 528,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 10064
+    },
+    "ER_0032": {
+      "gsm": "GSM4909300",
+      "stem": "GSM4909300_ER-MH0032",
+      "n_barcodes_tsv": 1445,
+      "n_cells_mtx_header": 1445,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 180,
+      "n_matched_primary": 180,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 1265,
+      "n_labels_secondary": 271,
+      "n_matched_secondary": 271,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 1174
+    },
+    "ER_0040_T": {
+      "gsm": "GSM4909307",
+      "stem": "GSM4909307_ER-MH0040",
+      "n_barcodes_tsv": 6468,
+      "n_cells_mtx_header": 6468,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 329,
+      "n_matched_primary": 329,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 6139,
+      "n_labels_secondary": 93,
+      "n_matched_secondary": 93,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 6375
+    },
+    "ER_0042": {
+      "gsm": "GSM4909301",
+      "stem": "GSM4909301_ER-MH0042",
+      "n_barcodes_tsv": 5439,
+      "n_cells_mtx_header": 5439,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1428,
+      "n_matched_primary": 1428,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 4011,
+      "n_labels_secondary": 63,
+      "n_matched_secondary": 63,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 5376
+    },
+    "ER_0043_T": {
+      "gsm": "GSM4909309",
+      "stem": "GSM4909309_ER-MH0043-T",
+      "n_barcodes_tsv": 5572,
+      "n_cells_mtx_header": 5572,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1350,
+      "n_matched_primary": 1350,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 4222,
+      "n_labels_secondary": 480,
+      "n_matched_secondary": 480,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 5092
+    },
+    "ER_0114_T3": {
+      "gsm": "GSM4909299",
+      "stem": "GSM4909299_ER-MH0114-T3",
+      "n_barcodes_tsv": 8822,
+      "n_cells_mtx_header": 8822,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1731,
+      "n_matched_primary": 1731,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 7091,
+      "n_labels_secondary": 2645,
+      "n_matched_secondary": 2645,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 6177
+    },
+    "ER_0125": {
+      "gsm": "GSM4909297",
+      "stem": "GSM4909297_ER-MH0125",
+      "n_barcodes_tsv": 7289,
+      "n_cells_mtx_header": 7289,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 274,
+      "n_matched_primary": 274,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 7015,
+      "n_labels_secondary": 208,
+      "n_matched_secondary": 208,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 7081
+    },
+    "ER_0151": {
+      "gsm": "GSM4909303",
+      "stem": "GSM4909303_ER-MH0151",
+      "n_barcodes_tsv": 3357,
+      "n_cells_mtx_header": 3357,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1098,
+      "n_matched_primary": 1098,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 2259,
+      "n_labels_secondary": 894,
+      "n_matched_secondary": 894,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 2463
+    },
+    "ER_0163": {
+      "gsm": "GSM4909304",
+      "stem": "GSM4909304_ER-MH0163",
+      "n_barcodes_tsv": 7334,
+      "n_cells_mtx_header": 7334,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 459,
+      "n_matched_primary": 459,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 6875,
+      "n_labels_secondary": 130,
+      "n_matched_secondary": 130,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 7204
+    },
+    "ER_0167_T": {
+      "gsm": "GSM4909315",
+      "stem": "GSM4909315_ER-MH0167-T",
+      "n_barcodes_tsv": 13848,
+      "n_cells_mtx_header": 13848,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 2198,
+      "n_matched_primary": 2198,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 11650,
+      "n_labels_secondary": 1837,
+      "n_matched_secondary": 1837,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 12011
+    },
+    "ER_0319": {
+      "gsm": "GSM4909295",
+      "stem": "GSM4909295_ER-AH0319",
+      "n_barcodes_tsv": 3406,
+      "n_cells_mtx_header": 3406,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1865,
+      "n_matched_primary": 1865,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 1541,
+      "n_labels_secondary": 1286,
+      "n_matched_secondary": 1286,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 2120
+    },
+    "ER_0360": {
+      "gsm": "GSM4909298",
+      "stem": "GSM4909298_ER-PM0360",
+      "n_barcodes_tsv": 6676,
+      "n_cells_mtx_header": 6676,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1456,
+      "n_matched_primary": 1456,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 5220,
+      "n_labels_secondary": 1182,
+      "n_matched_secondary": 1182,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 5494
+    },
+    "HER2_0031": {
+      "gsm": "GSM4909291",
+      "stem": "GSM4909291_HER2-MH0031",
+      "n_barcodes_tsv": 4737,
+      "n_cells_mtx_header": 4737,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 2065,
+      "n_matched_primary": 2065,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 2672,
+      "n_labels_secondary": 1171,
+      "n_matched_secondary": 1171,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 3566
+    },
+    "HER2_0069": {
+      "gsm": "GSM4909292",
+      "stem": "GSM4909292_HER2-MH0069",
+      "n_barcodes_tsv": 618,
+      "n_cells_mtx_header": 618,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 199,
+      "n_matched_primary": 199,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 419,
+      "n_labels_secondary": 167,
+      "n_matched_secondary": 167,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 451
+    },
+    "HER2_0161": {
+      "gsm": "GSM4909293",
+      "stem": "GSM4909293_HER2-MH0161",
+      "n_barcodes_tsv": 6561,
+      "n_cells_mtx_header": 6561,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 534,
+      "n_matched_primary": 534,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 6027,
+      "n_labels_secondary": 378,
+      "n_matched_secondary": 378,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 6183
+    },
+    "HER2_0176": {
+      "gsm": "GSM4909294",
+      "stem": "GSM4909294_HER2-MH0176",
+      "n_barcodes_tsv": 19027,
+      "n_cells_mtx_header": 19027,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 4791,
+      "n_matched_primary": 4791,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 14236,
+      "n_labels_secondary": 3494,
+      "n_matched_secondary": 3494,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 15533
+    },
+    "HER2_0308": {
+      "gsm": "GSM4909289",
+      "stem": "GSM4909289_HER2-AH0308",
+      "n_barcodes_tsv": 4779,
+      "n_cells_mtx_header": 4779,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 644,
+      "n_matched_primary": 644,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 4135,
+      "n_labels_secondary": 309,
+      "n_matched_secondary": 309,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 4470
+    },
+    "HER2_0337": {
+      "gsm": "GSM4909290",
+      "stem": "GSM4909290_HER2-PM0337",
+      "n_barcodes_tsv": 12288,
+      "n_cells_mtx_header": 12288,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 4250,
+      "n_matched_primary": 4250,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 8038,
+      "n_labels_secondary": 1266,
+      "n_matched_secondary": 1266,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 11022
+    },
+    "TN_0106": {
+      "gsm": "GSM4909283",
+      "stem": "GSM4909283_TN-SH0106",
+      "n_barcodes_tsv": 1065,
+      "n_cells_mtx_header": 1065,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 747,
+      "n_matched_primary": 747,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 318,
+      "n_labels_secondary": 639,
+      "n_matched_secondary": 639,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 426
+    },
+    "TN_0114_T2": {
+      "gsm": "GSM4909284",
+      "stem": "GSM4909284_TN-MH0114-T2",
+      "n_barcodes_tsv": 2015,
+      "n_cells_mtx_header": 2015,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1284,
+      "n_matched_primary": 1284,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 731,
+      "n_labels_secondary": 1231,
+      "n_matched_secondary": 1231,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 784
+    },
+    "TN_0126": {
+      "gsm": "GSM4909281",
+      "stem": "GSM4909281_TN-MH0126",
+      "n_barcodes_tsv": 3666,
+      "n_cells_mtx_header": 3666,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 1372,
+      "n_matched_primary": 1372,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 2294,
+      "n_labels_secondary": 1172,
+      "n_matched_secondary": 1172,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 2494
+    },
+    "TN_0135": {
+      "gsm": "GSM4909282",
+      "stem": "GSM4909282_TN-MH0135",
+      "n_barcodes_tsv": 15870,
+      "n_cells_mtx_header": 15870,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 718,
+      "n_matched_primary": 718,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 15152,
+      "n_labels_secondary": 660,
+      "n_matched_secondary": 660,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 15210
+    },
+    "TN_B1_0131": {
+      "gsm": "GSM4909286",
+      "stem": "GSM4909286_TN-B1-MH0131",
+      "n_barcodes_tsv": 6456,
+      "n_cells_mtx_header": 6456,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 71,
+      "n_matched_primary": 71,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 6385,
+      "n_labels_secondary": 69,
+      "n_matched_secondary": 69,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 6387
+    },
+    "TN_B1_0177": {
+      "gsm": "GSM4909288",
+      "stem": "GSM4909288_TN-B1-MH0177",
+      "n_barcodes_tsv": 21130,
+      "n_cells_mtx_header": 21130,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 13914,
+      "n_matched_primary": 13914,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 7216,
+      "n_labels_secondary": 10534,
+      "n_matched_secondary": 10534,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 10596
+    },
+    "TN_B1_0554": {
+      "gsm": "GSM4909287",
+      "stem": "GSM4909287_TN-B1-Tum0554",
+      "n_barcodes_tsv": 9593,
+      "n_cells_mtx_header": 9593,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 3837,
+      "n_matched_primary": 3837,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 5756,
+      "n_labels_secondary": 2951,
+      "n_matched_secondary": 2951,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 6642
+    },
+    "TN_B1_4031": {
+      "gsm": "GSM4909285",
+      "stem": "GSM4909285_TN-B1-MH4031",
+      "n_barcodes_tsv": 5581,
+      "n_cells_mtx_header": 5581,
+      "n_features_mtx_header": 33538,
+      "barcodes_match_mtx_dims": true,
+      "n_labels_primary": 67,
+      "n_matched_primary": 67,
+      "n_labels_absent_from_mtx_primary": 0,
+      "n_mtx_absent_from_labels_primary": 5514,
+      "n_labels_secondary": 66,
+      "n_matched_secondary": 66,
+      "n_labels_absent_from_mtx_secondary": 0,
+      "n_mtx_absent_from_labels_secondary": 5515
+    }
+  },
+  "matched_cell_audit_summary": {
+    "n_samples": 27,
+    "total_labels_absent_from_mtx_primary": 953,
+    "total_labels_absent_from_mtx_secondary": 865,
+    "all_barcodes_tsv_match_mtx_dims": true
+  },
+  "comparators": {
+    "primary": {
+      "comparator": "immune",
+      "labels": {
+        "annotation": "Chen et al. 2022 (Sci Data) companion labels (labels/cells_*.tsv.gz)",
+        "malignant": "label == 'malignant'",
+        "comparator": "label == 'immune'",
+        "patient_unit": "labels 'patient' column (patient 0114 pools samples ER_0114_T3 + TN_0114_T2)"
+      },
+      "design": {
+        "unit_of_analysis": "patient",
+        "effect_size": "Cliff's delta (malignant vs immune kappa, within patient)",
+        "delta_variance": "U-statistic Hoeffding projection (row/col mean variance)",
+        "meta_method": "DerSimonian-Laird random-effects (inverse-variance)",
+        "bootstrap": "patient-clustered, B=1000",
+        "min_cells_per_group": 10,
+        "pipeline": "HVG-2000, PCA-50, kNN k=15, Ollivier-Ricci alpha=0.5 (POT), 4000 edges",
+        "cap_per_patient_group": 60,
+        "total_cap_per_cohort": 3500,
+        "normalization": "log1p-CPM(1e6); genes detected in >=5 cells (dataset loading convention from exp/V2, R5)",
+        "arm_note": "each comparator arm analyzed as its own cohort-analysis (own stratified sample, graph, OR edge draw) per META convention"
+      },
+      "pipeline_facts": {
+        "n_label_rows_raw": 74978,
+        "n_dual_labeled_cells_excluded": 26439,
+        "dual_label_conflict_rows_by_sample": {
+          "ER_0001": 78,
+          "ER_0025": 518,
+          "ER_0032": 138,
+          "ER_0040_T": 20,
+          "ER_0042": 80,
+          "ER_0043_T": 128,
+          "ER_0114_T3": 368,
+          "ER_0125": 192,
+          "ER_0151": 1556,
+          "ER_0163": 100,
+          "ER_0167_T": 3310,
+          "ER_0319": 2356,
+          "ER_0360": 2008,
+          "HER2_0031": 288,
+          "HER2_0069": 242,
+          "HER2_0161": 650,
+          "HER2_0176": 5524,
+          "HER2_0308": 564,
+          "HER2_0337": 2026,
+          "TN_0114_T2": 2024,
+          "TN_0126": 2342,
+          "TN_0135": 1282,
+          "TN_B1_0131": 134,
+          "TN_B1_0177": 21036,
+          "TN_B1_0554": 5814,
+          "TN_B1_4031": 100
+        },
+        "n_cells_in_labels_arm": 22100,
+        "n_patients_in_labels_arm": 26,
+        "qualifying_patients_pre_sampling": {
+          "0001": {
+            "n_malignant": 772,
+            "n_immune": 153,
+            "qualifies": true
+          },
+          "0025": {
+            "n_malignant": 7,
+            "n_immune": 448,
+            "qualifies": false
+          },
+          "0031": {
+            "n_malignant": 1027,
+            "n_immune": 894,
+            "qualifies": true
+          },
+          "0032": {
+            "n_malignant": 12,
+            "n_immune": 99,
+            "qualifies": true
+          },
+          "0040": {
+            "n_malignant": 78,
+            "n_immune": 241,
+            "qualifies": true
+          },
+          "0042": {
+            "n_malignant": 14,
+            "n_immune": 1374,
+            "qualifies": true
+          },
+          "0043": {
+            "n_malignant": 416,
+            "n_immune": 870,
+            "qualifies": true
+          },
+          "0069": {
+            "n_malignant": 0,
+            "n_immune": 78,
+            "qualifies": false
+          },
+          "0106": {
+            "n_malignant": 0,
+            "n_immune": 747,
+            "qualifies": false
+          },
+          "0114": {
+            "n_malignant": 1316,
+            "n_immune": 503,
+            "qualifies": true
+          },
+          "0125": {
+            "n_malignant": 86,
+            "n_immune": 92,
+            "qualifies": true
+          },
+          "0126": {
+            "n_malignant": 1,
+            "n_immune": 200,
+            "qualifies": false
+          },
+          "0131": {
+            "n_malignant": 2,
+            "n_immune": 2,
+            "qualifies": false
+          },
+          "0135": {
+            "n_malignant": 19,
+            "n_immune": 58,
+            "qualifies": true
+          },
+          "0151": {
+            "n_malignant": 8,
+            "n_immune": 312,
+            "qualifies": false
+          },
+          "0161": {
+            "n_malignant": 53,
+            "n_immune": 156,
+            "qualifies": true
+          },
+          "0163": {
+            "n_malignant": 68,
+            "n_immune": 341,
+            "qualifies": true
+          },
+          "0167": {
+            "n_malignant": 160,
+            "n_immune": 383,
+            "qualifies": true
+          },
+          "0176": {
+            "n_malignant": 732,
+            "n_immune": 1297,
+            "qualifies": true
+          },
+          "0177": {
+            "n_malignant": 16,
+            "n_immune": 3380,
+            "qualifies": true
+          },
+          "0308": {
+            "n_malignant": 27,
+            "n_immune": 335,
+            "qualifies": true
+          },
+          "0319": {
+            "n_malignant": 52,
+            "n_immune": 635,
+            "qualifies": true
+          },
+          "0337": {
+            "n_malignant": 229,
+            "n_immune": 3008,
+            "qualifies": true
+          },
+          "0360": {
+            "n_malignant": 83,
+            "n_immune": 369,
+            "qualifies": true
+          },
+          "0554": {
+            "n_malignant": 44,
+            "n_immune": 886,
+            "qualifies": true
+          },
+          "4031": {
+            "n_malignant": 16,
+            "n_immune": 1,
+            "qualifies": false
+          }
+        },
+        "n_patients_qualifying_pre_sampling": 19,
+        "n_cells_sampled": 2372,
+        "n_malignant_sampled": 931,
+        "n_comparator_sampled": 1441,
+        "per_sample_load_audit": {
+          "ER_0001": {
+            "n_wanted": 120,
+            "n_in_mtx": 0,
+            "n_wanted_absent_from_mtx": 120
+          },
+          "ER_0025": {
+            "n_wanted": 67,
+            "n_in_mtx": 67,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0032": {
+            "n_wanted": 72,
+            "n_in_mtx": 72,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0040_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0042": {
+            "n_wanted": 74,
+            "n_in_mtx": 74,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0043_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0114_T3": {
+            "n_wanted": 88,
+            "n_in_mtx": 88,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0125": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0151": {
+            "n_wanted": 68,
+            "n_in_mtx": 68,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0163": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0167_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0319": {
+            "n_wanted": 112,
+            "n_in_mtx": 112,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0360": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0031": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0069": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0161": {
+            "n_wanted": 113,
+            "n_in_mtx": 113,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0176": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0308": {
+            "n_wanted": 87,
+            "n_in_mtx": 87,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0337": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0106": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0114_T2": {
+            "n_wanted": 32,
+            "n_in_mtx": 32,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0126": {
+            "n_wanted": 61,
+            "n_in_mtx": 61,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0135": {
+            "n_wanted": 77,
+            "n_in_mtx": 77,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0131": {
+            "n_wanted": 4,
+            "n_in_mtx": 4,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0177": {
+            "n_wanted": 76,
+            "n_in_mtx": 76,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0554": {
+            "n_wanted": 104,
+            "n_in_mtx": 104,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_4031": {
+            "n_wanted": 17,
+            "n_in_mtx": 17,
+            "n_wanted_absent_from_mtx": 0
+          }
+        },
+        "patients_lost_to_matrix_join": [
+          "0001"
+        ],
+        "genes_detected_ge5_cells": 16103,
+        "n_hvg_used": 2000,
+        "n_pca_components": 50,
+        "graph_nodes": 2252,
+        "graph_edges": 23541,
+        "or_edges_computed": 4000,
+        "or_seconds": 167.46560525894165
+      },
+      "n_cells_sampled_with_valid_kappa": 2167,
+      "n_malignant_cells_valid": 837,
+      "n_comparator_cells_valid": 1330,
+      "n_patients_passing_filter": 18,
+      "min_patients_criterion_met": true,
+      "per_patient_cliffs_delta": {
+        "0031": {
+          "n_malignant": 55,
+          "n_comparator": 59,
+          "mean_kappa_mal": 0.07445345676702851,
+          "mean_kappa_comp": -0.09474620742268969,
+          "delta": 0.5537750385208012,
+          "se": 0.09416073319408617,
+          "ci_lo": 0.36922000146039236,
+          "ci_hi": 0.7383300755812101,
+          "welch_p": 8.481744337697413e-07
+        },
+        "0032": {
+          "n_malignant": 12,
+          "n_comparator": 57,
+          "mean_kappa_mal": -0.04861368209186895,
+          "mean_kappa_comp": 0.0035383058611112455,
+          "delta": -0.1111111111111111,
+          "se": 0.2189488622113103,
+          "ci_lo": -0.5402508810452793,
+          "ci_hi": 0.3180286588230571,
+          "welch_p": 0.4182206758646767
+        },
+        "0040": {
+          "n_malignant": 60,
+          "n_comparator": 60,
+          "mean_kappa_mal": 0.00287468989011646,
+          "mean_kappa_comp": -0.02304508242574035,
+          "delta": 0.09333333333333334,
+          "se": 0.1103341952959315,
+          "ci_lo": -0.12292168944669239,
+          "ci_hi": 0.30958835611335905,
+          "welch_p": 0.3446866093266094
+        },
+        "0042": {
+          "n_malignant": 13,
+          "n_comparator": 59,
+          "mean_kappa_mal": -0.09954536832010272,
+          "mean_kappa_comp": -0.01858837833589053,
+          "delta": -0.25945241199478486,
+          "se": 0.23887496745783726,
+          "ci_lo": -0.7276473482121459,
+          "ci_hi": 0.20874252422257616,
+          "welch_p": 0.1895133964871802
+        },
+        "0043": {
+          "n_malignant": 58,
+          "n_comparator": 59,
+          "mean_kappa_mal": -0.04505533169065795,
+          "mean_kappa_comp": 0.0003639391857181617,
+          "delta": -0.179427235534775,
+          "se": 0.10592613855217761,
+          "ci_lo": -0.3870424670970431,
+          "ci_hi": 0.028187996027493112,
+          "welch_p": 0.1464536674410621
+        },
+        "0114": {
+          "n_malignant": 56,
+          "n_comparator": 60,
+          "mean_kappa_mal": 0.10613758255844145,
+          "mean_kappa_comp": -0.04030658110138582,
+          "delta": 0.5380952380952381,
+          "se": 0.08938647431680728,
+          "ci_lo": 0.3628977484342958,
+          "ci_hi": 0.7132927277561804,
+          "welch_p": 3.918556459803928e-07
+        },
+        "0125": {
+          "n_malignant": 58,
+          "n_comparator": 57,
+          "mean_kappa_mal": 0.03994858362697907,
+          "mean_kappa_comp": -0.12627200456304194,
+          "delta": 0.5686630369026013,
+          "se": 0.08921288303852293,
+          "ci_lo": 0.3938057861470964,
+          "ci_hi": 0.7435202876581063,
+          "welch_p": 2.082787128012791e-08
+        },
+        "0135": {
+          "n_malignant": 18,
+          "n_comparator": 55,
+          "mean_kappa_mal": -0.21060152642388885,
+          "mean_kappa_comp": 0.09805921111226762,
+          "delta": -0.8121212121212121,
+          "se": 0.06761257333425119,
+          "ci_lo": -0.9446418558563445,
+          "ci_hi": -0.6796005683860797,
+          "welch_p": 3.5374576001315043e-09
+        },
+        "0161": {
+          "n_malignant": 48,
+          "n_comparator": 58,
+          "mean_kappa_mal": 0.05251332920886189,
+          "mean_kappa_comp": -0.10980474589054828,
+          "delta": 0.5438218390804598,
+          "se": 0.09305106583680761,
+          "ci_lo": 0.36144175004031687,
+          "ci_hi": 0.7262019281206027,
+          "welch_p": 2.1284712798698474e-07
+        },
+        "0163": {
+          "n_malignant": 57,
+          "n_comparator": 56,
+          "mean_kappa_mal": 0.07512051013488558,
+          "mean_kappa_comp": -0.1067284898101283,
+          "delta": 0.568922305764411,
+          "se": 0.09231081704169287,
+          "ci_lo": 0.387993104362693,
+          "ci_hi": 0.7498515071661291,
+          "welch_p": 5.021241809594334e-07
+        },
+        "0167": {
+          "n_malignant": 58,
+          "n_comparator": 56,
+          "mean_kappa_mal": 0.11028128749436016,
+          "mean_kappa_comp": -0.08602269474047788,
+          "delta": 0.7604679802955665,
+          "se": 0.0648293018523656,
+          "ci_lo": 0.63340254866493,
+          "ci_hi": 0.887533411926203,
+          "welch_p": 1.9839146376884532e-13
+        },
+        "0176": {
+          "n_malignant": 58,
+          "n_comparator": 57,
+          "mean_kappa_mal": -0.0063214898167453185,
+          "mean_kappa_comp": -0.06291918342198102,
+          "delta": 0.24742891712038717,
+          "se": 0.10770656608384051,
+          "ci_lo": 0.03632404759605978,
+          "ci_hi": 0.45853378664471456,
+          "welch_p": 0.049356307739715534
+        },
+        "0177": {
+          "n_malignant": 16,
+          "n_comparator": 57,
+          "mean_kappa_mal": -0.053484626985787154,
+          "mean_kappa_comp": 0.06204057664752759,
+          "delta": -0.38377192982456143,
+          "se": 0.17355742695467635,
+          "ci_lo": -0.7239444866557271,
+          "ci_hi": -0.04359937299339578,
+          "welch_p": 0.020353844692741947
+        },
+        "0308": {
+          "n_malignant": 26,
+          "n_comparator": 59,
+          "mean_kappa_mal": -0.0606086620512967,
+          "mean_kappa_comp": -0.12424997707172047,
+          "delta": 0.24902216427640156,
+          "se": 0.13156685946048843,
+          "ci_lo": -0.008848880266155768,
+          "ci_hi": 0.5068932088189588,
+          "welch_p": 0.04626688677039935
+        },
+        "0319": {
+          "n_malignant": 50,
+          "n_comparator": 58,
+          "mean_kappa_mal": 0.03132581497962386,
+          "mean_kappa_comp": -0.018554629521656575,
+          "delta": 0.19517241379310346,
+          "se": 0.11236363766549735,
+          "ci_lo": -0.025060316031271346,
+          "ci_hi": 0.41540514361747827,
+          "welch_p": 0.12172252428291543
+        },
+        "0337": {
+          "n_malignant": 57,
+          "n_comparator": 58,
+          "mean_kappa_mal": 0.04189581580354989,
+          "mean_kappa_comp": -0.02108504466184077,
+          "delta": 0.1736237144585602,
+          "se": 0.10710777822019982,
+          "ci_lo": -0.03630753085303143,
+          "ci_hi": 0.38355495977015186,
+          "welch_p": 0.03174609055611067
+        },
+        "0360": {
+          "n_malignant": 59,
+          "n_comparator": 60,
+          "mean_kappa_mal": 0.08467286706173816,
+          "mean_kappa_comp": -0.05385229066278532,
+          "delta": 0.49265536723163844,
+          "se": 0.09020400510968803,
+          "ci_lo": 0.31585551721664995,
+          "ci_hi": 0.6694552172466269,
+          "welch_p": 8.210262156525727e-07
+        },
+        "0554": {
+          "n_malignant": 44,
+          "n_comparator": 58,
+          "mean_kappa_mal": -0.10089073293405271,
+          "mean_kappa_comp": 0.01869820378650617,
+          "delta": -0.3652037617554859,
+          "se": 0.1108696212124994,
+          "ci_lo": -0.5825082193319847,
+          "ci_hi": -0.1478993041789871,
+          "welch_p": 0.0003863925750988699
+        }
+      },
+      "per_patient_direction": {
+        "n_delta_positive": 12,
+        "n_delta_negative": 6,
+        "n_total": 18,
+        "fraction_positive": 0.6666666666666666
+      },
+      "dl_meta": {
+        "label": "HELDOUT_GSE161529_primary",
+        "k": 18,
+        "delta": 0.16801092468924114,
+        "se": 0.12188877196441941,
+        "ci_lo": -0.07089106836102091,
+        "ci_hi": 0.4069129177395032,
+        "z": 1.378395417243889,
+        "p": 0.1680812375426689,
+        "Q": 440.7179527039924,
+        "df": 17,
+        "tau2": 0.25239909284837336,
+        "I2": 96.14265770302804,
+        "pQ": 5.502583432775259e-83,
+        "delta_FE": 0.2227663394241971,
+        "one_sided_p_delta_gt_0": 0.08404061877133445
+      },
+      "pooled_delta": 0.16801092468924114,
+      "pooled_ci_95": [
+        -0.07089106836102091,
+        0.4069129177395032
+      ],
+      "i_squared_percent": 96.14265770302804,
+      "one_sided_p_delta_gt_0": 0.08404061877133445,
+      "two_sided_p": 0.1680812375426689,
+      "naive_cell_level": {
+        "delta": 0.24480556229282885,
+        "welch_p": 4.031037265755781e-19
+      },
+      "bootstrap": {
+        "B": 1000,
+        "mean": 0.17293171428411425,
+        "ci_lo": -0.026810050510547197,
+        "ci_hi": 0.38217938145881786
+      },
+      "decision_rule_inputs": {
+        "pooled_delta": 0.16801092468924114,
+        "one_sided_p": 0.08404061877133445,
+        "rule": "SUPPORTED if pooled delta > 0 and one-sided p < 0.05; NOT SUPPORTED otherwise (applied outside this file)"
+      }
+    },
+    "secondary": {
+      "comparator": "normal_epithelial",
+      "labels": {
+        "annotation": "Chen et al. 2022 (Sci Data) companion labels (labels/cells_*.tsv.gz)",
+        "malignant": "label == 'malignant'",
+        "comparator": "label == 'normal_epithelial'",
+        "patient_unit": "labels 'patient' column (patient 0114 pools samples ER_0114_T3 + TN_0114_T2)"
+      },
+      "design": {
+        "unit_of_analysis": "patient",
+        "effect_size": "Cliff's delta (malignant vs normal_epithelial kappa, within patient)",
+        "delta_variance": "U-statistic Hoeffding projection (row/col mean variance)",
+        "meta_method": "DerSimonian-Laird random-effects (inverse-variance)",
+        "bootstrap": "patient-clustered, B=1000",
+        "min_cells_per_group": 10,
+        "pipeline": "HVG-2000, PCA-50, kNN k=15, Ollivier-Ricci alpha=0.5 (POT), 4000 edges",
+        "cap_per_patient_group": 60,
+        "total_cap_per_cohort": 3500,
+        "normalization": "log1p-CPM(1e6); genes detected in >=5 cells (dataset loading convention from exp/V2, R5)",
+        "arm_note": "each comparator arm analyzed as its own cohort-analysis (own stratified sample, graph, OR edge draw) per META convention"
+      },
+      "pipeline_facts": {
+        "n_label_rows_raw": 34599,
+        "n_dual_labeled_cells_excluded": 0,
+        "dual_label_conflict_rows_by_sample": {},
+        "n_cells_in_labels_arm": 34599,
+        "n_patients_in_labels_arm": 26,
+        "qualifying_patients_pre_sampling": {
+          "0001": {
+            "n_malignant": 811,
+            "n_normal_epithelial": 64,
+            "qualifies": true
+          },
+          "0025": {
+            "n_malignant": 266,
+            "n_normal_epithelial": 262,
+            "qualifies": true
+          },
+          "0031": {
+            "n_malignant": 1171,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0032": {
+            "n_malignant": 81,
+            "n_normal_epithelial": 190,
+            "qualifies": true
+          },
+          "0040": {
+            "n_malignant": 88,
+            "n_normal_epithelial": 5,
+            "qualifies": false
+          },
+          "0042": {
+            "n_malignant": 54,
+            "n_normal_epithelial": 9,
+            "qualifies": false
+          },
+          "0043": {
+            "n_malignant": 480,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0069": {
+            "n_malignant": 121,
+            "n_normal_epithelial": 46,
+            "qualifies": true
+          },
+          "0106": {
+            "n_malignant": 0,
+            "n_normal_epithelial": 639,
+            "qualifies": false
+          },
+          "0114": {
+            "n_malignant": 2512,
+            "n_normal_epithelial": 1364,
+            "qualifies": true
+          },
+          "0125": {
+            "n_malignant": 182,
+            "n_normal_epithelial": 26,
+            "qualifies": true
+          },
+          "0126": {
+            "n_malignant": 1172,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0131": {
+            "n_malignant": 69,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0135": {
+            "n_malignant": 660,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0151": {
+            "n_malignant": 786,
+            "n_normal_epithelial": 108,
+            "qualifies": true
+          },
+          "0161": {
+            "n_malignant": 378,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0163": {
+            "n_malignant": 118,
+            "n_normal_epithelial": 12,
+            "qualifies": true
+          },
+          "0167": {
+            "n_malignant": 1815,
+            "n_normal_epithelial": 22,
+            "qualifies": true
+          },
+          "0176": {
+            "n_malignant": 3494,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0177": {
+            "n_malignant": 10534,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0308": {
+            "n_malignant": 309,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "0319": {
+            "n_malignant": 1230,
+            "n_normal_epithelial": 56,
+            "qualifies": true
+          },
+          "0337": {
+            "n_malignant": 1242,
+            "n_normal_epithelial": 24,
+            "qualifies": true
+          },
+          "0360": {
+            "n_malignant": 1087,
+            "n_normal_epithelial": 95,
+            "qualifies": true
+          },
+          "0554": {
+            "n_malignant": 2951,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          },
+          "4031": {
+            "n_malignant": 66,
+            "n_normal_epithelial": 0,
+            "qualifies": false
+          }
+        },
+        "n_patients_qualifying_pre_sampling": 12,
+        "n_cells_sampled": 2114,
+        "n_malignant_sampled": 1494,
+        "n_comparator_sampled": 620,
+        "per_sample_load_audit": {
+          "ER_0001": {
+            "n_wanted": 120,
+            "n_in_mtx": 0,
+            "n_wanted_absent_from_mtx": 120
+          },
+          "ER_0025": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0032": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0040_T": {
+            "n_wanted": 65,
+            "n_in_mtx": 65,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0042": {
+            "n_wanted": 63,
+            "n_in_mtx": 63,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0043_T": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0114_T3": {
+            "n_wanted": 82,
+            "n_in_mtx": 82,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0125": {
+            "n_wanted": 86,
+            "n_in_mtx": 86,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0151": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0163": {
+            "n_wanted": 72,
+            "n_in_mtx": 72,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0167_T": {
+            "n_wanted": 82,
+            "n_in_mtx": 82,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0319": {
+            "n_wanted": 116,
+            "n_in_mtx": 116,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0360": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0031": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0069": {
+            "n_wanted": 106,
+            "n_in_mtx": 106,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0161": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0176": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0308": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0337": {
+            "n_wanted": 84,
+            "n_in_mtx": 84,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0106": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0114_T2": {
+            "n_wanted": 38,
+            "n_in_mtx": 38,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0126": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0135": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0131": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0177": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0554": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_4031": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          }
+        },
+        "patients_lost_to_matrix_join": [
+          "0001"
+        ],
+        "genes_detected_ge5_cells": 15747,
+        "n_hvg_used": 2000,
+        "n_pca_components": 50,
+        "graph_nodes": 1994,
+        "graph_edges": 21466,
+        "or_edges_computed": 4000,
+        "or_seconds": 143.98934483528137
+      },
+      "n_cells_sampled_with_valid_kappa": 1948,
+      "n_malignant_cells_valid": 1400,
+      "n_comparator_cells_valid": 548,
+      "n_patients_passing_filter": 11,
+      "min_patients_criterion_met": true,
+      "per_patient_cliffs_delta": {
+        "0025": {
+          "n_malignant": 58,
+          "n_comparator": 59,
+          "mean_kappa_mal": -0.1372142258840146,
+          "mean_kappa_comp": -0.043326554353387975,
+          "delta": -0.3722969023962595,
+          "se": 0.09827237844835135,
+          "ci_lo": -0.5649107641550282,
+          "ci_hi": -0.17968304063749088,
+          "welch_p": 0.0004289787829760726
+        },
+        "0032": {
+          "n_malignant": 60,
+          "n_comparator": 58,
+          "mean_kappa_mal": -0.11340850477398044,
+          "mean_kappa_comp": 0.04090232220251038,
+          "delta": -0.6591954022988505,
+          "se": 0.08145197779355243,
+          "ci_lo": -0.8188412787742133,
+          "ci_hi": -0.49954952582348777,
+          "welch_p": 7.656530546264288e-10
+        },
+        "0069": {
+          "n_malignant": 60,
+          "n_comparator": 43,
+          "mean_kappa_mal": -0.06727153374242914,
+          "mean_kappa_comp": 0.019055874515094214,
+          "delta": -0.3953488372093023,
+          "se": 0.11338345608591699,
+          "ci_lo": -0.6175804111376996,
+          "ci_hi": -0.17311726328090501,
+          "welch_p": 0.001382802274792371
+        },
+        "0114": {
+          "n_malignant": 59,
+          "n_comparator": 60,
+          "mean_kappa_mal": -0.04130669587031846,
+          "mean_kappa_comp": 0.018593691715460124,
+          "delta": -0.23163841807909605,
+          "se": 0.10337201532927524,
+          "ci_lo": -0.4342475681244755,
+          "ci_hi": -0.029029268033716582,
+          "welch_p": 0.02252724384613007
+        },
+        "0125": {
+          "n_malignant": 58,
+          "n_comparator": 26,
+          "mean_kappa_mal": -0.07215013188989149,
+          "mean_kappa_comp": -0.039363999500232685,
+          "delta": -0.17639257294429708,
+          "se": 0.1315857102624695,
+          "ci_lo": -0.4343005650587374,
+          "ci_hi": 0.08151541917014318,
+          "welch_p": 0.2744823406805459
+        },
+        "0151": {
+          "n_malignant": 57,
+          "n_comparator": 59,
+          "mean_kappa_mal": -0.08813469533044146,
+          "mean_kappa_comp": -0.010432641497688386,
+          "delta": -0.3541480820695807,
+          "se": 0.10243809982745321,
+          "ci_lo": -0.554926757731389,
+          "ci_hi": -0.1533694064077724,
+          "welch_p": 0.00729492607878878
+        },
+        "0163": {
+          "n_malignant": 57,
+          "n_comparator": 12,
+          "mean_kappa_mal": 0.05627561810384578,
+          "mean_kappa_comp": 0.04725957642450982,
+          "delta": 0.05263157894736842,
+          "se": 0.15466801815656134,
+          "ci_lo": -0.2505177366394918,
+          "ci_hi": 0.3557808945342286,
+          "welch_p": 0.8507332770730842
+        },
+        "0167": {
+          "n_malignant": 59,
+          "n_comparator": 22,
+          "mean_kappa_mal": -0.06914240986377372,
+          "mean_kappa_comp": -0.021369868642485017,
+          "delta": -0.1679506933744222,
+          "se": 0.132105499982064,
+          "ci_lo": -0.4268774733392676,
+          "ci_hi": 0.09097608659042322,
+          "welch_p": 0.04827553456190367
+        },
+        "0319": {
+          "n_malignant": 57,
+          "n_comparator": 56,
+          "mean_kappa_mal": -0.09250305771672714,
+          "mean_kappa_comp": 0.041978392803418405,
+          "delta": -0.5864661654135338,
+          "se": 0.08639913114018989,
+          "ci_lo": -0.755808462448306,
+          "ci_hi": -0.4171238683787616,
+          "welch_p": 2.2067971437215254e-07
+        },
+        "0337": {
+          "n_malignant": 59,
+          "n_comparator": 22,
+          "mean_kappa_mal": -0.13975573004186148,
+          "mean_kappa_comp": 0.06324826787212702,
+          "delta": -0.6933744221879815,
+          "se": 0.1315966491247464,
+          "ci_lo": -0.9513038544724844,
+          "ci_hi": -0.4354449899034786,
+          "welch_p": 1.4545472153345296e-05
+        },
+        "0360": {
+          "n_malignant": 58,
+          "n_comparator": 58,
+          "mean_kappa_mal": -0.16086541008579344,
+          "mean_kappa_comp": 0.007882580912529528,
+          "delta": -0.7746730083234245,
+          "se": 0.06302188680174019,
+          "ci_lo": -0.8981959064548353,
+          "ci_hi": -0.6511501101920136,
+          "welch_p": 3.4499026090072075e-16
+        }
+      },
+      "per_patient_direction": {
+        "n_delta_positive": 1,
+        "n_delta_negative": 10,
+        "n_total": 11,
+        "fraction_positive": 0.09090909090909091
+      },
+      "dl_meta": {
+        "label": "HELDOUT_GSE161529_secondary",
+        "k": 11,
+        "delta": -0.4114697086160349,
+        "se": 0.07694440264390648,
+        "ci_lo": -0.5622807377980916,
+        "ci_hi": -0.2606586794339782,
+        "z": -5.347623666925962,
+        "p": 8.911651963000793e-08,
+        "Q": 62.390937614755956,
+        "df": 10,
+        "tau2": 0.053071508589759106,
+        "I2": 83.97203122391461,
+        "pQ": 1.2751508456398302e-09,
+        "delta_FE": -0.4952796843260916,
+        "one_sided_p_delta_gt_0": 0.9999999554417401
+      },
+      "pooled_delta": -0.4114697086160349,
+      "pooled_ci_95": [
+        -0.5622807377980916,
+        -0.2606586794339782
+      ],
+      "i_squared_percent": 83.97203122391461,
+      "one_sided_p_delta_gt_0": 0.9999999554417401,
+      "two_sided_p": 8.911651963000793e-08,
+      "naive_cell_level": {
+        "delta": -0.2882325338894682,
+        "welch_p": 1.2182520713806096e-20
+      },
+      "bootstrap": {
+        "B": 1000,
+        "mean": -0.4121642866457105,
+        "ci_lo": -0.5548932352524355,
+        "ci_hi": -0.27580360495216566
+      },
+      "decision_rule_inputs": {
+        "pooled_delta": -0.4114697086160349,
+        "one_sided_p": 0.9999999554417401,
+        "rule": "SUPPORTED if pooled delta > 0 and one-sided p < 0.05; NOT SUPPORTED otherwise (applied outside this file)"
+      }
+    }
+  },
+  "ambiguities": [
+    "Run instructions stated 28 patients/samples; labels files contain 27 unique samples and 26 unique patient IDs (patient 0114 contributes ER_0114_T3 and TN_0114_T2). Downloads and analysis restricted to the 27 samples present in the labels.",
+    "Unit of analysis = labels 'patient' column; donor MH0114's ER+ and TN samples pooled as one patient per the annotation.",
+    "Preregistration defines one cohort (GSE161529) with two comparators; each arm was run as its own cohort-analysis with its own stratified sample (60/patient/group, total 3500), own PCA/kNN graph, and its own 4000-edge OR draw (plain adaptation of the per-cohort META convention used by the GSE131907 runner).",
+    "GEO supplementary stem suffixes are inconsistent (e.g. ER-MH0040 for sample ER_0040_T but ER-MH0043-T for ER_0043_T); mapping by subtype+patient-number+optional-suffix resolved 1:1 for all 27 samples (see samples/MANIFEST.json).",
+    "Secondary-arm labels contain 0 malignant cells for patient 0106 (TN_0106: 639 normal_epithelial, 747 immune, no malignant call), so 0106 cannot enter the secondary arm despite having epithelial cells.",
+    "Sample ER_0001 (patient 0001) is UNJOINABLE: none of the 69 GEO per-sample libraries contains its label barcodes (probe of all 69 barcodes.tsv.gz; best overlap 11/964 vs its name-mapped library GSM4909296_ER-MH0001, chance level). Its cells are dropped, not forced; patient 0001 is therefore absent from both comparator arms (recorded in pipeline_facts.patients_lost_to_matrix_join and per_sample_load_audit).",
+    "LABEL CONFLICT (primary arm only): cells_primary.tsv.gz lists 26,439 barcodes twice, once as malignant (Total-object inferCNV tumor-block clusters) and once as immune (Sub-object cluster 0/1, marker-panel/pinned). A cell cannot be in both contrast groups; plain-reading resolution: dual-labeled cells excluded from the primary arm entirely (reported, not forced; counts in pipeline_facts.n_dual_labeled_cells_excluded and dual_label_conflict_rows_by_sample). Secondary labels contain zero duplicate barcodes (verified), so the secondary arm is unaffected. This shrinks the primary arm's clean malignant pool to 5,238 and clean immune pool to 16,862 cells.",
+    "Normalization (log1p-CPM(1e6)) and gene filter (>=5 cells) are not specified in PREREGISTRATION.md; carried over verbatim from the GSE131907 runner's dataset-loading convention (exp/V2, R5)."
+  ],
+  "wallclock_seconds": 515.4225087165833
+}

@@ -1,0 +1,11 @@
+# Pinned by direct inspection of the interpreter used for all runs
+# (python3 -c "import <pkg>; print(<pkg>.__version__)").
+# Interpreter: CPython 3.14.7 (python3 --version)
+numpy==2.4.2
+scipy==1.17.0
+pandas==3.0.3
+rdata==1.1.0
+POT==0.9.6.post1
+matplotlib==3.10.8
+scikit-learn==1.8.0
+networkx==3.6.1

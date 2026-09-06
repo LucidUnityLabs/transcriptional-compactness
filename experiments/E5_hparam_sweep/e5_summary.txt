@@ -1,0 +1,12 @@
+E5 hyperparameter sweep summary
+N cells (valid / total): 72 / 72
+frac(delta>0): 1.000
+median delta: +0.535
+range: [+0.285, +0.779]
+variance fraction explained by axis:
+  HVG: 0.411
+  k: 0.409
+  PCA: 0.120
+  alpha: 0.001
+dominant axis: HVG
+robustness verdict: stable

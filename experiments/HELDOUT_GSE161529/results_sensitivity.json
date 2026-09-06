@@ -1,0 +1,1448 @@
+{
+  "header": {
+    "analysis": "post-hoc sensitivity analysis of dual-label handling; NOT part of PREREGISTRATION.md; baseline variant is the pre-registered run",
+    "cohort": "GSE161529 (Pal et al. 2021 breast cancer atlas)",
+    "arm": "primary only (malignant vs immune)",
+    "question": "does the pre-registered primary-arm pooled delta depend on excluding the 26,439 dual-labeled barcodes (labeled both 'malignant' under Total-object inferCNV clusters and 'immune' under Sub-object clusters in cells_primary.tsv.gz)?",
+    "variants": {
+      "excluded": "baseline (pre-registered) rule: dual-labeled barcodes dropped from the primary arm entirely",
+      "dual_mal": "dual-labeled barcodes kept and counted as malignant (immune row dropped)",
+      "dual_immune": "dual-labeled barcodes kept and counted as immune (malignant row dropped)"
+    },
+    "held_identical_to_preregistered_run": "seed 20260507; stratified caps 60/patient/group and total 3500; HVG-2000, PCA-50, kNN k=15, Ollivier-Ricci alpha=0.5 (POT) on 4000 edges; >=10 cells/group filter; DerSimonian-Laird meta; patient-clustered bootstrap B=1000; only the dual-label assignment rule differs",
+    "baseline_source": "results.json comparators.primary (pre-registered run, PREREGISTRATION.md 2026-06-29)",
+    "seed": 20260507
+  },
+  "baseline_reproduction": {
+    "expected_pooled_delta": 0.16801092468924114,
+    "observed_pooled_delta": 0.16801092468924114,
+    "pooled_delta_exact_match": true,
+    "se_exact_match": true,
+    "ci_exact_match": true,
+    "one_sided_p_exact_match": true,
+    "i2_exact_match": true,
+    "k_exact_match": true,
+    "direction_counts_exact_match": true,
+    "bootstrap_exact_match": true
+  },
+  "variants": {
+    "excluded": {
+      "dual_label_rule": "baseline (pre-registered) rule: dual-labeled barcodes dropped from the primary arm entirely",
+      "pipeline_facts": {
+        "n_label_rows_raw": 74978,
+        "n_dual_labeled_barcodes": 26439,
+        "n_dual_labeled_cells_excluded": 26439,
+        "n_dual_labeled_cells_assigned_malignant": 0,
+        "n_dual_labeled_cells_assigned_comparator": 0,
+        "dual_label_conflict_rows_by_sample": {
+          "ER_0001": 78,
+          "ER_0025": 518,
+          "ER_0032": 138,
+          "ER_0040_T": 20,
+          "ER_0042": 80,
+          "ER_0043_T": 128,
+          "ER_0114_T3": 368,
+          "ER_0125": 192,
+          "ER_0151": 1556,
+          "ER_0163": 100,
+          "ER_0167_T": 3310,
+          "ER_0319": 2356,
+          "ER_0360": 2008,
+          "HER2_0031": 288,
+          "HER2_0069": 242,
+          "HER2_0161": 650,
+          "HER2_0176": 5524,
+          "HER2_0308": 564,
+          "HER2_0337": 2026,
+          "TN_0114_T2": 2024,
+          "TN_0126": 2342,
+          "TN_0135": 1282,
+          "TN_B1_0131": 134,
+          "TN_B1_0177": 21036,
+          "TN_B1_0554": 5814,
+          "TN_B1_4031": 100
+        },
+        "n_cells_in_labels_arm": 22100,
+        "n_malignant_pool": 5238,
+        "n_comparator_pool": 16862,
+        "n_patients_in_labels_arm": 26,
+        "qualifying_patients_pre_sampling": {
+          "0001": {
+            "n_malignant": 772,
+            "n_immune": 153,
+            "qualifies": true
+          },
+          "0025": {
+            "n_malignant": 7,
+            "n_immune": 448,
+            "qualifies": false
+          },
+          "0031": {
+            "n_malignant": 1027,
+            "n_immune": 894,
+            "qualifies": true
+          },
+          "0032": {
+            "n_malignant": 12,
+            "n_immune": 99,
+            "qualifies": true
+          },
+          "0040": {
+            "n_malignant": 78,
+            "n_immune": 241,
+            "qualifies": true
+          },
+          "0042": {
+            "n_malignant": 14,
+            "n_immune": 1374,
+            "qualifies": true
+          },
+          "0043": {
+            "n_malignant": 416,
+            "n_immune": 870,
+            "qualifies": true
+          },
+          "0069": {
+            "n_malignant": 0,
+            "n_immune": 78,
+            "qualifies": false
+          },
+          "0106": {
+            "n_malignant": 0,
+            "n_immune": 747,
+            "qualifies": false
+          },
+          "0114": {
+            "n_malignant": 1316,
+            "n_immune": 503,
+            "qualifies": true
+          },
+          "0125": {
+            "n_malignant": 86,
+            "n_immune": 92,
+            "qualifies": true
+          },
+          "0126": {
+            "n_malignant": 1,
+            "n_immune": 200,
+            "qualifies": false
+          },
+          "0131": {
+            "n_malignant": 2,
+            "n_immune": 2,
+            "qualifies": false
+          },
+          "0135": {
+            "n_malignant": 19,
+            "n_immune": 58,
+            "qualifies": true
+          },
+          "0151": {
+            "n_malignant": 8,
+            "n_immune": 312,
+            "qualifies": false
+          },
+          "0161": {
+            "n_malignant": 53,
+            "n_immune": 156,
+            "qualifies": true
+          },
+          "0163": {
+            "n_malignant": 68,
+            "n_immune": 341,
+            "qualifies": true
+          },
+          "0167": {
+            "n_malignant": 160,
+            "n_immune": 383,
+            "qualifies": true
+          },
+          "0176": {
+            "n_malignant": 732,
+            "n_immune": 1297,
+            "qualifies": true
+          },
+          "0177": {
+            "n_malignant": 16,
+            "n_immune": 3380,
+            "qualifies": true
+          },
+          "0308": {
+            "n_malignant": 27,
+            "n_immune": 335,
+            "qualifies": true
+          },
+          "0319": {
+            "n_malignant": 52,
+            "n_immune": 635,
+            "qualifies": true
+          },
+          "0337": {
+            "n_malignant": 229,
+            "n_immune": 3008,
+            "qualifies": true
+          },
+          "0360": {
+            "n_malignant": 83,
+            "n_immune": 369,
+            "qualifies": true
+          },
+          "0554": {
+            "n_malignant": 44,
+            "n_immune": 886,
+            "qualifies": true
+          },
+          "4031": {
+            "n_malignant": 16,
+            "n_immune": 1,
+            "qualifies": false
+          }
+        },
+        "n_patients_qualifying_pre_sampling": 19,
+        "n_cells_sampled": 2372,
+        "n_malignant_sampled": 931,
+        "n_comparator_sampled": 1441,
+        "per_sample_load_audit": {
+          "ER_0001": {
+            "n_wanted": 120,
+            "n_in_mtx": 0,
+            "n_wanted_absent_from_mtx": 120
+          },
+          "ER_0025": {
+            "n_wanted": 67,
+            "n_in_mtx": 67,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0032": {
+            "n_wanted": 72,
+            "n_in_mtx": 72,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0040_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0042": {
+            "n_wanted": 74,
+            "n_in_mtx": 74,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0043_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0114_T3": {
+            "n_wanted": 88,
+            "n_in_mtx": 88,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0125": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0151": {
+            "n_wanted": 68,
+            "n_in_mtx": 68,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0163": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0167_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0319": {
+            "n_wanted": 112,
+            "n_in_mtx": 112,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0360": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0031": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0069": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0161": {
+            "n_wanted": 113,
+            "n_in_mtx": 113,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0176": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0308": {
+            "n_wanted": 87,
+            "n_in_mtx": 87,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0337": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0106": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0114_T2": {
+            "n_wanted": 32,
+            "n_in_mtx": 32,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0126": {
+            "n_wanted": 61,
+            "n_in_mtx": 61,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0135": {
+            "n_wanted": 77,
+            "n_in_mtx": 77,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0131": {
+            "n_wanted": 4,
+            "n_in_mtx": 4,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0177": {
+            "n_wanted": 76,
+            "n_in_mtx": 76,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0554": {
+            "n_wanted": 104,
+            "n_in_mtx": 104,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_4031": {
+            "n_wanted": 17,
+            "n_in_mtx": 17,
+            "n_wanted_absent_from_mtx": 0
+          }
+        },
+        "patients_lost_to_matrix_join": [
+          "0001"
+        ],
+        "genes_detected_ge5_cells": 16103,
+        "n_hvg_used": 2000,
+        "n_pca_components": 50,
+        "graph_nodes": 2252,
+        "graph_edges": 23541,
+        "or_edges_computed": 4000,
+        "or_seconds": 94.9892258644104
+      },
+      "n_cells_sampled_with_valid_kappa": 2167,
+      "n_malignant_cells_valid": 837,
+      "n_comparator_cells_valid": 1330,
+      "n_patients_passing_filter": 18,
+      "min_patients_criterion_met": true,
+      "dl_meta": {
+        "label": "HELDOUT_GSE161529_primary_sens_excluded",
+        "k": 18,
+        "delta": 0.16801092468924114,
+        "se": 0.12188877196441941,
+        "ci_lo": -0.07089106836102091,
+        "ci_hi": 0.4069129177395032,
+        "z": 1.378395417243889,
+        "p": 0.1680812375426689,
+        "Q": 440.7179527039924,
+        "df": 17,
+        "tau2": 0.25239909284837336,
+        "I2": 96.14265770302804,
+        "pQ": 5.502583432775259e-83,
+        "delta_FE": 0.2227663394241971,
+        "one_sided_p_delta_gt_0": 0.08404061877133445
+      },
+      "pooled_delta": 0.16801092468924114,
+      "pooled_se": 0.12188877196441941,
+      "pooled_ci_95": [
+        -0.07089106836102091,
+        0.4069129177395032
+      ],
+      "i_squared_percent": 96.14265770302804,
+      "one_sided_p_delta_gt_0": 0.08404061877133445,
+      "two_sided_p": 0.1680812375426689,
+      "per_patient_direction": {
+        "n_delta_positive": 12,
+        "n_delta_negative": 6,
+        "n_total": 18,
+        "fraction_positive": 0.6666666666666666
+      },
+      "per_patient_delta_compact": {
+        "0031": {
+          "delta": 0.5537750385208012,
+          "n_malignant": 55,
+          "n_comparator": 59
+        },
+        "0032": {
+          "delta": -0.1111111111111111,
+          "n_malignant": 12,
+          "n_comparator": 57
+        },
+        "0040": {
+          "delta": 0.09333333333333334,
+          "n_malignant": 60,
+          "n_comparator": 60
+        },
+        "0042": {
+          "delta": -0.25945241199478486,
+          "n_malignant": 13,
+          "n_comparator": 59
+        },
+        "0043": {
+          "delta": -0.179427235534775,
+          "n_malignant": 58,
+          "n_comparator": 59
+        },
+        "0114": {
+          "delta": 0.5380952380952381,
+          "n_malignant": 56,
+          "n_comparator": 60
+        },
+        "0125": {
+          "delta": 0.5686630369026013,
+          "n_malignant": 58,
+          "n_comparator": 57
+        },
+        "0135": {
+          "delta": -0.8121212121212121,
+          "n_malignant": 18,
+          "n_comparator": 55
+        },
+        "0161": {
+          "delta": 0.5438218390804598,
+          "n_malignant": 48,
+          "n_comparator": 58
+        },
+        "0163": {
+          "delta": 0.568922305764411,
+          "n_malignant": 57,
+          "n_comparator": 56
+        },
+        "0167": {
+          "delta": 0.7604679802955665,
+          "n_malignant": 58,
+          "n_comparator": 56
+        },
+        "0176": {
+          "delta": 0.24742891712038717,
+          "n_malignant": 58,
+          "n_comparator": 57
+        },
+        "0177": {
+          "delta": -0.38377192982456143,
+          "n_malignant": 16,
+          "n_comparator": 57
+        },
+        "0308": {
+          "delta": 0.24902216427640156,
+          "n_malignant": 26,
+          "n_comparator": 59
+        },
+        "0319": {
+          "delta": 0.19517241379310346,
+          "n_malignant": 50,
+          "n_comparator": 58
+        },
+        "0337": {
+          "delta": 0.1736237144585602,
+          "n_malignant": 57,
+          "n_comparator": 58
+        },
+        "0360": {
+          "delta": 0.49265536723163844,
+          "n_malignant": 59,
+          "n_comparator": 60
+        },
+        "0554": {
+          "delta": -0.3652037617554859,
+          "n_malignant": 44,
+          "n_comparator": 58
+        }
+      },
+      "naive_cell_level": {
+        "delta": 0.24480556229282885,
+        "welch_p": 4.031037265755781e-19
+      },
+      "bootstrap": {
+        "B": 1000,
+        "mean": 0.17293171428411425,
+        "ci_lo": -0.026810050510547197,
+        "ci_hi": 0.38217938145881786
+      }
+    },
+    "dual_mal": {
+      "dual_label_rule": "dual-labeled barcodes kept and counted as malignant (immune row dropped)",
+      "pipeline_facts": {
+        "n_label_rows_raw": 74978,
+        "n_dual_labeled_barcodes": 26439,
+        "n_dual_labeled_cells_excluded": 0,
+        "n_dual_labeled_cells_assigned_malignant": 26439,
+        "n_dual_labeled_cells_assigned_comparator": 0,
+        "dual_label_conflict_rows_by_sample": {
+          "ER_0001": 78,
+          "ER_0025": 518,
+          "ER_0032": 138,
+          "ER_0040_T": 20,
+          "ER_0042": 80,
+          "ER_0043_T": 128,
+          "ER_0114_T3": 368,
+          "ER_0125": 192,
+          "ER_0151": 1556,
+          "ER_0163": 100,
+          "ER_0167_T": 3310,
+          "ER_0319": 2356,
+          "ER_0360": 2008,
+          "HER2_0031": 288,
+          "HER2_0069": 242,
+          "HER2_0161": 650,
+          "HER2_0176": 5524,
+          "HER2_0308": 564,
+          "HER2_0337": 2026,
+          "TN_0114_T2": 2024,
+          "TN_0126": 2342,
+          "TN_0135": 1282,
+          "TN_B1_0131": 134,
+          "TN_B1_0177": 21036,
+          "TN_B1_0554": 5814,
+          "TN_B1_4031": 100
+        },
+        "n_cells_in_labels_arm": 48539,
+        "n_malignant_pool": 31677,
+        "n_comparator_pool": 16862,
+        "n_patients_in_labels_arm": 26,
+        "qualifying_patients_pre_sampling": {
+          "0001": {
+            "n_malignant": 811,
+            "n_immune": 153,
+            "qualifies": true
+          },
+          "0025": {
+            "n_malignant": 266,
+            "n_immune": 448,
+            "qualifies": true
+          },
+          "0031": {
+            "n_malignant": 1171,
+            "n_immune": 894,
+            "qualifies": true
+          },
+          "0032": {
+            "n_malignant": 81,
+            "n_immune": 99,
+            "qualifies": true
+          },
+          "0040": {
+            "n_malignant": 88,
+            "n_immune": 241,
+            "qualifies": true
+          },
+          "0042": {
+            "n_malignant": 54,
+            "n_immune": 1374,
+            "qualifies": true
+          },
+          "0043": {
+            "n_malignant": 480,
+            "n_immune": 870,
+            "qualifies": true
+          },
+          "0069": {
+            "n_malignant": 121,
+            "n_immune": 78,
+            "qualifies": true
+          },
+          "0106": {
+            "n_malignant": 0,
+            "n_immune": 747,
+            "qualifies": false
+          },
+          "0114": {
+            "n_malignant": 2512,
+            "n_immune": 503,
+            "qualifies": true
+          },
+          "0125": {
+            "n_malignant": 182,
+            "n_immune": 92,
+            "qualifies": true
+          },
+          "0126": {
+            "n_malignant": 1172,
+            "n_immune": 200,
+            "qualifies": true
+          },
+          "0131": {
+            "n_malignant": 69,
+            "n_immune": 2,
+            "qualifies": false
+          },
+          "0135": {
+            "n_malignant": 660,
+            "n_immune": 58,
+            "qualifies": true
+          },
+          "0151": {
+            "n_malignant": 786,
+            "n_immune": 312,
+            "qualifies": true
+          },
+          "0161": {
+            "n_malignant": 378,
+            "n_immune": 156,
+            "qualifies": true
+          },
+          "0163": {
+            "n_malignant": 118,
+            "n_immune": 341,
+            "qualifies": true
+          },
+          "0167": {
+            "n_malignant": 1815,
+            "n_immune": 383,
+            "qualifies": true
+          },
+          "0176": {
+            "n_malignant": 3494,
+            "n_immune": 1297,
+            "qualifies": true
+          },
+          "0177": {
+            "n_malignant": 10534,
+            "n_immune": 3380,
+            "qualifies": true
+          },
+          "0308": {
+            "n_malignant": 309,
+            "n_immune": 335,
+            "qualifies": true
+          },
+          "0319": {
+            "n_malignant": 1230,
+            "n_immune": 635,
+            "qualifies": true
+          },
+          "0337": {
+            "n_malignant": 1242,
+            "n_immune": 3008,
+            "qualifies": true
+          },
+          "0360": {
+            "n_malignant": 1087,
+            "n_immune": 369,
+            "qualifies": true
+          },
+          "0554": {
+            "n_malignant": 2951,
+            "n_immune": 886,
+            "qualifies": true
+          },
+          "4031": {
+            "n_malignant": 66,
+            "n_immune": 1,
+            "qualifies": false
+          }
+        },
+        "n_patients_qualifying_pre_sampling": 23,
+        "n_cells_sampled": 2935,
+        "n_malignant_sampled": 1494,
+        "n_comparator_sampled": 1441,
+        "per_sample_load_audit": {
+          "ER_0001": {
+            "n_wanted": 120,
+            "n_in_mtx": 0,
+            "n_wanted_absent_from_mtx": 120
+          },
+          "ER_0025": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0032": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0040_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0042": {
+            "n_wanted": 114,
+            "n_in_mtx": 114,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0043_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0114_T3": {
+            "n_wanted": 65,
+            "n_in_mtx": 65,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0125": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0151": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0163": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0167_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0319": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0360": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0031": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0069": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0161": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0176": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0308": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0337": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0106": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0114_T2": {
+            "n_wanted": 55,
+            "n_in_mtx": 55,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0126": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0135": {
+            "n_wanted": 118,
+            "n_in_mtx": 118,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0131": {
+            "n_wanted": 62,
+            "n_in_mtx": 62,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0177": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0554": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_4031": {
+            "n_wanted": 61,
+            "n_in_mtx": 61,
+            "n_wanted_absent_from_mtx": 0
+          }
+        },
+        "patients_lost_to_matrix_join": [
+          "0001"
+        ],
+        "genes_detected_ge5_cells": 15811,
+        "n_hvg_used": 2000,
+        "n_pca_components": 50,
+        "graph_nodes": 2815,
+        "graph_edges": 30250,
+        "or_edges_computed": 4000,
+        "or_seconds": 60.47124004364014
+      },
+      "n_cells_sampled_with_valid_kappa": 2634,
+      "n_malignant_cells_valid": 1351,
+      "n_comparator_cells_valid": 1283,
+      "n_patients_passing_filter": 22,
+      "min_patients_criterion_met": true,
+      "dl_meta": {
+        "label": "HELDOUT_GSE161529_primary_sens_dual_mal",
+        "k": 22,
+        "delta": -0.1690272270690162,
+        "se": 0.093020805396737,
+        "ci_lo": -0.3513480056466207,
+        "ci_hi": 0.013293551508588297,
+        "z": -1.8170905567642546,
+        "p": 0.06920324846940049,
+        "Q": 440.48513977753305,
+        "df": 21,
+        "tau2": 0.18024934369595386,
+        "I2": 95.23252929472126,
+        "pQ": 3.733787958753004e-80,
+        "delta_FE": -0.2739091583439973,
+        "one_sided_p_delta_gt_0": 0.9653983757652997
+      },
+      "pooled_delta": -0.1690272270690162,
+      "pooled_se": 0.093020805396737,
+      "pooled_ci_95": [
+        -0.3513480056466207,
+        0.013293551508588297
+      ],
+      "i_squared_percent": 95.23252929472126,
+      "one_sided_p_delta_gt_0": 0.9653983757652997,
+      "two_sided_p": 0.06920324846940049,
+      "per_patient_direction": {
+        "n_delta_positive": 9,
+        "n_delta_negative": 13,
+        "n_total": 22,
+        "fraction_positive": 0.4090909090909091
+      },
+      "per_patient_delta_compact": {
+        "0025": {
+          "delta": -0.04014272970561998,
+          "n_malignant": 59,
+          "n_comparator": 57
+        },
+        "0031": {
+          "delta": 0.5886939571150097,
+          "n_malignant": 57,
+          "n_comparator": 54
+        },
+        "0032": {
+          "delta": -0.6403061224489796,
+          "n_malignant": 56,
+          "n_comparator": 56
+        },
+        "0040": {
+          "delta": 0.14679689744326344,
+          "n_malignant": 59,
+          "n_comparator": 59
+        },
+        "0042": {
+          "delta": -0.1897891231964484,
+          "n_malignant": 51,
+          "n_comparator": 53
+        },
+        "0043": {
+          "delta": 0.2170035671819263,
+          "n_malignant": 58,
+          "n_comparator": 58
+        },
+        "0069": {
+          "delta": -0.04285714285714286,
+          "n_malignant": 56,
+          "n_comparator": 55
+        },
+        "0114": {
+          "delta": 0.08401253918495298,
+          "n_malignant": 55,
+          "n_comparator": 58
+        },
+        "0125": {
+          "delta": 0.09856459330143541,
+          "n_malignant": 55,
+          "n_comparator": 57
+        },
+        "0126": {
+          "delta": -0.8333333333333334,
+          "n_malignant": 57,
+          "n_comparator": 56
+        },
+        "0135": {
+          "delta": -0.7427101200686106,
+          "n_malignant": 55,
+          "n_comparator": 53
+        },
+        "0151": {
+          "delta": -0.39675324675324675,
+          "n_malignant": 56,
+          "n_comparator": 55
+        },
+        "0161": {
+          "delta": 0.00992063492063492,
+          "n_malignant": 56,
+          "n_comparator": 54
+        },
+        "0163": {
+          "delta": 0.2657967032967033,
+          "n_malignant": 56,
+          "n_comparator": 52
+        },
+        "0167": {
+          "delta": 0.1512987012987013,
+          "n_malignant": 56,
+          "n_comparator": 55
+        },
+        "0176": {
+          "delta": -0.1931216931216931,
+          "n_malignant": 54,
+          "n_comparator": 56
+        },
+        "0177": {
+          "delta": -0.5921052631578947,
+          "n_malignant": 57,
+          "n_comparator": 56
+        },
+        "0308": {
+          "delta": 0.20055904961565338,
+          "n_malignant": 53,
+          "n_comparator": 54
+        },
+        "0319": {
+          "delta": -0.307177033492823,
+          "n_malignant": 57,
+          "n_comparator": 55
+        },
+        "0337": {
+          "delta": -0.4658094681472823,
+          "n_malignant": 59,
+          "n_comparator": 58
+        },
+        "0360": {
+          "delta": -0.5547489413188142,
+          "n_malignant": 58,
+          "n_comparator": 57
+        },
+        "0554": {
+          "delta": -0.4101694915254237,
+          "n_malignant": 59,
+          "n_comparator": 55
+        }
+      },
+      "naive_cell_level": {
+        "delta": -0.17136234064660397,
+        "welch_p": 4.217095974862957e-11
+      },
+      "bootstrap": {
+        "B": 1000,
+        "mean": -0.16979379875373132,
+        "ci_lo": -0.33215205678880827,
+        "ci_hi": -0.00712314110119687
+      }
+    },
+    "dual_immune": {
+      "dual_label_rule": "dual-labeled barcodes kept and counted as immune (malignant row dropped)",
+      "pipeline_facts": {
+        "n_label_rows_raw": 74978,
+        "n_dual_labeled_barcodes": 26439,
+        "n_dual_labeled_cells_excluded": 0,
+        "n_dual_labeled_cells_assigned_malignant": 0,
+        "n_dual_labeled_cells_assigned_comparator": 26439,
+        "dual_label_conflict_rows_by_sample": {
+          "ER_0001": 78,
+          "ER_0025": 518,
+          "ER_0032": 138,
+          "ER_0040_T": 20,
+          "ER_0042": 80,
+          "ER_0043_T": 128,
+          "ER_0114_T3": 368,
+          "ER_0125": 192,
+          "ER_0151": 1556,
+          "ER_0163": 100,
+          "ER_0167_T": 3310,
+          "ER_0319": 2356,
+          "ER_0360": 2008,
+          "HER2_0031": 288,
+          "HER2_0069": 242,
+          "HER2_0161": 650,
+          "HER2_0176": 5524,
+          "HER2_0308": 564,
+          "HER2_0337": 2026,
+          "TN_0114_T2": 2024,
+          "TN_0126": 2342,
+          "TN_0135": 1282,
+          "TN_B1_0131": 134,
+          "TN_B1_0177": 21036,
+          "TN_B1_0554": 5814,
+          "TN_B1_4031": 100
+        },
+        "n_cells_in_labels_arm": 48539,
+        "n_malignant_pool": 5238,
+        "n_comparator_pool": 43301,
+        "n_patients_in_labels_arm": 26,
+        "qualifying_patients_pre_sampling": {
+          "0001": {
+            "n_malignant": 772,
+            "n_immune": 192,
+            "qualifies": true
+          },
+          "0025": {
+            "n_malignant": 7,
+            "n_immune": 707,
+            "qualifies": false
+          },
+          "0031": {
+            "n_malignant": 1027,
+            "n_immune": 1038,
+            "qualifies": true
+          },
+          "0032": {
+            "n_malignant": 12,
+            "n_immune": 168,
+            "qualifies": true
+          },
+          "0040": {
+            "n_malignant": 78,
+            "n_immune": 251,
+            "qualifies": true
+          },
+          "0042": {
+            "n_malignant": 14,
+            "n_immune": 1414,
+            "qualifies": true
+          },
+          "0043": {
+            "n_malignant": 416,
+            "n_immune": 934,
+            "qualifies": true
+          },
+          "0069": {
+            "n_malignant": 0,
+            "n_immune": 199,
+            "qualifies": false
+          },
+          "0106": {
+            "n_malignant": 0,
+            "n_immune": 747,
+            "qualifies": false
+          },
+          "0114": {
+            "n_malignant": 1316,
+            "n_immune": 1699,
+            "qualifies": true
+          },
+          "0125": {
+            "n_malignant": 86,
+            "n_immune": 188,
+            "qualifies": true
+          },
+          "0126": {
+            "n_malignant": 1,
+            "n_immune": 1371,
+            "qualifies": false
+          },
+          "0131": {
+            "n_malignant": 2,
+            "n_immune": 69,
+            "qualifies": false
+          },
+          "0135": {
+            "n_malignant": 19,
+            "n_immune": 699,
+            "qualifies": true
+          },
+          "0151": {
+            "n_malignant": 8,
+            "n_immune": 1090,
+            "qualifies": false
+          },
+          "0161": {
+            "n_malignant": 53,
+            "n_immune": 481,
+            "qualifies": true
+          },
+          "0163": {
+            "n_malignant": 68,
+            "n_immune": 391,
+            "qualifies": true
+          },
+          "0167": {
+            "n_malignant": 160,
+            "n_immune": 2038,
+            "qualifies": true
+          },
+          "0176": {
+            "n_malignant": 732,
+            "n_immune": 4059,
+            "qualifies": true
+          },
+          "0177": {
+            "n_malignant": 16,
+            "n_immune": 13898,
+            "qualifies": true
+          },
+          "0308": {
+            "n_malignant": 27,
+            "n_immune": 617,
+            "qualifies": true
+          },
+          "0319": {
+            "n_malignant": 52,
+            "n_immune": 1813,
+            "qualifies": true
+          },
+          "0337": {
+            "n_malignant": 229,
+            "n_immune": 4021,
+            "qualifies": true
+          },
+          "0360": {
+            "n_malignant": 83,
+            "n_immune": 1373,
+            "qualifies": true
+          },
+          "0554": {
+            "n_malignant": 44,
+            "n_immune": 3793,
+            "qualifies": true
+          },
+          "4031": {
+            "n_malignant": 16,
+            "n_immune": 51,
+            "qualifies": true
+          }
+        },
+        "n_patients_qualifying_pre_sampling": 20,
+        "n_cells_sampled": 2482,
+        "n_malignant_sampled": 931,
+        "n_comparator_sampled": 1551,
+        "per_sample_load_audit": {
+          "ER_0001": {
+            "n_wanted": 120,
+            "n_in_mtx": 0,
+            "n_wanted_absent_from_mtx": 120
+          },
+          "ER_0025": {
+            "n_wanted": 67,
+            "n_in_mtx": 67,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0032": {
+            "n_wanted": 72,
+            "n_in_mtx": 72,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0040_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0042": {
+            "n_wanted": 74,
+            "n_in_mtx": 74,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0043_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0114_T3": {
+            "n_wanted": 73,
+            "n_in_mtx": 73,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0125": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0151": {
+            "n_wanted": 68,
+            "n_in_mtx": 68,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0163": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0167_T": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0319": {
+            "n_wanted": 112,
+            "n_in_mtx": 112,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "ER_0360": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0031": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0069": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0161": {
+            "n_wanted": 113,
+            "n_in_mtx": 113,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0176": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0308": {
+            "n_wanted": 87,
+            "n_in_mtx": 87,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "HER2_0337": {
+            "n_wanted": 120,
+            "n_in_mtx": 120,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0106": {
+            "n_wanted": 60,
+            "n_in_mtx": 60,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0114_T2": {
+            "n_wanted": 47,
+            "n_in_mtx": 47,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0126": {
+            "n_wanted": 61,
+            "n_in_mtx": 61,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_0135": {
+            "n_wanted": 79,
+            "n_in_mtx": 79,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0131": {
+            "n_wanted": 62,
+            "n_in_mtx": 62,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0177": {
+            "n_wanted": 76,
+            "n_in_mtx": 76,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_0554": {
+            "n_wanted": 104,
+            "n_in_mtx": 104,
+            "n_wanted_absent_from_mtx": 0
+          },
+          "TN_B1_4031": {
+            "n_wanted": 67,
+            "n_in_mtx": 67,
+            "n_wanted_absent_from_mtx": 0
+          }
+        },
+        "patients_lost_to_matrix_join": [
+          "0001"
+        ],
+        "genes_detected_ge5_cells": 16016,
+        "n_hvg_used": 2000,
+        "n_pca_components": 50,
+        "graph_nodes": 2362,
+        "graph_edges": 25322,
+        "or_edges_computed": 4000,
+        "or_seconds": 51.91474795341492
+      },
+      "n_cells_sampled_with_valid_kappa": 2282,
+      "n_malignant_cells_valid": 843,
+      "n_comparator_cells_valid": 1439,
+      "n_patients_passing_filter": 19,
+      "min_patients_criterion_met": true,
+      "dl_meta": {
+        "label": "HELDOUT_GSE161529_primary_sens_dual_immune",
+        "k": 19,
+        "delta": 0.3041254449022597,
+        "se": 0.08336848955241324,
+        "ci_lo": 0.14072320537952973,
+        "ci_hi": 0.4675276844249896,
+        "z": 3.6479663543749097,
+        "p": 0.0002643242418783868,
+        "Q": 228.41043552391938,
+        "df": 18,
+        "tau2": 0.1179294110634474,
+        "I2": 92.1194493768587,
+        "pQ": 1.9431637050202992e-38,
+        "delta_FE": 0.45192466243811225,
+        "one_sided_p_delta_gt_0": 0.0001321621209391934
+      },
+      "pooled_delta": 0.3041254449022597,
+      "pooled_se": 0.08336848955241324,
+      "pooled_ci_95": [
+        0.14072320537952973,
+        0.4675276844249896
+      ],
+      "i_squared_percent": 92.1194493768587,
+      "one_sided_p_delta_gt_0": 0.0001321621209391934,
+      "two_sided_p": 0.0002643242418783868,
+      "per_patient_direction": {
+        "n_delta_positive": 15,
+        "n_delta_negative": 4,
+        "n_total": 19,
+        "fraction_positive": 0.7894736842105263
+      },
+      "per_patient_delta_compact": {
+        "0031": {
+          "delta": 0.3376932223543401,
+          "n_malignant": 58,
+          "n_comparator": 58
+        },
+        "0032": {
+          "delta": 0.16610169491525423,
+          "n_malignant": 10,
+          "n_comparator": 59
+        },
+        "0040": {
+          "delta": 0.09887005649717515,
+          "n_malignant": 60,
+          "n_comparator": 59
+        },
+        "0042": {
+          "delta": -0.09113300492610837,
+          "n_malignant": 14,
+          "n_comparator": 58
+        },
+        "0043": {
+          "delta": 0.0011695906432748538,
+          "n_malignant": 60,
+          "n_comparator": 57
+        },
+        "0114": {
+          "delta": 0.6799758015728977,
+          "n_malignant": 57,
+          "n_comparator": 58
+        },
+        "0125": {
+          "delta": 0.5656382335148216,
+          "n_malignant": 57,
+          "n_comparator": 58
+        },
+        "0135": {
+          "delta": 0.25882352941176473,
+          "n_malignant": 17,
+          "n_comparator": 60
+        },
+        "0161": {
+          "delta": 0.46227982718511135,
+          "n_malignant": 51,
+          "n_comparator": 59
+        },
+        "0163": {
+          "delta": 0.6996729110912875,
+          "n_malignant": 59,
+          "n_comparator": 57
+        },
+        "0167": {
+          "delta": 0.5507518796992481,
+          "n_malignant": 56,
+          "n_comparator": 57
+        },
+        "0176": {
+          "delta": 0.5178571428571429,
+          "n_malignant": 60,
+          "n_comparator": 56
+        },
+        "0177": {
+          "delta": -0.02631578947368421,
+          "n_malignant": 16,
+          "n_comparator": 57
+        },
+        "0308": {
+          "delta": -0.01532567049808429,
+          "n_malignant": 27,
+          "n_comparator": 58
+        },
+        "0319": {
+          "delta": 0.23030907278165502,
+          "n_malignant": 51,
+          "n_comparator": 59
+        },
+        "0337": {
+          "delta": 0.012531328320802004,
+          "n_malignant": 57,
+          "n_comparator": 56
+        },
+        "0360": {
+          "delta": 0.5873959571938169,
+          "n_malignant": 58,
+          "n_comparator": 58
+        },
+        "0554": {
+          "delta": -0.39613716988569175,
+          "n_malignant": 43,
+          "n_comparator": 59
+        },
+        "4031": {
+          "delta": 0.8921568627450981,
+          "n_malignant": 16,
+          "n_comparator": 51
+        }
+      },
+      "naive_cell_level": {
+        "delta": 0.3464751207054457,
+        "welch_p": 3.259629385941101e-35
+      },
+      "bootstrap": {
+        "B": 1000,
+        "mean": 0.3073468971122624,
+        "ci_lo": 0.15504099696442877,
+        "ci_hi": 0.4626731552046156
+      }
+    }
+  },
+  "wallclock_seconds": 393.9053797721863
+}

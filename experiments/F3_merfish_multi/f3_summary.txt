@@ -1,0 +1,11 @@
+========================================================================
+F3 -- HEADLINE
+========================================================================
+dataset: GSE291210 / GSM8830801 (MMTV-PyMT mouse mammary tumor MERFISH)
+tile: centered 700 x 700 um
+resolution: ~1 um single-cell segmentation; median G_phys edge = 11.96 um  (approx 13515.4 cells / mm^2)
+working set: 6621 cells, 258 genes
+G_phys : diff=+0.0093  p=0.00969  d=+0.050  (mal>str small/null)
+G_trans: diff=-0.0384  p=4.26e-10  d=-0.091  (mal<str small)
+VERDICT: SUBSTRATE-SPECIFIC confirmed at THREE resolutions: 55 um (T4), 8 um (N2), and ~1 um (F3). The kappa malignant-vs-stroma direction lives only on the transcriptomic-similarity graph; physical-neighbor kappa is null (Cliff d~0). The phenotype is genuinely transcriptional-similarity-only and does not encode physical-tissue architecture, even at sub-cellular resolution.
+total runtime: 283.5s

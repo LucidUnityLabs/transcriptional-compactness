@@ -1,0 +1,254 @@
+{
+  "seed": 20260507,
+  "cohorts": {
+    "Tirosh_melanoma": {
+      "n_cells": 1200,
+      "batch_kind": "patient_id",
+      "n_batches": 19,
+      "original": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 600,
+        "n_non": 599,
+        "mean_mal": 0.12589068223310454,
+        "mean_non": -0.04940725726814199,
+        "mean_diff": 0.17529793950124653,
+        "welch_p": 1.555133193994578e-119,
+        "cliff_delta": 0.7396828046744575
+      },
+      "harmony": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 598,
+        "n_non": 596,
+        "mean_mal": 0.010895935048070567,
+        "mean_non": -0.022720608526846046,
+        "mean_diff": 0.03361654357491661,
+        "welch_p": 2.1940558443052944e-08,
+        "cliff_delta": 0.21264393616304908
+      },
+      "random_null": [
+        {
+          "seed": 20260607,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 595,
+          "n_non": 598,
+          "mean_mal": -0.27908347079776785,
+          "mean_non": -0.2783271078336213,
+          "mean_diff": -0.0007563629641465508,
+          "welch_p": 0.8305751844502549,
+          "cliff_delta": 0.0007981788032938929
+        },
+        {
+          "seed": 20260707,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 598,
+          "n_non": 597,
+          "mean_mal": -0.26914427381577194,
+          "mean_non": -0.2681363916017725,
+          "mean_diff": -0.0010078822139994448,
+          "welch_p": 0.7733633463833307,
+          "cliff_delta": -0.014436732155762088
+        },
+        {
+          "seed": 20260807,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 597,
+          "n_non": 597,
+          "mean_mal": -0.2596029781762437,
+          "mean_non": -0.25691605226278336,
+          "mean_diff": -0.0026869259134603696,
+          "welch_p": 0.45821788420634996,
+          "cliff_delta": -0.021764321327463674
+        }
+      ],
+      "umi_only": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 600,
+        "n_non": 600,
+        "mean_mal": -0.0765160789504835,
+        "mean_non": -0.16740471522059402,
+        "mean_diff": 0.09088863627011053,
+        "welch_p": 0.15615890913371613,
+        "cliff_delta": 0.12254444444444444
+      },
+      "cliff_delta_original": 0.7396828046744575,
+      "cliff_delta_harmony": 0.21264393616304908,
+      "cliff_delta_random_mean": -0.011800958226643956,
+      "cliff_delta_umi_only": 0.12254444444444444,
+      "sign_flip_after_harmony": false,
+      "harmony_abs_delta_drop_pct": 71.25201034561888,
+      "verdict": "WEAKENED (>50% |delta| drop after Harmony)"
+    },
+    "Puram_HNSCC": {
+      "n_cells": 1200,
+      "batch_kind": "patient_id_from_cellid (17 levels)",
+      "n_batches": 18,
+      "original": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 599,
+        "n_non": 598,
+        "mean_mal": 0.0983578157705479,
+        "mean_non": 0.031034854421258567,
+        "mean_diff": 0.06732296134928933,
+        "welch_p": 3.040650141926508e-19,
+        "cliff_delta": 0.33968542889207765
+      },
+      "harmony": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 600,
+        "n_non": 598,
+        "mean_mal": -0.04133493377084825,
+        "mean_non": 0.05865316778130989,
+        "mean_diff": -0.09998810155215815,
+        "welch_p": 1.9315740148384125e-54,
+        "cliff_delta": -0.5234280936454849
+      },
+      "random_null": [
+        {
+          "seed": 20260607,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 595,
+          "n_non": 598,
+          "mean_mal": -0.27908347079776785,
+          "mean_non": -0.2783271078336213,
+          "mean_diff": -0.0007563629641465508,
+          "welch_p": 0.8305751844502549,
+          "cliff_delta": 0.0007981788032938929
+        },
+        {
+          "seed": 20260707,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 598,
+          "n_non": 597,
+          "mean_mal": -0.26914427381577194,
+          "mean_non": -0.2681363916017725,
+          "mean_diff": -0.0010078822139994448,
+          "welch_p": 0.7733633463833307,
+          "cliff_delta": -0.014436732155762088
+        },
+        {
+          "seed": 20260807,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 597,
+          "n_non": 597,
+          "mean_mal": -0.2596029781762437,
+          "mean_non": -0.25691605226278336,
+          "mean_diff": -0.0026869259134603696,
+          "welch_p": 0.45821788420634996,
+          "cliff_delta": -0.021764321327463674
+        }
+      ],
+      "umi_only": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 600,
+        "n_non": 600,
+        "mean_mal": -0.01952505794819779,
+        "mean_non": -0.027304672553856903,
+        "mean_diff": 0.007779614605659114,
+        "welch_p": 0.6645694627709839,
+        "cliff_delta": 0.0009166666666666666
+      },
+      "cliff_delta_original": 0.33968542889207765,
+      "cliff_delta_harmony": -0.5234280936454849,
+      "cliff_delta_random_mean": -0.011800958226643956,
+      "cliff_delta_umi_only": 0.0009166666666666666,
+      "sign_flip_after_harmony": true,
+      "harmony_abs_delta_drop_pct": -54.092006640586476,
+      "verdict": "KILLED (sign flip after Harmony)"
+    },
+    "Darmanis_GBM": {
+      "n_cells": 1200,
+      "batch_kind": "patient_id",
+      "n_batches": 4,
+      "original": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 598,
+        "n_non": 597,
+        "mean_mal": 0.08305608734564236,
+        "mean_non": 0.019314310381555126,
+        "mean_diff": 0.06374177696408724,
+        "welch_p": 1.2377325282414915e-21,
+        "cliff_delta": 0.33844809330935616
+      },
+      "harmony": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 600,
+        "n_non": 600,
+        "mean_mal": 0.022265112884230876,
+        "mean_non": 0.012720120976481366,
+        "mean_diff": 0.00954499190774951,
+        "welch_p": 0.08313223673213242,
+        "cliff_delta": 0.03726111111111111
+      },
+      "random_null": [
+        {
+          "seed": 20260607,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 598,
+          "n_non": 595,
+          "mean_mal": -0.2783271078336213,
+          "mean_non": -0.27908347079776785,
+          "mean_diff": 0.0007563629641465508,
+          "welch_p": 0.8305751844502549,
+          "cliff_delta": -0.0007981788032938929
+        },
+        {
+          "seed": 20260707,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 597,
+          "n_non": 598,
+          "mean_mal": -0.2681363916017725,
+          "mean_non": -0.26914427381577194,
+          "mean_diff": 0.0010078822139994448,
+          "welch_p": 0.7733633463833307,
+          "cliff_delta": 0.014436732155762088
+        },
+        {
+          "seed": 20260807,
+          "n_cells": 1200,
+          "n_valid_edges": 4000,
+          "n_mal": 597,
+          "n_non": 597,
+          "mean_mal": -0.25691605226278336,
+          "mean_non": -0.2596029781762437,
+          "mean_diff": 0.0026869259134603696,
+          "welch_p": 0.45821788420634996,
+          "cliff_delta": 0.021764321327463674
+        }
+      ],
+      "umi_only": {
+        "n_cells": 1200,
+        "n_valid_edges": 4000,
+        "n_mal": 600,
+        "n_non": 600,
+        "mean_mal": -0.6043308046981055,
+        "mean_non": -0.2622628650142236,
+        "mean_diff": -0.34206793968388194,
+        "welch_p": 0.4806137363157745,
+        "cliff_delta": 0.004911111111111111
+      },
+      "cliff_delta_original": 0.33844809330935616,
+      "cliff_delta_harmony": 0.03726111111111111,
+      "cliff_delta_random_mean": 0.011800958226643956,
+      "cliff_delta_umi_only": 0.004911111111111111,
+      "sign_flip_after_harmony": false,
+      "harmony_abs_delta_drop_pct": 88.99059801260194,
+      "verdict": "WEAKENED (>50% |delta| drop after Harmony)"
+    }
+  }
+}

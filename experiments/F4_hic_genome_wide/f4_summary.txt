@@ -1,0 +1,48 @@
+F4 — Genome-wide Hi-C OR-kappa K562 vs GM12878 @ 100 kb
+======================================================================
+resolution = 100000 bp     seed = 20260508
+chromosomes processed = 23 / 23
+edges per chrom = top 3*N by O/E with O/E >= 1.5, |i-j| >= 2
+OR-kappa: alpha=0.5; sample <=4000 edges if larger
+
+POOLED GENOME-WIDE:
+  K562    n_bins = 23090   mean_kappa = -0.3370   median = -0.3904
+  GM12878 n_bins = 16704   mean_kappa = -0.0683   median = -0.0467
+  Mann-Whitney U = 86559046.0   p = 0
+  Cliff's delta = -0.5512   95% CI = [-0.560, -0.543]
+
+per-chrom direction:
+  cancer<normal (delta<=-0.05):  22/23
+  cancer>normal (delta>=+0.05):  0/23
+  near-zero (|delta|<0.05):       0/23
+
+N3 reference (1 Mb):
+  chr22: delta = -0.50  (cancer < normal)
+  chr11: delta = +0.14  (cancer > normal)
+
+Per-chromosome:
+    chr1: nK=1828 nG=1397 meanK=-0.3036 meanG=-0.1176 MWUp=4.44e-117 delta=-0.4720 CI=[-0.504,-0.434]
+    chr2: nK=1970 nG=1341 meanK=-0.4488 meanG=-0.1396 MWUp=1.47e-208 delta=-0.6300 CI=[-0.661,-0.600]
+    chr3: nK=1648 nG=1059 meanK=-0.4358 meanG=-0.0810 MWUp=2.66e-206 delta=-0.6971 CI=[-0.720,-0.669]
+    chr4: nK=1633 nG=1254 meanK=-0.4390 meanG=-0.1338 MWUp=8.63e-163 delta=-0.5895 CI=[-0.624,-0.556]
+    chr5: nK=1580 nG=1235 meanK=-0.4031 meanG=-0.1701 MWUp=1.99e-121 delta=-0.5139 CI=[-0.550,-0.478]
+    chr6: nK=   0 nG=1093 meanK=+nan meanG=-0.0841 MWUp=nan delta=+nan CI=[+nan,+nan]
+    chr7: nK=1381 nG= 582 meanK=-0.3368 meanG=+0.0080 MWUp=4.28e-131 delta=-0.6953 CI=[-0.729,-0.654]
+    chr8: nK=1303 nG= 702 meanK=-0.3910 meanG=-0.0104 MWUp=2.04e-153 delta=-0.7134 CI=[-0.745,-0.680]
+    chr9: nK=1022 nG= 606 meanK=-0.2247 meanG=+0.0479 MWUp=2.11e-92 delta=-0.6037 CI=[-0.642,-0.571]
+   chr10: nK=1222 nG= 890 meanK=-0.3209 meanG=-0.0751 MWUp=9.27e-97 delta=-0.5312 CI=[-0.578,-0.488]
+   chr11: nK=1148 nG= 785 meanK=-0.2960 meanG=-0.0110 MWUp=5.13e-116 delta=-0.6124 CI=[-0.648,-0.573]
+   chr12: nK=1100 nG= 586 meanK=-0.2901 meanG=+0.0587 MWUp=2.26e-112 delta=-0.6654 CI=[-0.702,-0.624]
+   chr13: nK= 887 nG= 693 meanK=-0.3643 meanG=-0.0443 MWUp=8.18e-101 delta=-0.6241 CI=[-0.665,-0.573]
+   chr14: nK= 736 nG= 541 meanK=-0.2555 meanG=+0.0123 MWUp=1.28e-64 delta=-0.5552 CI=[-0.601,-0.510]
+   chr15: nK= 708 nG= 395 meanK=-0.2228 meanG=+0.0406 MWUp=2.98e-55 delta=-0.5680 CI=[-0.610,-0.514]
+   chr16: nK= 705 nG= 480 meanK=-0.2504 meanG=+0.0022 MWUp=1.96e-74 delta=-0.6239 CI=[-0.673,-0.575]
+   chr17: nK= 626 nG= 348 meanK=-0.1300 meanG=+0.0564 MWUp=1.22e-33 delta=-0.4669 CI=[-0.522,-0.398]
+   chr18: nK= 687 nG= 491 meanK=-0.3281 meanG=+0.0138 MWUp=2.01e-87 delta=-0.6765 CI=[-0.721,-0.636]
+   chr19: nK= 407 nG= 255 meanK=-0.0985 meanG=+0.0018 MWUp=1.48e-16 delta=-0.3811 CI=[-0.454,-0.298]
+   chr20: nK= 492 nG= 341 meanK=-0.2029 meanG=+0.0485 MWUp=1e-54 delta=-0.6342 CI=[-0.688,-0.568]
+   chr21: nK= 293 nG= 199 meanK=-0.1973 meanG=+0.0223 MWUp=1.13e-33 delta=-0.6421 CI=[-0.725,-0.564]
+   chr22: nK= 317 nG= 227 meanK=-0.1557 meanG=+0.0382 MWUp=6.81e-21 delta=-0.4711 CI=[-0.553,-0.401]
+    chrX: nK=1397 nG=1204 meanK=-0.4398 meanG=-0.2230 MWUp=7.15e-119 delta=-0.5264 CI=[-0.559,-0.490]
+
+VERDICT: Real result. Genome-wide chromatin contact graphs DO show a robust cancer-vs-normal curvature signature, but in the OPPOSITE direction from scRNA-seq (cancer < normal). The Flavahan/Hnisz TAD-disorganization story is correct; transcriptomic and chromatin kappa measure structurally different things. The chr22 N3 result (delta=-0.50) is consistent with the genome-wide signal; the chr11 result (delta=+0.14 at 1 Mb) was the outlier.

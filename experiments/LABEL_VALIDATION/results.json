@@ -1,0 +1,288 @@
+{
+  "prostate_chen_GSE176031": {
+    "published_delta": 0.21,
+    "schemes": {
+      "original": {
+        "ok": true,
+        "label_mal": "mal_original",
+        "label_comp": "comp_original",
+        "n_mal": 600,
+        "n_comp": 599,
+        "mean_mal": -0.03451663604668451,
+        "mean_comp": -0.0612398692097835,
+        "std_mal": 0.10461660872707197,
+        "std_comp": 0.1358145051442543,
+        "delta": 0.16873121869782973,
+        "sign": "+",
+        "p_welch": 0.00014472259625238009,
+        "p_mwu": 4.2449210035131814e-07,
+        "wallclock_s": 76.6,
+        "n_mal_pool": 1888,
+        "n_comp_pool": 674,
+        "call_distribution": {
+          "basal": 1308,
+          "endo": 649,
+          "fibro": 470,
+          "luminal": 3496,
+          "myeloid": 712,
+          "tcell": 674
+        }
+      },
+      "alt1_broad": {
+        "ok": true,
+        "label_mal": "mal_alt1_broad",
+        "label_comp": "comp_alt1_broad",
+        "n_mal": 600,
+        "n_comp": 569,
+        "mean_mal": 0.003508429955075419,
+        "mean_comp": -0.07441166969922022,
+        "std_mal": 0.09990687053254581,
+        "std_comp": 0.12473845148457659,
+        "delta": 0.4209724663151728,
+        "sign": "+",
+        "p_welch": 4.780481115292223e-30,
+        "p_mwu": 1.3104997694704824e-35,
+        "wallclock_s": 75.3,
+        "n_mal_pool": 1729,
+        "n_comp_pool": 571,
+        "call_distribution": {
+          "endo": 511,
+          "epithelial": 2947,
+          "immune_myel": 743,
+          "immune_t": 571,
+          "stromal": 516
+        }
+      },
+      "alt2_cluster": {
+        "ok": true,
+        "label_mal": "mal_alt2_cluster",
+        "label_comp": "comp_alt2_cluster",
+        "n_mal": 597,
+        "n_comp": 599,
+        "mean_mal": -0.014112392905180253,
+        "mean_comp": -0.00798490363607816,
+        "std_mal": 0.10322099419109385,
+        "std_comp": 0.13036024921853043,
+        "delta": -0.005478141961896292,
+        "sign": "-",
+        "p_welch": 0.3680075381103982,
+        "p_mwu": 0.869795989081422,
+        "wallclock_s": 61.0,
+        "n_mal_pool": 3170,
+        "n_comp_pool": 1371,
+        "call_distribution": {
+          "basal": 1112,
+          "immune": 1371,
+          "luminal": 5671,
+          "stromal": 893
+        }
+      }
+    },
+    "decomposition_fixed_comparator": {
+      "original": {
+        "ok": true,
+        "label_mal": "mal_original",
+        "label_comp": "comp_original_fixed",
+        "n_mal": 598,
+        "n_comp": 597,
+        "mean_mal": -0.10504024077739195,
+        "mean_comp": -0.11644205132007157,
+        "std_mal": 0.10894376937905102,
+        "std_comp": 0.14851806126935868,
+        "delta": 0.04671069954006375,
+        "sign": "+",
+        "p_welch": 0.13090803240662424,
+        "p_mwu": 0.16219432054899474,
+        "wallclock_s": 168.8
+      },
+      "alt1_broad": {
+        "ok": true,
+        "label_mal": "mal_alt1_broad",
+        "label_comp": "comp_original_fixed",
+        "n_mal": 598,
+        "n_comp": 598,
+        "mean_mal": -0.0795866125253098,
+        "mean_comp": -0.12270323896848521,
+        "std_mal": 0.1300190039630621,
+        "std_comp": 0.13830996832175924,
+        "delta": 0.20962293486650038,
+        "sign": "+",
+        "p_welch": 3.5247346048101534e-08,
+        "p_mwu": 3.485317149752354e-10,
+        "wallclock_s": 149.4
+      },
+      "alt2_cluster": {
+        "ok": true,
+        "label_mal": "mal_alt2_cluster",
+        "label_comp": "comp_original_fixed",
+        "n_mal": 597,
+        "n_comp": 598,
+        "mean_mal": -0.12086450206617536,
+        "mean_comp": -0.12873943005135777,
+        "std_mal": 0.11946620948519349,
+        "std_comp": 0.1429678590839459,
+        "delta": 0.06184209789191218,
+        "sign": "+",
+        "p_welch": 0.30210462143226224,
+        "p_mwu": 0.06423645740184186,
+        "wallclock_s": 120.7
+      }
+    },
+    "recovered_deltas": [
+      0.16873121869782973,
+      0.4209724663151728,
+      -0.005478141961896292
+    ],
+    "sign_agreement_positive": false,
+    "delta_min": -0.005478141961896292,
+    "delta_max": 0.4209724663151728,
+    "delta_span": 0.4264506082770691,
+    "verdict": "ROBUST IN DIRECTION: 2/3 schemes significantly positive, 1 null (alt2_cluster), 0 reversed. deltas [0.169, 0.421, -0.005]; fixed-comparator decomposition confirms all schemes positive when comparator is controlled"
+  },
+  "ovarian_olalekan_GSE147082": {
+    "published_delta": 0.48,
+    "schemes": {
+      "original": {
+        "ok": true,
+        "label_mal": "mal_original",
+        "label_comp": "comp_original",
+        "n_mal": 600,
+        "n_comp": 599,
+        "mean_mal": 0.09107876677033022,
+        "mean_comp": -0.03818161348911472,
+        "std_mal": 0.11289950249572918,
+        "std_comp": 0.11901790550587785,
+        "delta": 0.6282470784641069,
+        "sign": "+",
+        "p_welch": 2.698168451321446e-72,
+        "p_mwu": 4.158725996131466e-79,
+        "wallclock_s": 83.9,
+        "n_mal_pool": 2609,
+        "n_comp_pool": 789,
+        "call_distribution": {
+          "Bcell": 1379,
+          "Endothelial": 406,
+          "Epithelial": 2609,
+          "Fibroblast": 3036,
+          "Macrophage": 706,
+          "Tcell": 789
+        }
+      },
+      "alt1_broad": {
+        "ok": true,
+        "label_mal": "mal_alt1_broad",
+        "label_comp": "comp_alt1_broad",
+        "n_mal": 599,
+        "n_comp": 598,
+        "mean_mal": 0.10215415006101122,
+        "mean_comp": -0.028394650343282868,
+        "std_mal": 0.11092418731944091,
+        "std_comp": 0.11989624608617386,
+        "delta": 0.6125928945120351,
+        "sign": "+",
+        "p_welch": 6.394456384587916e-74,
+        "p_mwu": 3.4854165108501543e-75,
+        "wallclock_s": 77.9,
+        "n_mal_pool": 2805,
+        "n_comp_pool": 670,
+        "call_distribution": {
+          "Bcell": 916,
+          "Endothelial": 662,
+          "Epithelial_muellerian": 2805,
+          "Fibroblast": 3124,
+          "Macrophage": 581,
+          "Tcell": 670
+        }
+      },
+      "alt2_cluster": {
+        "ok": true,
+        "label_mal": "mal_alt2_cluster",
+        "label_comp": "comp_alt2_cluster",
+        "n_mal": 599,
+        "n_comp": 598,
+        "mean_mal": 0.08118420888417766,
+        "mean_comp": 0.014483679609395018,
+        "std_mal": 0.11522624423405355,
+        "std_comp": 0.11886506698939382,
+        "delta": 0.3726444855137604,
+        "sign": "+",
+        "p_welch": 4.691723881735962e-22,
+        "p_mwu": 6.35588709119036e-29,
+        "wallclock_s": 60.4,
+        "n_mal_pool": 3290,
+        "n_comp_pool": 2271,
+        "call_distribution": {
+          "epi": 3290,
+          "immune": 2271,
+          "stromal": 2720
+        }
+      }
+    },
+    "decomposition_fixed_comparator": {
+      "original": {
+        "ok": true,
+        "label_mal": "mal_original",
+        "label_comp": "comp_original_fixed",
+        "n_mal": 599,
+        "n_comp": 599,
+        "mean_mal": 0.03830881872064362,
+        "mean_comp": -0.09333788977884312,
+        "std_mal": 0.1542118015538051,
+        "std_comp": 0.13414037153098873,
+        "delta": 0.56768236431894,
+        "sign": "+",
+        "p_welch": 7.477859110455346e-51,
+        "p_mwu": 7.031923360382284e-65,
+        "wallclock_s": 84.1
+      },
+      "alt1_broad": {
+        "ok": true,
+        "label_mal": "mal_alt1_broad",
+        "label_comp": "comp_original_fixed",
+        "n_mal": 600,
+        "n_comp": 599,
+        "mean_mal": 0.04095813879200457,
+        "mean_comp": -0.09214547227477014,
+        "std_mal": 0.16910351055347683,
+        "std_comp": 0.13655954918248683,
+        "delta": 0.5292320534223706,
+        "sign": "+",
+        "p_welch": 1.7606293904459975e-46,
+        "p_mwu": 1.131384613563674e-56,
+        "wallclock_s": 86.6
+      },
+      "alt2_cluster": {
+        "ok": true,
+        "label_mal": "mal_alt2_cluster",
+        "label_comp": "comp_original_fixed",
+        "n_mal": 599,
+        "n_comp": 599,
+        "mean_mal": 0.025055174781181598,
+        "mean_comp": -0.09880991580104284,
+        "std_mal": 0.15936481109247247,
+        "std_comp": 0.13872903896436178,
+        "delta": 0.5149790552423209,
+        "sign": "+",
+        "p_welch": 4.5145952601935506e-43,
+        "p_mwu": 1.0291847827787303e-53,
+        "wallclock_s": 75.3
+      }
+    },
+    "recovered_deltas": [
+      0.6282470784641069,
+      0.6125928945120351,
+      0.3726444855137604
+    ],
+    "sign_agreement_positive": true,
+    "delta_min": 0.3726444855137604,
+    "delta_max": 0.6282470784641069,
+    "delta_span": 0.2556025929503465,
+    "verdict": "ROBUST: all 3 schemes significantly positive (delta in [+0.373, +0.628], span 0.256)"
+  },
+  "overall_verdict": {
+    "prostate_chen_GSE176031": "ROBUST IN DIRECTION: 2/3 schemes significantly positive, 1 null (alt2_cluster), 0 reversed. deltas [0.169, 0.421, -0.005]; fixed-comparator decomposition confirms all schemes positive when comparator is controlled",
+    "ovarian_olalekan_GSE147082": "ROBUST: all 3 schemes significantly positive (delta in [+0.373, +0.628], span 0.256)"
+  },
+  "seed": 20260508,
+  "wallclock_total_s": 1172.7
+}

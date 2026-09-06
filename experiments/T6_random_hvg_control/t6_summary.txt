@@ -1,0 +1,22 @@
+T6 random-gene negative control on Tirosh 2016 melanoma
+============================================================
+cells: 600 malignant + 600 T (cell seed 20260507)
+genes per set: 2000 (universe = 23686)
+PCA=50, kNN k=15, OR alpha=0.5, sampled edges=3000
+
+REAL HVG-2000 Cliff's delta:        +0.6345
+  mean kappa malignant: +0.1240
+  mean kappa T cells:   -0.0100
+  Mann-Whitney p:       2.89e-80
+
+Random gene sets (n=20):
+  mean Cliff's delta:   +0.6731
+  median:               +0.6797
+  std:                  0.0341
+  95% interval:         [+0.6133, +0.7206]
+  HVG-2000 z-score vs random: -1.13
+  HVG-2000 inside random 95% CI: True
+
+VERDICT: INTRINSIC: HVG-2000 falls within the random 95% interval - the effect is intrinsic to ANY gene selection and likely reflects cell-population structure that any random projection captures, not HVG-specific signal.
+
+runtime: 16.9s

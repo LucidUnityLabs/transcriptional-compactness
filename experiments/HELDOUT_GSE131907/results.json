@@ -1,0 +1,429 @@
+{
+  "cohort": "GSE131907 (Kim et al. 2020 metastatic LUAD atlas)",
+  "analysis": "pre-registered secondary held-out validation (PREREGISTRATION.md 2026-06-29)",
+  "prereg_locked_params": {
+    "pca_dims": 50,
+    "hvg": 2000,
+    "knn_k": 15,
+    "or_alpha": 0.5,
+    "edge_sampling": 4000,
+    "min_cells_per_patient_per_group": 10,
+    "min_patients_per_cohort": 5,
+    "meta_method": "DerSimonian-Laird random-effects",
+    "significance": "one-sided p < 0.05"
+  },
+  "labels": {
+    "annotation": "original-author cell_annotation.txt",
+    "malignant": "Cell_type.refined=='Epithelial cells' & Cell_subtype in {tS1,tS2,tS3,Malignant cells}",
+    "comparator": "immune cells: Cell_type.refined in {T/NK cells, Myeloid cells, B lymphocytes, MAST cells}",
+    "patient_unit": "Sample (annotation's only patient-of-origin proxy; 58 samples / 44 patients in paper)"
+  },
+  "seed": 20260507,
+  "design": {
+    "unit_of_analysis": "patient (sample)",
+    "effect_size": "Cliff's delta (malignant vs immune kappa, within patient)",
+    "delta_variance": "U-statistic Hoeffding projection (row/col mean variance)",
+    "meta_method": "DerSimonian-Laird random-effects (inverse-variance)",
+    "bootstrap": "patient-clustered, B=1000",
+    "min_cells_per_group": 10,
+    "pipeline": "HVG-2000, PCA-50, kNN k=15, Ollivier-Ricci alpha=0.5 (POT), 4000 edges",
+    "cap_per_patient_group": 60,
+    "total_cap_per_cohort": 3500,
+    "normalization": "log1p-CPM(1e6); genes detected in >=5 cells (dataset loading convention from exp/V2, R5)"
+  },
+  "n_cells_sampled_with_valid_kappa": 3123,
+  "n_malignant_cells_valid": 1072,
+  "n_comparator_cells_valid": 2051,
+  "n_patients_passing_filter": 31,
+  "min_patients_criterion_met": true,
+  "per_patient_cliffs_delta": {
+    "BRONCHO_11": {
+      "n_malignant": 30,
+      "n_comparator": 36,
+      "mean_kappa_mal": -0.07448245647297318,
+      "mean_kappa_comp": -0.05438293928146667,
+      "delta": -0.040740740740740744,
+      "se": 0.1505468104549571,
+      "ci_lo": -0.33581248923245666,
+      "ci_hi": 0.25433100775097517,
+      "welch_p": 0.6616460284349531
+    },
+    "BRONCHO_58": {
+      "n_malignant": 37,
+      "n_comparator": 34,
+      "mean_kappa_mal": -0.006879433193243523,
+      "mean_kappa_comp": -0.09660054685311782,
+      "delta": 0.37360890302066774,
+      "se": 0.1270573734030993,
+      "ci_lo": 0.1245764511505931,
+      "ci_hi": 0.6226413548907423,
+      "welch_p": 0.009602665161391863
+    },
+    "EBUS_06": {
+      "n_malignant": 33,
+      "n_comparator": 36,
+      "mean_kappa_mal": 0.0034418522345540255,
+      "mean_kappa_comp": -0.07061142451991312,
+      "delta": 0.19528619528619529,
+      "se": 0.13771842352752323,
+      "ci_lo": -0.07464191482775023,
+      "ci_hi": 0.4652143054001408,
+      "welch_p": 0.059783798068225855
+    },
+    "EBUS_10": {
+      "n_malignant": 32,
+      "n_comparator": 32,
+      "mean_kappa_mal": 0.007896624205155791,
+      "mean_kappa_comp": -0.03189043143674873,
+      "delta": 0.138671875,
+      "se": 0.15142418525591725,
+      "ci_lo": -0.1581195281015978,
+      "ci_hi": 0.4354632781015978,
+      "welch_p": 0.3475957632610634
+    },
+    "EBUS_12": {
+      "n_malignant": 35,
+      "n_comparator": 34,
+      "mean_kappa_mal": 0.043538769039948355,
+      "mean_kappa_comp": -0.034334938084607206,
+      "delta": 0.28739495798319326,
+      "se": 0.13661027687081675,
+      "ci_lo": 0.019638815316392444,
+      "ci_hi": 0.5551511006499941,
+      "welch_p": 0.10133478208400312
+    },
+    "EBUS_13": {
+      "n_malignant": 39,
+      "n_comparator": 34,
+      "mean_kappa_mal": 0.1060342247543953,
+      "mean_kappa_comp": -0.04282238255048969,
+      "delta": 0.4720965309200603,
+      "se": 0.12286210405615354,
+      "ci_lo": 0.2312868069699994,
+      "ci_hi": 0.7129062548701213,
+      "welch_p": 0.002424052698135464
+    },
+    "EBUS_15": {
+      "n_malignant": 33,
+      "n_comparator": 37,
+      "mean_kappa_mal": -0.07746568610712412,
+      "mean_kappa_comp": -0.1088493723162379,
+      "delta": 0.16461916461916462,
+      "se": 0.14390066838546656,
+      "ci_lo": -0.11742614541634985,
+      "ci_hi": 0.44666447465467907,
+      "welch_p": 0.527089902976561
+    },
+    "EBUS_19": {
+      "n_malignant": 36,
+      "n_comparator": 29,
+      "mean_kappa_mal": -0.054060760963002726,
+      "mean_kappa_comp": -0.07746884243512787,
+      "delta": 0.11877394636015326,
+      "se": 0.1456660510151923,
+      "ci_lo": -0.16673151362962368,
+      "ci_hi": 0.4042794063499302,
+      "welch_p": 0.44985904468081966
+    },
+    "EBUS_28": {
+      "n_malignant": 35,
+      "n_comparator": 33,
+      "mean_kappa_mal": 0.11573547684082566,
+      "mean_kappa_comp": -0.06399499101116866,
+      "delta": 0.4562770562770563,
+      "se": 0.12521466470127357,
+      "ci_lo": 0.2108563134625601,
+      "ci_hi": 0.7016977990915525,
+      "welch_p": 0.0004916007599524006
+    },
+    "EBUS_49": {
+      "n_malignant": 40,
+      "n_comparator": 36,
+      "mean_kappa_mal": -0.06184487347488541,
+      "mean_kappa_comp": -0.060098971063435064,
+      "delta": 0.001388888888888889,
+      "se": 0.13594920100176605,
+      "ci_lo": -0.2650715450745726,
+      "ci_hi": 0.26784932285235036,
+      "welch_p": 0.9555508432996153
+    },
+    "EBUS_51": {
+      "n_malignant": 38,
+      "n_comparator": 25,
+      "mean_kappa_mal": 0.20396201462831048,
+      "mean_kappa_comp": -0.06990526950611996,
+      "delta": 0.7747368421052632,
+      "se": 0.08478155139630046,
+      "ci_lo": 0.6085650013685142,
+      "ci_hi": 0.9409086828420121,
+      "welch_p": 1.6643306049995442e-07
+    },
+    "LUNG_T06": {
+      "n_malignant": 27,
+      "n_comparator": 33,
+      "mean_kappa_mal": -0.16870745856242628,
+      "mean_kappa_comp": -0.11720307177113118,
+      "delta": -0.16947250280583614,
+      "se": 0.15205059175637564,
+      "ci_lo": -0.4674916626483324,
+      "ci_hi": 0.12854665703666013,
+      "welch_p": 0.1804086634121407
+    },
+    "LUNG_T08": {
+      "n_malignant": 23,
+      "n_comparator": 32,
+      "mean_kappa_mal": -0.104606178138424,
+      "mean_kappa_comp": -0.09620131891980993,
+      "delta": -0.021739130434782608,
+      "se": 0.16337186424968153,
+      "ci_lo": -0.3419479843641584,
+      "ci_hi": 0.2984697234945932,
+      "welch_p": 0.8535959620525704
+    },
+    "LUNG_T18": {
+      "n_malignant": 34,
+      "n_comparator": 41,
+      "mean_kappa_mal": 0.014091362157566826,
+      "mean_kappa_comp": -0.11298287829286492,
+      "delta": 0.4218077474892396,
+      "se": 0.12369753979576571,
+      "ci_lo": 0.17936056948953882,
+      "ci_hi": 0.6642549254889404,
+      "welch_p": 0.004734221859437433
+    },
+    "LUNG_T19": {
+      "n_malignant": 37,
+      "n_comparator": 41,
+      "mean_kappa_mal": -0.0454338170743114,
+      "mean_kappa_comp": -0.062218730266540546,
+      "delta": 0.0942649967040211,
+      "se": 0.1333471944094324,
+      "ci_lo": -0.16709550433846643,
+      "ci_hi": 0.35562549774650865,
+      "welch_p": 0.6071129427918048
+    },
+    "LUNG_T20": {
+      "n_malignant": 33,
+      "n_comparator": 33,
+      "mean_kappa_mal": 0.014485975038546256,
+      "mean_kappa_comp": -0.1085175316486703,
+      "delta": 0.5390266299357208,
+      "se": 0.12071981025207557,
+      "ci_lo": 0.30241580184165273,
+      "ci_hi": 0.7756374580297889,
+      "welch_p": 0.0003201571373035218
+    },
+    "LUNG_T25": {
+      "n_malignant": 38,
+      "n_comparator": 42,
+      "mean_kappa_mal": -0.06507466408742164,
+      "mean_kappa_comp": -0.04895947853878286,
+      "delta": -0.14536340852130325,
+      "se": 0.13083109852607347,
+      "ci_lo": -0.4017923616324072,
+      "ci_hi": 0.11106554458980072,
+      "welch_p": 0.5995760663755069
+    },
+    "LUNG_T28": {
+      "n_malignant": 35,
+      "n_comparator": 30,
+      "mean_kappa_mal": -0.08584871000893532,
+      "mean_kappa_comp": -0.0730988217407055,
+      "delta": -0.0038095238095238095,
+      "se": 0.146958455628077,
+      "ci_lo": -0.29184809684055474,
+      "ci_hi": 0.2842290492215071,
+      "welch_p": 0.7205526561566401
+    },
+    "LUNG_T30": {
+      "n_malignant": 39,
+      "n_comparator": 37,
+      "mean_kappa_mal": -0.015338397552311438,
+      "mean_kappa_comp": -0.02237309382255564,
+      "delta": 0.024255024255024255,
+      "se": 0.13557753033165515,
+      "ci_lo": -0.2414769351950198,
+      "ci_hi": 0.2899869837050683,
+      "welch_p": 0.8318205957053016
+    },
+    "LUNG_T31": {
+      "n_malignant": 31,
+      "n_comparator": 37,
+      "mean_kappa_mal": 0.0016044357001320866,
+      "mean_kappa_comp": -0.0756513323500737,
+      "delta": 0.33740191804707936,
+      "se": 0.14206604505091672,
+      "ci_lo": 0.058952469747282576,
+      "ci_hi": 0.6158513663468761,
+      "welch_p": 0.0692148641226636
+    },
+    "LUNG_T34": {
+      "n_malignant": 29,
+      "n_comparator": 35,
+      "mean_kappa_mal": -0.13864515738213706,
+      "mean_kappa_comp": -0.018687099407285607,
+      "delta": -0.3497536945812808,
+      "se": 0.13397876343573062,
+      "ci_lo": -0.6123520709153127,
+      "ci_hi": -0.08715531824724881,
+      "welch_p": 0.004447353599667962
+    },
+    "NS_02": {
+      "n_malignant": 32,
+      "n_comparator": 35,
+      "mean_kappa_mal": -0.023804149966509043,
+      "mean_kappa_comp": -0.10897904157231925,
+      "delta": 0.21964285714285714,
+      "se": 0.15330190862102447,
+      "ci_lo": -0.08082888375435082,
+      "ci_hi": 0.5201145980400651,
+      "welch_p": 0.11930976722370946
+    },
+    "NS_03": {
+      "n_malignant": 35,
+      "n_comparator": 33,
+      "mean_kappa_mal": 0.18913271952358737,
+      "mean_kappa_comp": -0.03445123770973137,
+      "delta": 0.7333333333333333,
+      "se": 0.09728986487586361,
+      "ci_lo": 0.5426451981766406,
+      "ci_hi": 0.924021468490026,
+      "welch_p": 2.5080777397496777e-07
+    },
+    "NS_04": {
+      "n_malignant": 37,
+      "n_comparator": 35,
+      "mean_kappa_mal": 0.174180809105471,
+      "mean_kappa_comp": -0.0570993869383036,
+      "delta": 0.7065637065637066,
+      "se": 0.10200575951771843,
+      "ci_lo": 0.5066324179089785,
+      "ci_hi": 0.9064949952184347,
+      "welch_p": 5.8686355925184446e-08
+    },
+    "NS_06": {
+      "n_malignant": 35,
+      "n_comparator": 38,
+      "mean_kappa_mal": -0.07683868258784939,
+      "mean_kappa_comp": -0.004924901128813652,
+      "delta": -0.32030075187969925,
+      "se": 0.12990857075877552,
+      "ci_lo": -0.5749215505668992,
+      "ci_hi": -0.06567995319249925,
+      "welch_p": 0.06232821280749869
+    },
+    "NS_07": {
+      "n_malignant": 35,
+      "n_comparator": 44,
+      "mean_kappa_mal": 0.19863302909918132,
+      "mean_kappa_comp": -0.008512860682134506,
+      "delta": 0.7,
+      "se": 0.09301202904312769,
+      "ci_lo": 0.5176964230754697,
+      "ci_hi": 0.8823035769245302,
+      "welch_p": 3.1730095569513827e-07
+    },
+    "NS_12": {
+      "n_malignant": 38,
+      "n_comparator": 41,
+      "mean_kappa_mal": 0.03650173503266253,
+      "mean_kappa_comp": -0.11013587851578606,
+      "delta": 0.3735558408215661,
+      "se": 0.12791380725243756,
+      "ci_lo": 0.1228447786067885,
+      "ci_hi": 0.6242669030363437,
+      "welch_p": 0.0014919876456970537
+    },
+    "NS_13": {
+      "n_malignant": 30,
+      "n_comparator": 31,
+      "mean_kappa_mal": 0.04790586019043201,
+      "mean_kappa_comp": -0.0690299172096656,
+      "delta": 0.3096774193548387,
+      "se": 0.1434725372063445,
+      "ci_lo": 0.028471246430403496,
+      "ci_hi": 0.5908835922792739,
+      "welch_p": 0.038435149748442206
+    },
+    "NS_16": {
+      "n_malignant": 43,
+      "n_comparator": 26,
+      "mean_kappa_mal": 0.09932238003881773,
+      "mean_kappa_comp": -0.03305219234421209,
+      "delta": 0.38640429338103754,
+      "se": 0.12692408996764043,
+      "ci_lo": 0.13763307704446232,
+      "ci_hi": 0.6351755097176128,
+      "welch_p": 0.011836785513477482
+    },
+    "NS_17": {
+      "n_malignant": 42,
+      "n_comparator": 37,
+      "mean_kappa_mal": 0.15876214606144382,
+      "mean_kappa_comp": -0.04783026566964839,
+      "delta": 0.5881595881595881,
+      "se": 0.10311549834821808,
+      "ci_lo": 0.3860532113970807,
+      "ci_hi": 0.7902659649220956,
+      "welch_p": 7.694633511559265e-06
+    },
+    "NS_19": {
+      "n_malignant": 28,
+      "n_comparator": 38,
+      "mean_kappa_mal": -0.10648645368050781,
+      "mean_kappa_comp": -0.10316953327816392,
+      "delta": -0.009398496240601503,
+      "se": 0.15285557574124387,
+      "ci_lo": -0.3089954246934395,
+      "ci_hi": 0.29019843221223646,
+      "welch_p": 0.9275404035978985
+    }
+  },
+  "per_patient_direction": {
+    "n_delta_positive": 23,
+    "n_delta_negative": 8,
+    "n_total": 31,
+    "fraction_positive": 0.7419354838709677
+  },
+  "dl_meta": {
+    "label": "HELDOUT_GSE131907",
+    "k": 31,
+    "delta": 0.24694590368105618,
+    "se": 0.05956876167850343,
+    "ci_lo": 0.13019113079118944,
+    "ci_hi": 0.3637006765709229,
+    "z": 4.1455604703324145,
+    "p": 3.389835227974695e-05,
+    "Q": 202.8117206884702,
+    "df": 30,
+    "tau2": 0.09257980433503238,
+    "I2": 85.20795548789725,
+    "pQ": 1.4730464039682199e-27,
+    "delta_FE": 0.3199072334046949,
+    "one_sided_p_delta_gt_0": 1.6949176139873476e-05
+  },
+  "pooled_delta": 0.24694590368105618,
+  "pooled_ci_95": [
+    0.13019113079118944,
+    0.3637006765709229
+  ],
+  "i_squared_percent": 85.20795548789725,
+  "one_sided_p_delta_gt_0": 1.6949176139873476e-05,
+  "two_sided_p": 3.389835227974695e-05,
+  "naive_cell_level": {
+    "delta": 0.22799307945887334,
+    "welch_p": 1.7746319368494662e-24
+  },
+  "bootstrap": {
+    "B": 1000,
+    "mean": 0.24522755274990976,
+    "ci_lo": 0.14427733802981166,
+    "ci_hi": 0.34970509068247274
+  },
+  "decision_rule_inputs": {
+    "pooled_delta": 0.24694590368105618,
+    "one_sided_p": 1.6949176139873476e-05,
+    "rule": "SUPPORTED if pooled delta > 0 and one-sided p < 0.05; NOT SUPPORTED otherwise (applied outside this file)"
+  },
+  "wallclock_seconds": 1787.695219039917
+}

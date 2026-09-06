@@ -1,0 +1,37 @@
+F1 - Liquid-tumor test of Ollivier-Ricci kappa direction
+================================================================
+Dataset: GSE116256 (van Galen et al. 2019 AML scRNA-seq)
+  AML diagnostic samples (D0): AML556, AML419A, AML1012, AML328, AML210A, AML475
+  Healthy BM controls: BM1, BM2, BM3, BM4, BM5-34p, BM5-34p38n
+  malignant blast pool: 5451 cells
+  healthy myeloid HSPC pool: 4149 cells
+  all healthy BM pool: 6915 cells
+
+seed = 20260508
+pipeline: log1p, HVG-2000 by var, PCA-50, kNN k=15, OR alpha=0.5, 4000 sampled edges
+
+AML: blasts vs healthy myeloid
+  AML-blasts                 kappa=-0.0234 +- 0.1122  n=599
+  Healthy-myeloid            kappa=-0.0085 +- 0.1051  n=599
+  delta_mean = -0.0149  (MAL < NORM)
+  Welch t  p=0.01788
+  MWU U    p=0.01092
+  Cliff's delta = -0.085
+
+AML: blasts vs all healthy BM
+  AML-blasts                 kappa=-0.0058 +- 0.1192  n=600
+  Healthy-BM-all             kappa=0.0010 +- 0.1163  n=600
+  delta_mean = -0.0068  (MAL < NORM)
+  Welch t  p=0.321
+  MWU U    p=0.06034
+  Cliff's delta = -0.063
+
+Solid-tumor anchor sweep (all kappa_malignant > kappa_normal):
+  Tirosh melanoma   Cliff d = +0.74
+  Puram HNSCC       Cliff d = +0.41
+  Darmanis GBM      Cliff d = +0.38
+  Li CRC            Cliff d = +0.20
+  PDAC              Cliff d = +0.15
+
+VERDICT (using cell-type-matched contrast A as primary):
+  Weak H_b (suggestive flip): contrast A is directionally flipped (d_A=-0.085, MWU p=0.01092) and contrast B agrees in direction (d_B=-0.063, MWU p=0.06034). Magnitude is far below the +0.15 (PDAC) solid-tumor floor and below the |0.10| negligible-effect threshold, so the signal is present but small. Read as: the per-cell malignancy-tightness signature does NOT transfer to liquid AML; instead AML blasts show a small inverse signature consistent with transcriptional spread across myeloid differentiation states (blasts span HSC/Prog/GMP/ProMono/Mono-like) versus tighter healthy HSPC clusters.

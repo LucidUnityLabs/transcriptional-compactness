@@ -1,0 +1,27 @@
+N3 — Hi-C OR-kappa: K562 (cancer) vs GM12878 (normal)
+============================================================
+chrom = chr22    resolution = 1000000 bp    seed = 20260508
+norm = KR-balanced; edges = top-3*N by O/E with |i-j| >= 2
+
+  K562    bins (finite kappa) = 34
+          mean kappa   = +0.0781
+          median kappa = +0.0824
+  GM12878 bins (finite kappa) = 32
+          mean kappa   = +0.1813
+          median kappa = +0.1874
+
+Mann-Whitney U = 270.00    p = 0.0004496
+Cliff's delta (K562 vs GM12878) = -0.5037
+
+Graph stats:
+  K562: V=36 E=108 <deg>=6.00 clust=0.271 ncc=3
+  GM12878: V=36 E=108 <deg>=6.00 clust=0.291 ncc=6
+
+Interpretation:
+  K562 (cancer) < GM12878 (normal): cancer chromatin shows MORE NEGATIVE curvature, opposite to the scRNA-seq direction but consistent with reported TAD-boundary loss / compartment switching in cancer (Flavahan 2016, Hnisz 2016).
+
+--- chr11 robustness check ---
+  K562    mean kappa = +0.0722  n = 115
+  GM12878 mean kappa = +0.0230  n = 117
+  MWU p = 0.05824    Cliff delta = +0.1440
+  direction = K562 > GM12878 (consistent with chr22 = opposite)
