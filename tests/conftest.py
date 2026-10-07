@@ -8,6 +8,7 @@ legacy paths run faithfully without the production dependency.
 """
 
 import importlib.util
+import os
 import sys
 import types
 from pathlib import Path
@@ -113,6 +114,14 @@ def pytest_configure(config):
 def pytest_collection_modifyitems(config, items):
     if HAVE_POT:
         return
+    if os.environ.get("REQUIRE_POT") == "1":
+        # Release validation (CI): the pinned POT backend is a hard
+        # requirement.  Failing the whole run (rather than skipping the
+        # two real-backend tests, which would run against conftest's
+        # scipy stub and look green) is the audit R07 contract.
+        raise pytest.UsageError(
+            "REQUIRE_POT=1 but POT is not importable: release validation "
+            "requires the pinned POT backend (audit R07)")
     skip = pytest.mark.skip(reason="POT not installed: the real-backend "
                                    "integration test is skipped locally and "
                                    "mandatory in release CI")

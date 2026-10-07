@@ -29,6 +29,8 @@ import math
 
 import numpy as np
 
+from . import numerics
+
 #: Tail probabilities below this magnitude are compared in log10 space.
 LOG_P_THRESHOLD = 1e-300
 
@@ -71,6 +73,15 @@ def _leaf_match(path, obs, exp, mode, rtol, atol, log_paths, mismatches):
             isinstance(obs, (int, float, np.integer, np.floating)):
         o, e = float(obs), float(exp)
         if mode == "exact":
+            # int/float type drift with an equal value is a schema change
+            # (a patient COUNT that silently becomes a float must be
+            # flagged, not waved through as numerically equal)
+            exp_int = isinstance(exp, (int, np.integer))
+            obs_int = isinstance(obs, (int, np.integer))
+            if exp_int != obs_int and o == e:
+                mismatches.append(f"{path}: {obs!r} != {exp!r} "
+                                  "(int/float type drift, exact)")
+                return
             if o != e and not (math.isnan(o) and math.isnan(e)):
                 name = path.lower()
                 is_p = name.endswith("p") or name.endswith("_p") or \
@@ -208,3 +219,99 @@ def label_verdict(scheme_results, expected_schemes, null_band=0.05,
             "delta_span": float(max(deltas) - min(deltas)),
             "n_classified": len(classes),
             "n_expected": len(expected_schemes)}
+
+
+# ---------------------------------------------------------------------------
+# R02 — direction summaries and the hypothesis-decision gate
+# ---------------------------------------------------------------------------
+def direction_counts(values):
+    """Positive, negative and ZERO effects counted separately.
+
+    The historical summaries used ``n_negative = total - n_positive``,
+    which counts exact zeros as negative (audit R02).  Exact zeros are a
+    real outcome of Cliff's delta (complete intermingling) and must not
+    be silently assigned a direction.
+    """
+    d = np.asarray(list(values), dtype=np.float64)
+    if d.ndim != 1 or not np.all(np.isfinite(d)):
+        raise VerificationError("nonfinite/non-1D direction input")
+    n = int(d.size)
+    return {
+        "n_delta_positive": int((d > 0).sum()),
+        "n_delta_negative": int((d < 0).sum()),
+        "n_delta_zero": int((d == 0).sum()),
+        "n_total": n,
+        "fraction_positive": float((d > 0).mean()) if n else None,
+    }
+
+
+def protocol_decision(meta, *, technical_checks_passed,
+                      donor_unit_verified, protocol_parameters_match,
+                      minimum_patients=5):
+    """Separate technical validity from the hypothesis decision (R02).
+
+    A broken or under-sized run must never be presented as an
+    interpretable NEGATIVE replication: the five statuses are
+    ``INVALID_ANALYSIS`` (a technical/identity gate failed),
+    ``INSUFFICIENT_PATIENTS`` (below the preregistered minimum),
+    ``INVALID_NUMERICS`` (nonfinite/out-of-range numbers),
+    ``SUPPORTED`` and ``NOT_SUPPORTED`` (technically valid outcomes of
+    the preregistered one-sided rule delta > 0 with p < 0.05).
+    """
+    flags = (technical_checks_passed, donor_unit_verified,
+             protocol_parameters_match)
+    if not all(f is True for f in flags):
+        return {"status": "INVALID_ANALYSIS", "supported": None}
+    k = meta.get("k")
+    if not isinstance(k, (int, np.integer)) or isinstance(k, bool) \
+            or int(k) < minimum_patients:
+        return {"status": "INSUFFICIENT_PATIENTS", "supported": None}
+    d, p = meta.get("delta"), meta.get("one_sided_p_delta_gt_0")
+    if (not isinstance(d, (int, float, np.integer, np.floating))
+            or not isinstance(p, (int, float, np.integer, np.floating))
+            or not np.isfinite(d) or not np.isfinite(p)
+            or not -1.0 <= float(d) <= 1.0 or not 0.0 <= float(p) <= 1.0):
+        return {"status": "INVALID_NUMERICS", "supported": None}
+    supported = bool(float(d) > 0 and float(p) < 0.05)
+    return {"status": "SUPPORTED" if supported else "NOT_SUPPORTED",
+            "supported": supported,
+            "rule": "preregistered one-sided: delta > 0 and "
+                    "one-sided p < 0.05",
+            "minimum_patients": int(minimum_patients)}
+
+
+# ---------------------------------------------------------------------------
+# §8.4/§8.8 — independent table-to-summary arithmetic verification
+# ---------------------------------------------------------------------------
+def verify_patient_meta(rows, reported, *, expected_patient_ids=None):
+    """Recompute a meta-analysis from its FULL per-patient delta/SE table.
+
+    Verifies arithmetic ONLY (never raw data, labels, graph metric or
+    independence).  ``rows``: iterable of mappings with ``patient_id``,
+    ``delta``, ``se``; ``reported``: the summary mapping to check.  A
+    tampered summary field fails field-by-field.
+    """
+    rows = list(rows)
+    ids = [r["patient_id"] for r in rows]
+    if (not ids or any(not isinstance(i, str) or not i for i in ids)
+            or len(set(ids)) != len(ids)):
+        raise VerificationError("empty/duplicate/malformed patient table")
+    if expected_patient_ids is not None and ids != list(
+            expected_patient_ids):
+        raise VerificationError(
+            "patient identities/order differ from reference")
+    actual = numerics.dl_meta([float(r["delta"]) for r in rows],
+                              [float(r["se"]) for r in rows])
+    fields = ("k", "delta", "se", "ci_lo", "ci_hi", "z", "p", "Q", "df",
+              "tau2", "I2", "pQ", "delta_FE")
+    missing = [f for f in fields if f not in reported]
+    if missing:
+        raise VerificationError(
+            f"reported meta result is missing required fields: {missing}")
+    mism = compare_science({f: actual[f] for f in fields},
+                           {f: reported[f] for f in fields},
+                           mode="tolerance", rtol=1e-8, atol=1e-10,
+                           provenance="verify_patient_meta")
+    if mism:
+        raise VerificationError("; ".join(mism))
+    return {"status": "ARITHMETIC_VERIFIED", "k": len(rows)}

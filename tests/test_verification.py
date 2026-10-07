@@ -160,3 +160,165 @@ def test_legacy_labelval_partial_run_keyerror_documented(legacy_labelval):
     with pytest.raises(KeyError):
         for s in legacy_labelval.SCHEMES:
             d = schemes[s]["delta"]  # noqa: B023 - mirrors committed code
+
+
+# ---------------------------------------------------------------------------
+# direction counts + protocol decision (R02)
+# ---------------------------------------------------------------------------
+def test_direction_counts_separate_zero_from_negative():
+    """Legacy summaries used ``n_negative = total - n_positive``, which
+    counts exact zeros (complete intermingling — a real Cliff's delta
+    outcome) as negative."""
+    from lib.verification import direction_counts
+
+    d = direction_counts([0.0, 0.2, -0.2, 0.0])
+    assert d["n_delta_positive"] == 1
+    assert d["n_delta_negative"] == 1
+    assert d["n_delta_zero"] == 2
+    assert d["n_total"] == 4
+    assert d["fraction_positive"] == 0.25
+    assert direction_counts([])["n_total"] == 0
+    assert direction_counts([])["fraction_positive"] is None
+    with pytest.raises(VerificationError):
+        direction_counts([float("nan")])
+    with pytest.raises(VerificationError):
+        direction_counts([[0.1, 0.2]])
+
+
+def test_protocol_decision_statuses():
+    """A broken/undersized run must never be presented as an interpretable
+    negative replication; the five statuses stay distinct."""
+    from lib.verification import protocol_decision
+
+    ok = dict(technical_checks_passed=True, donor_unit_verified=True,
+              protocol_parameters_match=True)
+    meta = {"k": 4, "delta": 0.5, "one_sided_p_delta_gt_0": 0.001}
+    # below the preregistered minimum
+    assert protocol_decision(meta, **ok)["status"] == "INSUFFICIENT_PATIENTS"
+    meta["k"] = 5
+    assert protocol_decision(meta, **ok)["status"] == "SUPPORTED"
+    assert protocol_decision(meta, **ok)["supported"] is True
+    # a technically valid negative outcome is NOT an error
+    neg = dict(meta, delta=-0.5, one_sided_p_delta_gt_0=0.9)
+    assert protocol_decision(neg, **ok)["status"] == "NOT_SUPPORTED"
+    assert protocol_decision(neg, **ok)["supported"] is False
+    # any technical/identity gate failure invalidates the analysis
+    for flag in ("technical_checks_passed", "donor_unit_verified",
+                 "protocol_parameters_match"):
+        bad = dict(ok, **{flag: False})
+        assert protocol_decision(meta, **bad)["status"] == \
+            "INVALID_ANALYSIS"
+        assert protocol_decision(meta, **bad)["supported"] is None
+    # nonfinite / out-of-range numbers
+    for bad_meta in ({"k": 5, "delta": float("nan"), "one_sided_p_delta_gt_0": 0.001},
+                     {"k": 5, "delta": 1.5, "one_sided_p_delta_gt_0": 0.001},
+                     {"k": 5, "delta": 0.5, "one_sided_p_delta_gt_0": 1.2},
+                     {"k": 5, "delta": 0.5}):
+        assert protocol_decision(bad_meta, **ok)["status"] == \
+            "INVALID_NUMERICS", bad_meta
+    # a boolean k is not a patient count
+    bool_meta = {"k": True, "delta": 0.5, "one_sided_p_delta_gt_0": 0.001}
+    assert protocol_decision(bool_meta, **ok)["status"] == \
+        "INSUFFICIENT_PATIENTS"
+    # the preregistered rule itself is recorded
+    d = protocol_decision(meta, **ok)
+    assert "one-sided" in d["rule"] and d["minimum_patients"] == 5
+
+
+def test_compare_science_rejects_int_float_type_drift():
+    """A patient COUNT that silently becomes a float (18. vs 18) is a
+    schema change even when numerically equal — exact mode flags it."""
+    mm = compare_science({"k": 18.0}, {"k": 18})
+    assert any("type drift" in m for m in mm)
+    assert compare_science({"k": 18}, {"k": 18}) == []
+    # lists with mixed spelling are flagged per element
+    mm = compare_science({"counts": [3, 4.0]}, {"counts": [3, 4]})
+    assert any("type drift" in m for m in mm)
+
+
+# ---------------------------------------------------------------------------
+# verify_patient_meta (§8.4) — independent table-to-summary arithmetic
+# ---------------------------------------------------------------------------
+def _committed_rows():
+    """The committed 35-row discovery table as (cohort:patient, delta, se)
+    rows — zero-prefixed patient IDs are kept as STRINGS."""
+    import csv
+    from pathlib import Path
+
+    repo = Path(__file__).resolve().parent.parent
+    with open(repo / "experiments" / "META_patient_level" /
+              "per_patient_delta.csv", newline="") as f:
+        return [{"patient_id": f"{r['cohort']}:{r['patient_id']}",
+                 "delta": float(r["delta"]), "se": float(r["se"])}
+                for r in csv.DictReader(f)]
+
+
+def _committed_overall():
+    import json
+    from pathlib import Path
+
+    repo = Path(__file__).resolve().parent.parent
+    return json.load(open(repo / "experiments" / "META_patient_level" /
+                          "results.json"))["overall_patient_level"]
+
+
+def test_verify_patient_meta_recomputes_committed_summary():
+    """The audit's independent arithmetic layer: recompute the DL
+    pooling from the FULL per-patient table and check every committed
+    summary field (arithmetic only — never raw data or metric validity)."""
+    from lib.verification import verify_patient_meta
+
+    rows = _committed_rows()
+    reported = _committed_overall()
+    out = verify_patient_meta(rows, reported)
+    assert out["status"] == "ARITHMETIC_VERIFIED"
+    assert out["k"] == reported["k"] == len(rows) == 35
+
+
+def test_verify_patient_meta_rejects_tampered_summary():
+    from lib.verification import verify_patient_meta
+
+    rows = _committed_rows()
+    reported = _committed_overall()
+    for field, mutate in (("se", lambda v: v * 2.0),
+                          ("delta", lambda v: v + 0.01),
+                          ("I2", lambda v: v * 0.5),
+                          ("Q", lambda v: v + 1.0)):
+        bad = dict(reported, **{field: mutate(reported[field])})
+        with pytest.raises(VerificationError):
+            verify_patient_meta(rows, bad)
+
+
+def test_verify_patient_meta_rejects_tampered_table():
+    from lib.verification import verify_patient_meta
+
+    rows = _committed_rows()
+    reported = _committed_overall()
+    rows_bad = [dict(r) for r in rows]
+    rows_bad[0]["delta"] = rows_bad[0]["delta"] + 0.3  # stays in [-1, 1]
+    with pytest.raises(VerificationError):
+        verify_patient_meta(rows_bad, reported)
+
+
+def test_verify_patient_meta_rejects_incomplete_or_malformed():
+    from lib.verification import verify_patient_meta
+
+    rows = _committed_rows()
+    reported = _committed_overall()
+    # missing required summary field (silent key-intersection compare is
+    # exactly what the audit forbids)
+    partial = {k: v for k, v in reported.items() if k != "tau2"}
+    with pytest.raises(VerificationError, match="missing required"):
+        verify_patient_meta(rows, partial)
+    # duplicate patient identity
+    dup = [dict(r) for r in rows]
+    dup[1]["patient_id"] = dup[0]["patient_id"]
+    with pytest.raises(VerificationError, match="duplicate"):
+        verify_patient_meta(dup, reported)
+    # empty table
+    with pytest.raises(VerificationError):
+        verify_patient_meta([], reported)
+    # identity/order mismatch against a reference list
+    with pytest.raises(VerificationError, match="identities/order"):
+        verify_patient_meta(rows, reported,
+                            expected_patient_ids=["x:1"] * 35)

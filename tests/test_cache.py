@@ -146,3 +146,32 @@ def test_cache_payload_is_never_pickled(tmp_path):
     cache.save(key, {"x": np.array([1.5])})
     with np.load(tmp_path / "c" / f"exp_{key}.npz", allow_pickle=False) as z:
         assert "x" in z.files
+
+
+def test_cache_tampered_payload_is_never_served(tmp_path):
+    """A payload whose BYTES change after the save (tampering or
+    corruption) must be a MISS with the digest reason — the metadata
+    records the payload SHA-256 at save time and the loader re-hashes
+    the file before serving it (R01: an existing NPZ file is not by
+    itself evidence of a valid computation)."""
+    cache = ResultCache(tmp_path / "c", "exp")
+    inputs_digest = "a" * 64
+    pdg = digest_of_params({"k": 15})
+    key = cache.key(inputs_digest, pdg)
+    cache.save(key, {"kappa": np.array([0.25, 0.5])},
+               facts={"inputs_digest": inputs_digest,
+                      "params_digest": pdg})
+    assert cache.load(key, inputs_digest, pdg)[0] is not None
+
+    # rewrite the SAME npz path with a different payload (the sidecar
+    # meta still names the old digest)
+    npz_path = tmp_path / "c" / f"exp_{key}.npz"
+    np.savez(npz_path, kappa=np.array([9.0, 9.0]))  # foreign junk
+    arrays, why = cache.load(key, inputs_digest, pdg)
+    assert arrays is None
+    assert "digest mismatch" in why
+
+    # truncation/corruption is equally a miss (unreadable -> miss)
+    npz_path.write_bytes(npz_path.read_bytes()[:20])
+    arrays, why2 = cache.load(key, inputs_digest, pdg)
+    assert arrays is None and "unreadable" in why2

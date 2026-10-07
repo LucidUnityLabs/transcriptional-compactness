@@ -38,6 +38,13 @@ def _sha256_file(path):
     return h.hexdigest()
 
 
+def _sha256_fileobj(f):
+    h = hashlib.sha256()
+    for chunk in iter(lambda: f.read(1 << 20), b""):
+        h.update(chunk)
+    return h.hexdigest()
+
+
 def digest_of_inputs(paths):
     """Stable digest of an ordered set of input files (existence checked)."""
     h = hashlib.sha256()
@@ -101,21 +108,28 @@ class ResultCache:
         base = self.root / f"{self.namespace.replace('/', '__')}_{key}"
         npz_path = base.with_suffix(".npz")
         meta_path = base.with_suffix(".meta.json")
-        meta = {
-            "cache_schema": "tc-cache-v1",
-            "namespace": self.namespace,
-            "method_version": self.method_version,
-            "key": key,
-            "facts": facts or {},
-            "created": time.time(),
-        }
         tmp_npz = npz_path.with_suffix(".npz.tmp")
         with open(tmp_npz, "wb") as f:
             np.savez(f, **arrays)
             f.flush()
         tmp_npz.replace(npz_path)
-        with open(meta_path, "w") as f:
+        # payload digest: a tampered/corrupted NPZ can never be served as
+        # a valid cached computation (audit R01: check the payload digest)
+        with open(npz_path, "rb") as f:
+            payload_sha256 = _sha256_fileobj(f)
+        meta = {
+            "cache_schema": "tc-cache-v1",
+            "namespace": self.namespace,
+            "method_version": self.method_version,
+            "key": key,
+            "payload_sha256": payload_sha256,
+            "facts": facts or {},
+            "created": time.time(),
+        }
+        tmp_meta = meta_path.with_suffix(".meta.json.tmp")
+        with open(tmp_meta, "w") as f:
             json.dump(meta, f, indent=2, sort_keys=True)
+        tmp_meta.replace(meta_path)
         return npz_path
 
     def load(self, key, inputs_digest, params_digest, force=False):
@@ -162,4 +176,9 @@ class ResultCache:
                 arrays = {k: z[k] for k in z.files}
         except Exception as exc:  # noqa: BLE001 - any load failure is a miss
             return None, f"unreadable payload: {exc}"
+        with open(npz_path, "rb") as f:
+            payload_sha256 = _sha256_fileobj(f)
+        if meta.get("payload_sha256") not in (None, payload_sha256):
+            return None, ("payload digest mismatch (tampered or corrupted "
+                          "cache file is never served)")
         return arrays, meta

@@ -38,6 +38,7 @@ from math import lgamma
 import numpy as np
 from scipy.stats import chi2 as _chi2
 from scipy.stats import norm as _norm
+from scipy.stats import t as _t
 
 #: Tolerance used for floating-point mass/marginal checks, scaled by the
 #: cost magnitude at every use site (tiny mass errors are not harmless on
@@ -326,8 +327,11 @@ def ricci_edges(G, alpha=0.5, n_edges=None, rng=None, backend="auto",
 
     edges = list(G.edges())
     if n_edges is not None:
-        if not isinstance(n_edges, (int, np.integer)) or n_edges < 1:
-            raise ValueError(f"n_edges must be a positive int, got {n_edges!r}")
+        if (isinstance(n_edges, (bool, np.bool_))
+                or not isinstance(n_edges, (int, np.integer))
+                or n_edges < 1):
+            raise ValueError(f"n_edges must be a positive int, got "
+                             f"{n_edges!r}")
         if n_edges < len(edges):
             if rng is None:
                 rng = np.random.default_rng(0)
@@ -398,7 +402,15 @@ def cell_curvature(G, edge_results):
     ``isfinite`` at every measured-value boundary, not just ``isnan``).
     """
     by_cell = {n: [] for n in G.nodes()}
+    seen_edges = set()
     for (u, v), ec in edge_results.items():
+        canon = (min(u, v), max(u, v))
+        if canon in seen_edges:
+            raise NumericsError(
+                f"edge ({u}, {v}) recorded twice (also as its reverse) — "
+                "duplicate measured-edge records would double-count every "
+                "incident summary")
+        seen_edges.add(canon)
         k = float(ec.kappa)
         if not np.isfinite(k):
             raise NumericsError(
@@ -575,12 +587,31 @@ def dl_meta(deltas, ses, label="", ci_critical=1.96):
     p = _f(2.0 * _norm.sf(abs(z)))
     I2 = max(0.0, (Q - df) / Q) * 100.0 if Q > 0 else 0.0
     pQ = _f(_chi2.sf(Q, df))
+    # Modified Hartung-Knapp SENSITIVITY (audit M04): a wider random-effects
+    # interval under a Hartung-Knapp-type variance inflation.  It is NOT an
+    # automatic replacement for the preregistered DL interval and does not
+    # repair dependence between donors; it is reported alongside it.
+    var_re = xs * xs + tau2
+    raw_w = np.ones_like(xs, dtype=np.longdouble) / var_re
+    hk_scale = max(np.longdouble(1.0),
+                   (raw_w * (xd - np.longdouble(d_DL)) ** 2).sum() / df)
+    hk_se = float(np.sqrt(hk_scale / raw_w.sum()))
+    hk_crit = float(_t.ppf(0.975, df))
+    modified_hk = {
+        "se": hk_se, "df": int(df),
+        "ci_lo": d_DL - hk_crit * hk_se,
+        "ci_hi": d_DL + hk_crit * hk_se,
+        "p": _f(2.0 * _t.sf(abs(d_DL / hk_se), df)),
+        "note": "sensitivity only; not a replacement for the "
+                "preregistered DL interval",
+    }
     return dict(base, delta=d_DL, se=se_DL,
                 ci_lo=d_DL - ci_critical * se_DL,
                 ci_hi=d_DL + ci_critical * se_DL, z=float(z), p=p,
                 log_p=_logsf_abs(float(z)), Q=Q, df=df, tau2=float(tau2),
                 I2=float(I2), pQ=pQ,
                 log_pq=float(_chi2.logsf(Q, df)), delta_FE=d_FE,
+                modified_hk=modified_hk,
                 heterogeneity_status="ok")
 
 
@@ -595,6 +626,9 @@ def bootstrap_dl(deltas, ses, B=1000, seed=0, ci=(2.5, 97.5)):
     s = np.ascontiguousarray(np.asarray(ses, dtype=np.float64).ravel())
     if d.size != s.size:
         raise ValueError("deltas/ses length mismatch")
+    if (isinstance(B, (bool, np.bool_))
+            or not isinstance(B, (int, np.integer)) or int(B) < 1):
+        raise ValueError(f"B must be a positive int, got {B!r}")
     k = d.size
     if k < 2:
         return {"B": 0, "status": "not_run_k_lt_2", "seed": int(seed),

@@ -1,0 +1,20 @@
+# Full experiment profile — initial CANDIDATE, not a tested lock (audit R06).
+# Direct third-party imports demonstrated in experiment scripts but absent
+# from the historical requirements.txt:
+#   statsmodels, harmonypy, scanpy  — confirmed by the audit (E1, batch
+#                                     correction, pseudotime)
+#   anndata, h5py, hicstraw         — found by the repository-wide import
+#                                     inventory (tools/import_inventory.py)
+#                                     during reconciliation; anndata/h5py
+#                                     also arrive transitively with scanpy,
+#                                     hicstraw must be resolved explicitly.
+# Resolve on the TARGET interpreter, test, then freeze exact versions and
+# hashes with tools/lock_environment.py. Do not treat this candidate input
+# as a reproducible release environment.
+-r core.in
+statsmodels
+harmonypy
+scanpy
+anndata
+h5py
+hicstraw

@@ -377,3 +377,119 @@ def test_one_sided_sf_convention_preserved():
     r_pos = dl_meta([0.6] * 12, [0.05] * 12)
     assert norm.sf(r_pos["z"]) == pytest.approx(0.5 * r_pos["p"],
                                                 rel=1e-6)
+
+
+# ---------------------------------------------------------------------------
+# input-contract validation (ported from the audit's reference suite)
+# ---------------------------------------------------------------------------
+@pytest.mark.parametrize("alpha", [-0.1, 1.1, 0.0, 1.0,
+                                   float("nan"), float("inf")])
+def test_ricci_rejects_invalid_alpha(alpha):
+    """alpha is the lazy (self) mass and must lie strictly inside (0, 1);
+    the boundaries are rejected by the TC-1 contract (the reference
+    implementation accepts and computes them — a deliberate divergence,
+    fail-closed here)."""
+    G = nx.cycle_graph(5)
+    for u, v in G.edges():
+        G[u][v]["weight"] = 1.0
+    with pytest.raises(ValueError):
+        ricci_edges(G, alpha=alpha)
+
+
+@pytest.mark.parametrize("bad", [0, -1, True, 1.5, np.int64(0)])
+def test_ricci_rejects_bad_edge_budget(bad):
+    """n_edges is a sampled-edge COUNT: positive int, never a bool (True
+    would silently mean 'sample exactly one edge')."""
+    G = nx.cycle_graph(5)
+    for u, v in G.edges():
+        G[u][v]["weight"] = 1.0
+    with pytest.raises(ValueError):
+        ricci_edges(G, n_edges=bad)
+
+
+def test_cell_curvature_rejects_reverse_duplicate_edge():
+    """An edge recorded as both (u, v) and (v, u) would double-count every
+    incident-cell summary — rejected outright."""
+    G = _path_graph_uniform(4)
+    ec = numerics.EdgeCurvature(0.25, 1.0, 1.0, {}, "test")
+    with pytest.raises(NumericsError, match="recorded twice"):
+        cell_curvature(G, {(0, 1): ec, (1, 0): ec})
+    # the canonical single record is fine
+    assert cell_curvature(G, {(0, 1): ec})[0].status == "measured"
+
+
+# ---------------------------------------------------------------------------
+# modified Hartung-Knapp sensitivity (M04)
+# ---------------------------------------------------------------------------
+def test_dl_modified_hk_is_a_recorded_sensitivity():
+    """The reported uncertainty must match the estimand: HK-type variance
+    inflation is reported ALONGSIDE the preregistered DL interval (wider
+    or equal), never as a replacement for it."""
+    # varied SEs with spread effects inflate the RE quadratic form past
+    # its degrees of freedom -> a strictly wider sensitivity interval
+    d = [0.1, 0.2, -0.3, 0.05, 0.4, -0.1]
+    s = [0.05, 0.1, 0.4, 0.05, 0.3, 0.1]
+    r = dl_meta(d, s)
+    hk = r["modified_hk"]
+    assert hk["df"] == r["df"] == 5
+    assert hk["se"] > r["se"]
+    assert hk["ci_lo"] < r["ci_lo"]
+    assert hk["ci_hi"] > r["ci_hi"]
+    assert "not a replacement" in hk["note"]
+    # homogeneous effects: no inflation (scale pinned at 1) and the HK SE
+    # degenerates to the DL SE
+    homo = dl_meta([0.5] * 6, [0.2] * 6)
+    assert homo["modified_hk"]["se"] == pytest.approx(homo["se"])
+    assert homo["modified_hk"]["se"] == pytest.approx(
+        float(np.sqrt(1.0 / (6 / (0.2 ** 2)))), rel=1e-9)
+
+
+def test_dl_modified_hk_never_rewrites_the_preregistered_fields():
+    """Whatever the heterogeneity, delta/se/ci (the preregistered DL
+    fields) keep their DL values; the sensitivity lives only in its own
+    block."""
+    rng = np.random.default_rng(23)
+    for _ in range(5):
+        d = rng.uniform(-0.7, 0.7, size=7)
+        s = rng.uniform(0.05, 0.4, size=7)
+        r = dl_meta(d, s)
+        bare = {k: v for k, v in r.items() if k != "modified_hk"}
+        again = dl_meta(d, s)
+        assert all(again[k] == v for k, v in bare.items())
+        hk = again["modified_hk"]
+        assert hk["se"] >= again["se"]
+
+
+# ---------------------------------------------------------------------------
+# bootstrap input validation (reference-suite port)
+# ---------------------------------------------------------------------------
+def test_bootstrap_validates_B_and_repeats():
+    a = bootstrap_dl([0.1, 0.3, 0.5], [0.1, 0.2, 0.15], B=20, seed=1)
+    b = bootstrap_dl([0.1, 0.3, 0.5], [0.1, 0.2, 0.15], B=20, seed=1)
+    assert a == b  # seeded repeat is bit-identical
+    assert a["B"] == 20 and a["seed"] == 1
+    for bad in (0, -5, 1.5, True):
+        with pytest.raises(ValueError):
+            bootstrap_dl([0.1, 0.2], [0.1, 0.1], B=bad)
+
+
+# ---------------------------------------------------------------------------
+# Cliff's delta vs independent U-statistic oracles (reference-suite port)
+# ---------------------------------------------------------------------------
+@pytest.mark.parametrize("a,b", [([1, 2, 2, 4], [2, 3, 4]),
+                                 ([0, 0, 1], [0, 1, 1]),
+                                 ([-2, 0, 3], [1, 2, 4, 5])])
+def test_cliff_matches_mannwhitney_and_auc(a, b):
+    """delta == 2U/(n1 n2) - 1 == 2*AUC - 1 == mean dominance sign —
+    three independent oracles for the same U-statistic."""
+    from sklearn.metrics import roc_auc_score
+    from scipy.stats import mannwhitneyu
+
+    a = np.asarray(a, float)
+    b = np.asarray(b, float)
+    res = cliff_placements(a, b)
+    U = mannwhitneyu(a, b, method="asymptotic").statistic
+    assert res.delta == pytest.approx(2 * U / (len(a) * len(b)) - 1)
+    auc = roc_auc_score(np.r_[np.ones(len(a)), np.zeros(len(b))],
+                        np.r_[a, b])
+    assert res.delta == pytest.approx(2 * auc - 1)

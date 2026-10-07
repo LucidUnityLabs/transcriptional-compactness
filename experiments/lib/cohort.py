@@ -39,6 +39,56 @@ def rng_stream(seed, stage_name):
     return np.random.default_rng(entropy)
 
 
+def log_cpm_full_library(counts_genes_cells, min_detected=5,
+                         target_sum=1e6):
+    """log1p-CPM normalization with the R04 denominator contract.
+
+    * the per-cell library size is computed over ALL raw genes BEFORE any
+      gene filtering (the legacy held-out paths filtered genes first, so
+      the denominator depended on the filter — a silent method change);
+    * empty (all-zero) or nonfinite libraries are EXPLICIT failures:
+      excluding such cells is a QC decision the caller must make and
+      record, never a silent ``0 -> 1`` substitution;
+    * everything is float64 end to end.
+
+    Returns ``(X_log, kept_gene_indices, facts)`` where ``X_log`` is
+    genes x cells log1p-CPM.
+    """
+    counts = np.ascontiguousarray(
+        np.asarray(counts_genes_cells, dtype=np.float64))
+    if counts.ndim != 2 or min(counts.shape) < 1:
+        raise numerics.NumericsError(
+            f"bad counts matrix {counts.shape}")
+    if not np.all(np.isfinite(counts)) or np.any(counts < 0):
+        raise numerics.NumericsError(
+            "counts must be finite and nonnegative")
+    lib = counts.sum(axis=0)
+    n_empty = int((lib <= 0).sum())
+    if n_empty:
+        raise numerics.NumericsError(
+            f"{n_empty} of {lib.size} cells have empty raw libraries — "
+            "apply an explicit upstream QC exclusion and record it; a "
+            "silent 0->1 denominator substitution fabricates expression")
+    expressed = (counts > 0).sum(axis=1)
+    keep = np.flatnonzero(expressed >= int(min_detected))
+    if keep.size == 0:
+        raise numerics.NumericsError(
+            f"no genes detected in >= {min_detected} cells")
+    kept = counts[keep]
+    X_log = np.log1p(kept / lib * float(target_sum))
+    if not np.all(np.isfinite(X_log)):
+        raise numerics.NumericsError("nonfinite normalized expression")
+    facts = {
+        "denominator": "full raw library (computed before gene filtering)",
+        "n_genes_full": int(counts.shape[0]),
+        "n_genes_kept": int(keep.size),
+        "min_detected_cells": int(min_detected),
+        "target_sum": float(target_sum),
+        "dtype": "float64",
+    }
+    return np.ascontiguousarray(X_log), keep, facts
+
+
 def hvg_pca(X_log, n_hvg=2000, n_pc=50):
     """HVG selection + PCA on validated float64 input.
 

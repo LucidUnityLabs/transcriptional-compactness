@@ -1,0 +1,18 @@
+# Core analysis profile — initial CANDIDATE, not a tested lock (audit R06).
+# The eight direct pins below are the repository's historical
+# requirements.txt pins, retained verbatim. Resolve ONCE on the target
+# interpreter/platform with tools/lock_environment.py, install/test the
+# result in a fresh environment, review, and only then commit the
+# generated hash-checked lock + wheelhouse. CI must consume reviewed
+# locks; it must never resolve a new environment during verification.
+numpy==2.4.2
+scipy==1.17.0
+pandas==3.0.3
+rdata==1.1.0
+POT==0.9.6.post1
+matplotlib==3.10.8
+scikit-learn==1.8.0
+networkx==3.6.1
+# Packaging and test tooling resolved alongside the core profile.
+setuptools==80.9.0
+pytest==9.0.2

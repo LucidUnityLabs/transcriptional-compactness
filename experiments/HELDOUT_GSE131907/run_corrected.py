@@ -44,6 +44,7 @@ from lib.bio_io import (DataValidationError, align_labels,  # noqa: E402
                         validate_label_identity)
 from lib.cache import ResultCache, digest_of_inputs  # noqa: E402
 from lib.runner import run_or_block  # noqa: E402
+from lib.verification import direction_counts, protocol_decision  # noqa: E402
 
 DATA = HERE.parent.parent / "data"
 KIM_DIR = DATA / "GSE131907_kim_nsclc"
@@ -98,14 +99,12 @@ def run(cache_root=None):
     counts, gene_names = read_umi_tsv_selected(KIM_MTX, barcodes)
     if counts.shape[1] != len(barcodes):
         raise DataValidationError("strict reader returned wrong width")
-    # log1p-CPM(1e6) in float64; gene filter >=5 cells (declared protocol)
-    expressed = (counts > 0).sum(axis=1)
-    gene_keep = np.flatnonzero(expressed >= 5)
-    counts = counts[gene_keep]
+    # log1p-CPM(1e6) float64 with the R04 denominator contract: the
+    # per-cell library size uses ALL raw genes BEFORE the >=5-cell gene
+    # filter (the legacy path filtered first, making the denominator
+    # filter-dependent); empty libraries fail explicitly (no 0 -> 1).
+    X_log, gene_keep, norm_facts = cohort.log_cpm_full_library(counts)
     gene_names = [gene_names[i] for i in gene_keep]
-    lib = counts.sum(axis=0, keepdims=True)
-    lib = np.where(lib == 0, 1.0, lib)
-    X_log = np.log1p(counts / lib * 1e6)
 
     specimen = labels["sample"].values
     is_mal = (labels["label"] == "malignant").values
@@ -145,7 +144,15 @@ def run(cache_root=None):
         return o
 
     measured = kdf[kdf["status"] == "measured"]
-    n_pos = int((estimable["delta"] > 0).sum()) if len(estimable) else 0
+    # R02: zeros are counted as zeros, never folded into "negative"
+    direction = direction_counts(
+        estimable["delta"].values if len(estimable) else [])
+    decision = protocol_decision(
+        meta,
+        technical_checks_passed=True,
+        donor_unit_verified=donor_verified,
+        protocol_parameters_match=True,
+        minimum_patients=5)
     return {
         "method_version": METHOD_VERSION,
         "metric": facts["metric"],
@@ -174,14 +181,12 @@ def run(cache_root=None):
                                   ("n_malignant", "n_comparator", "delta",
                                    "se", "se_estimable", "cliff_status")})
             for r in estimable.itertuples()},
-        "per_patient_direction": {
-            "n_delta_positive": n_pos,
-            "n_delta_negative": int(len(estimable) - n_pos),
-            "n_total": int(len(estimable))},
+        "per_patient_direction": direction,
         "dl_meta": _clean(meta),
         "pooled_delta": _clean(meta["delta"]),
         "pooled_ci_95": [_clean(meta["ci_lo"]), _clean(meta["ci_hi"])],
         "one_sided_p_delta_gt_0": _clean(meta["one_sided_p_delta_gt_0"]),
+        "protocol_decision": _clean(decision),
         "decision_rule_inputs": {
             "pooled_delta": _clean(meta["delta"]),
             "one_sided_p": _clean(meta["one_sided_p_delta_gt_0"]),

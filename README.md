@@ -52,8 +52,12 @@ is `experiments/`.
 
 ## Reproducibility
 
-- `python3 -m pip install -r requirements.txt` (CPython 3.14, pinned versions)
-- Fixed seed **20260507** for every stochastic stage; reruns are deterministic
+- `python3 -m pip install -r requirements.txt` (CPython 3.14, pinned
+  versions; full experiment profile and reviewed-lock workflow:
+  `REPRODUCING.md` §1)
+- Predominant seed **20260507**; three committed 20260508 exceptions and
+  the per-stage seed table: `REPRODUCING.md` §4. Reruns are deterministic
+  given the same package versions and input data
 - Run order, data layout, and output locations: `REPRODUCING.md`
 
 ## Data availability
