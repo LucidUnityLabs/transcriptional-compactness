@@ -1,0 +1,25 @@
+{
+  "blocked_reason": "required inputs absent; rerun wiring only \u2014 results are never fabricated",
+  "created_utc": "2026-10-07T05:36:28Z",
+  "driver": "HELDOUT_GSE161529/download_corrected.py",
+  "missing_inputs": [
+    {
+      "path": "data/GSE161529/GSE161529_family.soft.gz",
+      "provenance": "GEO GSE161529 family SOFT file (series GSE161529); the SOFT itself is a discovery input \u2014 acquire it from https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161529/soft/ and record its hash in the reviewed lock",
+      "role": "family_soft"
+    },
+    {
+      "path": "data/GSE161529/labels/cells_primary.tsv.gz",
+      "provenance": "labels produced by extract_labels.py from the figshare Seurat objects (figshare 10.6084/m9.figshare.17058077)",
+      "role": "labels_primary"
+    },
+    {
+      "path": "data/GSE161529/labels/cells_secondary.tsv.gz",
+      "provenance": "secondary-arm labels from the same deposit",
+      "role": "labels_secondary"
+    }
+  ],
+  "note": "Corrected acquisition wiring (audit TC-1). Requires the family SOFT file and the extracted label files to already exist (extract_labels.py runs on the figshare Seurat objects) \u2014 the documented clean-start order is now explicit instead of impossible.",
+  "status": "blocked",
+  "wallclock_seconds": 0.0
+}

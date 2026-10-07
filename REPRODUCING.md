@@ -78,6 +78,46 @@ outputs in place.
    batch-correction panel; reads `exp/LABEL_VALIDATION/`,
    `exp/BATCH_CORRECTION/`).
 
+## 3b. Corrected method (TC-1) and audit reruns
+
+The 2026-10-06 correctness audit introduced a corrected numerical method
+as a SEPARATELY IDENTIFIED path. The committed per-experiment `run.py`
+scripts and their outputs are the preserved historical analysis; the
+corrected method lives in the shared library `experiments/lib/`
+(`numerics`, `bio_io`, `preprocess`, `verification`, `cache`,
+`acquisition`, `cohort`, `runner`) and is executed by:
+
+| Corrected driver | Artifact |
+|---|---|
+| `experiments/META_patient_level/run_corrected.py` | `results_corrected.json` |
+| `experiments/HELDOUT_GSE131907/run_corrected.py` | `results_corrected.json` |
+| `experiments/HELDOUT_GSE161529/run_corrected.py` | `results_corrected.json` |
+| `experiments/HELDOUT_GSE161529/download_corrected.py` | `results_acquisition_corrected.json` |
+| `experiments/LABEL_VALIDATION/run_corrected.py` | `results_corrected.json` |
+
+Corrections (method version `TC-1`): full-graph support-to-support
+transport metric; identity-safe kNN construction (coincident coordinates
+rejected as non-estimable); verified optimal transport that fails
+closed; coverage-aware per-cell summaries; exact Cliff placement
+variances with explicit non-estimable status (no variance floor);
+validating DerSimonian-Laird/bootstrap helpers; strict UMI and Matrix
+Market readers; label/axis identity gates; binary-connectivity Louvain;
+truly frozen-geometry label contrasts; content-addressed caches that can
+never serve a different computation. Corrected pooled numbers are
+EXPECTED to differ from the historical ones (the metric changed);
+manuscript numbers must be regenerated from corrected artifacts only.
+
+Corrected drivers exit with code 2 and write a `blocked` artifact naming
+every missing input when the GEO/figshare data are absent — results are
+never fabricated. `experiments/rerun_status.py` enumerates every
+affected analysis and its data requirements into
+`experiments/rerun_status.json`.
+
+Tests: `python3 -m pytest tests/` (unit, reference, corruption, cache
+and synthetic-pipeline layers; the POT backend test skips where POT is
+not installed and is mandatory in CI, which installs
+`requirements.txt`).
+
 ## 4. Seed
 
 Every stochastic stage uses the fixed seed **20260507** (`SEED = 20260507`

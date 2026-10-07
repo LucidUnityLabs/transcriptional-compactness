@@ -1,0 +1,20 @@
+{
+  "blocked_reason": "required inputs absent; rerun wiring only \u2014 results are never fabricated",
+  "created_utc": "2026-10-07T05:36:28Z",
+  "driver": "HELDOUT_GSE131907/run_corrected.py",
+  "missing_inputs": [
+    {
+      "path": "data/GSE131907_kim_nsclc/GSE131907_Lung_Cancer_raw_UMI_matrix.txt.gz",
+      "provenance": "GSE131907 (Kim et al. 2020 metastatic LUAD atlas) raw UMI matrix genes x cells TSV.gz; GEO series GSE131907 supplementary file GSE131907_Lung_Cancer_raw_UMI_matrix.txt.gz",
+      "role": "umi_matrix"
+    },
+    {
+      "path": "data/GSE131907_kim_nsclc/GSE131907_Lung_Cancer_cell_annotation.txt.gz",
+      "provenance": "GSE131907 original-author cell annotation GSE131907_Lung_Cancer_cell_annotation.txt.gz (same GEO series)",
+      "role": "annotation"
+    }
+  ],
+  "note": "Corrected-method rerun wiring (audit TC-1). GEO inputs are not redistributed with the repository; place them under data/GSE131907_kim_nsclc/ per REPRODUCING.md and rerun.",
+  "status": "blocked",
+  "wallclock_seconds": 0.0
+}

@@ -1,0 +1,40 @@
+{
+  "blocked_reason": "required inputs absent; rerun wiring only \u2014 results are never fabricated",
+  "created_utc": "2026-10-07T05:36:29Z",
+  "driver": "META_patient_level/run_corrected.py",
+  "missing_inputs": [
+    {
+      "path": "data/GSE72056_melanoma.txt",
+      "provenance": "GEO GSE72056 (Tirosh 2016 melanoma) processed expression matrix",
+      "role": "Tirosh_melanoma"
+    },
+    {
+      "path": "data/GSE84465_GBM.csv",
+      "provenance": "GEO GSE84465 (Darmanis GBM) expression; companion meta file GSE84465_meta.txt also required",
+      "role": "Darmanis_GBM"
+    },
+    {
+      "path": "data/GSE103322_HNSCC.txt",
+      "provenance": "GEO GSE103322 (Puram HNSCC) processed expression matrix",
+      "role": "Puram_HNSCC"
+    },
+    {
+      "path": "data/GSE111672_PDAC-A-indrop-filtered-expMat.txt.gz",
+      "provenance": "GEO GSE111672 (Peng/Moncada PDAC) PDAC-A and PDAC-B matrices",
+      "role": "Peng_PDAC"
+    },
+    {
+      "path": "data/GSE176031_chen",
+      "provenance": "GEO GSE176031 (Chen prostate) per-sample DGE matrices directory",
+      "role": "Chen_prostate"
+    },
+    {
+      "path": "data/GSE147082",
+      "provenance": "GEO GSE147082 (Olalekan ovarian HGSOC) per-patient CSV directory",
+      "role": "Olalekan_ovarian"
+    }
+  ],
+  "note": "Corrected-method rerun wiring (audit TC-1). Discovery GEO cohorts are not redistributed; see REPRODUCING.md data layout. Per-cohort blocked detail is listed in missing_inputs.",
+  "status": "blocked",
+  "wallclock_seconds": 0.0
+}

@@ -1,0 +1,30 @@
+{
+  "blocked_reason": "required inputs absent; rerun wiring only \u2014 results are never fabricated",
+  "created_utc": "2026-10-07T05:36:28Z",
+  "driver": "HELDOUT_GSE161529/run_corrected.py",
+  "missing_inputs": [
+    {
+      "path": "data/GSE161529/labels/cells_primary.tsv.gz",
+      "provenance": "Chen et al. 2022 (Sci Data) companion labels, produced by extract_labels.py from the figshare Seurat objects (figshare deposit 10.6084/m9.figshare.17058077)",
+      "role": "labels_primary"
+    },
+    {
+      "path": "data/GSE161529/labels/cells_secondary.tsv.gz",
+      "provenance": "same companion deposit, secondary arm labels",
+      "role": "labels_secondary"
+    },
+    {
+      "path": "data/GSE161529/samples/GSE161529_features.tsv.gz",
+      "provenance": "GSE161529_features.tsv.gz from GEO series GSE161529 supplementary",
+      "role": "features"
+    },
+    {
+      "path": "data/GSE161529/samples/MANIFEST.json",
+      "provenance": "samples/MANIFEST.json written by the acquisition stage (download_corrected.py or the historical download.py) mapping label samples to GSM supplementary files",
+      "role": "manifest"
+    }
+  ],
+  "note": "Corrected-method rerun wiring (audit TC-1). Labels are produced by extract_labels.py from the figshare Seurat objects; per-sample matrices by the acquisition stage; features from GEO. None are redistributed \u2014 see REPRODUCING.md.",
+  "status": "blocked",
+  "wallclock_seconds": 0.0
+}

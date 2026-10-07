@@ -1,0 +1,20 @@
+{
+  "blocked_reason": "required inputs absent; rerun wiring only \u2014 results are never fabricated",
+  "created_utc": "2026-10-07T05:36:30Z",
+  "driver": "LABEL_VALIDATION/run_corrected.py",
+  "missing_inputs": [
+    {
+      "path": "data/GSE176031_chen",
+      "provenance": "GEO GSE176031 (Chen 2021 prostate) per-sample DGE matrices",
+      "role": "chen_expression"
+    },
+    {
+      "path": "data/GSE147082",
+      "provenance": "GEO GSE147082 (Olalekan 2021 ovarian) per-patient CSV matrices",
+      "role": "olalekan_expression"
+    }
+  ],
+  "note": "Corrected-method rerun wiring (audit TC-1). GEO cohorts are not redistributed; see REPRODUCING.md.",
+  "status": "blocked",
+  "wallclock_seconds": 0.0
+}

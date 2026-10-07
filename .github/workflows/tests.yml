@@ -1,0 +1,55 @@
+name: tests
+
+# Automated verification gate (audit R07): unit + reference + backend +
+# import + synthetic layers.  The POT backend integration test is
+# SKIPPED where POT is absent (e.g. minimal local environments) and
+# MANDATORY here because requirements.txt installs POT in CI.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install pytest
+      - name: Corrected drivers import cleanly
+        run: |
+          python -m py_compile experiments/lib/*.py
+          python -m py_compile experiments/META_patient_level/run_corrected.py \
+            experiments/HELDOUT_GSE131907/run_corrected.py \
+            experiments/HELDOUT_GSE161529/run_corrected.py \
+            experiments/HELDOUT_GSE161529/download_corrected.py \
+            experiments/LABEL_VALIDATION/run_corrected.py \
+            experiments/rerun_status.py
+      - name: Rerun status manifest is current
+        run: |
+          python experiments/rerun_status.py
+          git diff --exit-code experiments/rerun_status.json
+      - name: Corrected drivers report blocked status (no data in CI)
+        run: |
+          set +e
+          for d in experiments/HELDOUT_GSE131907/run_corrected.py \
+                   experiments/HELDOUT_GSE161529/run_corrected.py \
+                   experiments/META_patient_level/run_corrected.py \
+                   experiments/LABEL_VALIDATION/run_corrected.py; do
+            python "$d" >/dev/null 2>&1
+            rc=$?
+            if [ "$rc" -ne 2 ]; then
+              echo "FAIL: $d exited $rc (expected 2 = blocked, no data)"
+              exit 1
+            fi
+          done
+      - name: Full test suite (POT backend test mandatory)
+        run: python -m pytest tests/ -v
+      - name: Optimized-mode suite (production asserts disabled)
+        run: python -O -m pytest tests/ -q
