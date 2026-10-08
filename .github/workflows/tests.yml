@@ -13,12 +13,10 @@ name: tests
 # identifiers resolved during the audit (report E07/E08) so the workflow
 # consumes fixed source identities, not moving tags.
 #
-# NOTE (R06): this job installs requirements.txt directly, which pins
-# the eight core distributions but NOT transitive dependencies.  The
-# reviewed hash-locked environment (requirements/*.lock generated with
-# tools/lock_environment.py on the target platform) supersedes it for
-# release reproduction once it exists; CI must then install only locked
-# wheels and never resolve.
+# R06: this job consumes the closed macOS26/CPython3.14 arm64 wheel lock,
+# including the exact source-built POT wheel retained under requirements/wheels.
+# Local offline installation and real-backend tests were executed; this
+# remote runner is a reproduction gate, not claimed as already executed.
 
 on:
   push:
@@ -38,7 +36,7 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -48,9 +46,8 @@ jobs:
           python-version: "3.14.7"
       - name: Install pinned dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install pytest
+          python -m pip install --only-binary=:all: --require-hashes --find-links requirements/wheels -r requirements/core-cp314-macos-arm64.lock
+          python -m pip check
       - name: Corrected drivers import cleanly
         run: |
           python -m py_compile experiments/lib/*.py
@@ -65,8 +62,7 @@ jobs:
         run: python tools/import_inventory.py
       - name: Rerun status manifest is current
         run: |
-          python experiments/rerun_status.py
-          git diff --exit-code experiments/rerun_status.json
+          python experiments/rerun_status.py --check
       - name: Corrected drivers report blocked status (no data in CI)
         run: |
           set +e

@@ -1,0 +1,16 @@
+{
+  "experiment": "E2_forman_ricci",
+  "files": {
+    "e2_forman_ricci.csv": "1f981305d3da1e84d27e34812076b122531953dada3404e1c30842a3abb308dc",
+    "e2_or_vs_fr_correlation.png": "b080be262392231c0b56757ac77fd8046a386cce3bde53a4b610e3c79ee57e35",
+    "e2_report.txt": "1bb652e872ab7a808e2e1d241621f65a3c7b8d533c6e4b234c44f97de5714a62",
+    "e2_summary.png": "b154771d2235fee65ca7798e5fd1ddd0279889a3f3a5b6126c0f506fe4d9bb33",
+    "geometry.json": "8efaacb047d7a9a14108a917262eebe7b3fd90a4965f60a2afb059fb36e8e670"
+  },
+  "historical_source_sha256": "a3842620633c75ecc55204c7b9df9d31a047048d1a675f21e0725d5d8daac12d",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 2,
+  "status": "exploratory_complete"
+}

@@ -1,0 +1,15 @@
+{
+  "experiment": "E7_clonality",
+  "files": {
+    "e7_clonality_distributions.png": "d04ff87021c3f236dc0bcfc00030efa1ee33e58ccd676d5a109ee630fab73eba",
+    "e7_clonality_summary.csv": "0e254db082b9cff2d94467901f84731085e84ea8bbf2529572dfc7fb10289047",
+    "e7_three_way_table.csv": "9a9984bf8303194164f095b14f11d4ec6938ff9d7ab723010346a86ddaa96f06",
+    "geometry.json": "a72757b7b6245fd7b039d5b8f8708981896fcab4d09248ac4604e60c6f8fcb21"
+  },
+  "historical_source_sha256": "a4d401fde6de8b9d6905dd0d907bac75e7e14cc80b2b620c73aae2977c96d68f",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 1,
+  "status": "exploratory_complete"
+}

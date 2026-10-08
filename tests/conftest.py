@@ -92,7 +92,18 @@ def load_legacy(name):
 
 @pytest.fixture(scope="session")
 def legacy_e1():
-    return load_legacy("e1")
+    # Counterexamples use the exact preserved numerical functions, without
+    # importing optional mixed-model/reporting dependencies into core CI.
+    import ast
+    import networkx as nx
+    from sklearn.neighbors import NearestNeighbors
+    tree = ast.parse(LEGACY_SCRIPTS["e1"].read_text())
+    tree.body = [n for n in tree.body if isinstance(n, ast.FunctionDef)
+                 and n.name in {"build_knn_graph", "ollivier_ricci_edges"}]
+    module = types.ModuleType("legacy_e1_numerics")
+    module.__dict__.update(np=np, nx=nx, ot=sys.modules["ot"], NearestNeighbors=NearestNeighbors)
+    exec(compile(tree, str(LEGACY_SCRIPTS["e1"]), "exec"), module.__dict__)
+    return module
 
 
 @pytest.fixture(scope="session")

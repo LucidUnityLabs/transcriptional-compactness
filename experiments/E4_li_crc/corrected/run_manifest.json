@@ -1,0 +1,14 @@
+{
+  "experiment": "E4_li_crc",
+  "files": {
+    "e4_li_distributions.png": "28fe164f18f10f7895cf9e4384755c8b10b24ebf151b5ce96e53dd80e1e7a905",
+    "e4_li_summary.csv": "83e8431a5231a204f5563dd5ec0e3bc1f46a76ddc0de6ffd41557e9df352634f",
+    "geometry.json": "a8557783af5230056ebc0fd854a314838b9823c0896eaea74e27d1ce4f71aa7c"
+  },
+  "historical_source_sha256": "869ce72234cab8fc3497a6fe679f813489ec8e9e2331129c4f66f4af38e5f693",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 10,
+  "status": "exploratory_complete"
+}

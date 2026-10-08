@@ -70,7 +70,7 @@ def atomic_download(url, dest, *, sha256=None, max_bytes=None,
         tmp_name = tmp.name
     try:
         cmd = [
-            "curl", "-f", "-sS", "--retry", "3", "--retry-delay", "5",
+            "curl", "-f", "-sS", "-L", "--retry", "3", "--retry-delay", "5",
             "--max-time", str(int(timeout_s)),
             "--connect-timeout", "60",
             "--speed-time", "120", "--speed-limit", "1024",
@@ -95,13 +95,14 @@ def atomic_download(url, dest, *, sha256=None, max_bytes=None,
                 while f.read(1 << 20):
                     pass
             checks["gzip_eof"] = True
+        h = hashlib.sha256()
+        with open(tmp_name, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        got = h.hexdigest()
+        checks["sha256"] = got
+        checks['checksum_status'] = 'expected hash verified' if sha256 is not None else 'observed candidate identity; no prior expected hash supplied'
         if sha256 is not None:
-            h = hashlib.sha256()
-            with open(tmp_name, "rb") as f:
-                for chunk in iter(lambda: f.read(1 << 20), b""):
-                    h.update(chunk)
-            got = h.hexdigest()
-            checks["sha256"] = got
             if got != sha256:
                 raise AcquisitionError(
                     f"{url}: sha256 {got} != expected {sha256} (a newly "
@@ -149,7 +150,7 @@ def parse_soft_supplementary(soft_path):
     return out
 
 
-def matrix_sources(label_samples, soft_supplementary):
+def matrix_sources(label_samples, soft_supplementary, explicit_aliases=None):
     """Exact, injective label-sample -> (GSM, stem, urls) mapping.
 
     ``label_samples``: iterable of label sample ids like ``TN_B1_0177``
@@ -163,6 +164,20 @@ def matrix_sources(label_samples, soft_supplementary):
     mapping = {}
     used_gsm = {}
     for sample in sorted(label_samples):
+        alias = (explicit_aliases or {}).get(sample)
+        if alias:
+            gsm = alias["gsm"]
+            if gsm not in soft_supplementary or not alias.get("source"):
+                raise AcquisitionError(f"invalid source-backed alias for {sample}")
+            if gsm in used_gsm:
+                raise AcquisitionError(f"non-injective explicit mapping for {sample}")
+            rec = soft_supplementary[gsm]
+            mapping[sample] = {"gsm": gsm, "stem": rec["stem"],
+                               "matrix_url": rec.get("matrix_url"),
+                               "barcodes_url": rec.get("barcodes_url"),
+                               "identity_source": alias["source"]}
+            used_gsm[gsm] = sample
+            continue
         m = re.match(r"^(ER|HER2|TN)(_B1)?_(\d{4})(?:_([A-Za-z]+\d*))?$",
                      sample)
         if not m:

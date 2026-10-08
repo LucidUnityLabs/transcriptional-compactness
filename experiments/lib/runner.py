@@ -95,7 +95,12 @@ def atomic_json(path, payload):
       never a bare ``NaN`` token;
     * write to a temporary file in the destination directory, then
       ``replace`` — a previously approved artifact is never destroyed by
-      a failed write.
+      a failed write;
+    * a ``replace`` whose acknowledgment is lost counts as completed only
+      when the destination provably holds the staged bytes, so a landed
+      failure receipt never masks the exception it reports (an uncertain
+      publication must stay uncertain); otherwise the failure stands and
+      the previous artifact is intact.
     """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -112,7 +117,17 @@ def atomic_json(path, payload):
         with open(fd, "w", encoding="utf-8") as f:
             f.write(data)
             f.flush()
-        Path(tmp).replace(path)
+        try:
+            Path(tmp).replace(path)
+        except OSError:
+            landed = False
+            try:
+                landed = (not Path(tmp).exists()
+                          and path.read_text(encoding="utf-8") == data)
+            except OSError:
+                landed = False
+            if not landed:
+                raise
     finally:
         if Path(tmp).exists():
             Path(tmp).unlink()

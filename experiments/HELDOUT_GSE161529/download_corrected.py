@@ -45,6 +45,7 @@ FEATURES_URL = ("https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/"
 
 #: Safety ceilings (NOT expected sizes and NOT a verified data lock).
 MAX_BYTES = {"matrix": 20 << 30, "barcodes": 64 << 20, "features": 32 << 20}
+HOST_RESERVE_BYTES = 7 * (1 << 29)  # 3.5 GiB priority reserve
 
 REQUIRED_INPUTS = [
     ("family_soft", SOFT,
@@ -82,8 +83,28 @@ def run():
 
     supp = acquisition.parse_soft_supplementary(SOFT)
     samples = label_samples()
-    mapping = acquisition.matrix_sources(samples, supp)   # exact/injective
+    aliases = json.loads((DATA.parent / "config/GSE161529_sample_aliases.json").read_text())
+    mapping = acquisition.matrix_sources(samples, supp, explicit_aliases=aliases) # exact/injective plus reviewed source alias
 
+    import shutil
+    import urllib.request
+    size_plan = []
+    for sample, rec in mapping.items():
+        for kind in ("matrix_url", "barcodes_url"):
+            url = rec[kind].replace("ftp://", "https://")
+            with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=60) as response:
+                if not response.headers.get("Content-Length"):
+                    raise acquisition.AcquisitionError(f"missing public Content-Length: {url}")
+                size_plan.append({"sample": sample, "url": url, "bytes": int(response.headers["Content-Length"])})
+    OUT.mkdir(parents=True, exist_ok=True)
+    needed = sum(e["bytes"] for e in size_plan if not (OUT / e["url"].rsplit("/",1)[-1]).exists())
+    from lib.runner import atomic_json
+    atomic_json(OUT / "SIZE_PLAN_CORRECTED.json", {"files": size_plan, "compressed_bytes_remaining": needed, "expanded_raw_bytes_on_disk": 0, "host_reserve_bytes": HOST_RESERVE_BYTES})
+    if "--plan" in sys.argv:
+        return {"status": "planned", "compressed_bytes_remaining": needed, "n_matrices": len(mapping)}
+    if shutil.disk_usage(OUT).free < needed + HOST_RESERVE_BYTES:
+        raise acquisition.AcquisitionError(f"insufficient disk reserve: need {needed} bytes for remaining compressed inputs plus 3.5 GiB host reserve; plan written, no downloads started")
+    sizes = {e["url"]: e["bytes"] for e in size_plan}
     downloads = []
     errors = []
 
@@ -99,15 +120,29 @@ def run():
     for sample in samples:
         rec = mapping[sample]
         stem = rec["stem"]
-        base = rec["matrix_url"].rsplit("/", 1)[0]
+        base = rec["matrix_url"].replace("ftp://", "https://").rsplit("/", 1)[0]
         for kind, ceiling in (("matrix.mtx.gz", MAX_BYTES["matrix"]),
                               ("barcodes.tsv.gz", MAX_BYTES["barcodes"])):
             name = f"{stem}-{kind}"
             url = f"{base}/{name}"
             dest = OUT / name
             try:
-                checks = acquisition.atomic_download(
-                    url, dest, sha256=lock.get(name), max_bytes=ceiling)
+                if dest.exists():
+                    import gzip
+                    import hashlib
+                    with gzip.open(dest, "rb") as f:
+                        while f.read(1 << 20): pass
+                    h = hashlib.sha256()
+                    with dest.open("rb") as f:
+                        for b in iter(lambda: f.read(1 << 20), b""): h.update(b)
+                    if lock.get(name) and h.hexdigest() != lock[name]:
+                        raise acquisition.AcquisitionError(f"cached checksum mismatch: {name}")
+                    checks = {"url": url, "dest": str(dest), "sha256": h.hexdigest(), "bytes": dest.stat().st_size, "gzip_eof": True, "cached": True}
+                else:
+                    if shutil.disk_usage(OUT).free < sizes[url] + HOST_RESERVE_BYTES:
+                        raise acquisition.AcquisitionError("3.5 GiB host reserve would be breached; resume after freeing space")
+                    checks = acquisition.atomic_download(
+                        url, dest, sha256=lock.get(name), max_bytes=ceiling)
                 checks["sample"] = sample
                 checks["gsm"] = rec["gsm"]
                 downloads.append(checks)

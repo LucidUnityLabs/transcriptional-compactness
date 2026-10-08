@@ -1,0 +1,9 @@
+{
+  "ER_0040_T": {
+    "gsm": "GSM4909307",
+    "author_sample": "ER-0040-T",
+    "geo_patient": "0040",
+    "geo_population": "Total",
+    "source": "yunshun/HumanBreast10X 65cc0fe3fa1a72af8cfff0d3ba32c7545091cc4f RCode/ER.R and QC.R: primary ER-0040-T specimen; GEO GSM4909307: ER+ tumour Total cells from Patient 0040, filename ER-MH0040. Distinct lymph-node specimen GSM4909308 has ER-MH0040-LN. Explicit identity curation; suffix rules remain strict for every other specimen."
+  }
+}

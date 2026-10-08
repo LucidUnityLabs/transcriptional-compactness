@@ -1,0 +1,164 @@
+{
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "files": [
+    {
+      "filename": "cloudpickle-3.1.2-py3-none-any.whl",
+      "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a",
+      "bytes": 22228
+    },
+    {
+      "filename": "contourpy-1.4.0-cp314-cp314-macosx_11_0_arm64.whl",
+      "sha256": "072a702e2e178f4fcf96f04775d0c059e4c917925abf0d3208ebb6865df3c23d",
+      "bytes": 283729
+    },
+    {
+      "filename": "cycler-0.12.1-py3-none-any.whl",
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "bytes": 8321
+    },
+    {
+      "filename": "fonttools-4.66.1-cp314-cp314-macosx_10_15_universal2.whl",
+      "sha256": "b18803cbdef248e7ee1be59cb277fbbe1da1faaa6f726fa5d3557904e6a3d967",
+      "bytes": 3099264
+    },
+    {
+      "filename": "iniconfig-2.3.1-py3-none-any.whl",
+      "sha256": "9121e2c1fdb355232495be3194c8dfe87ccc2d5dee45947b78e68f499790d7a7",
+      "bytes": 7552
+    },
+    {
+      "filename": "joblib-1.6.0-py3-none-any.whl",
+      "sha256": "3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba",
+      "bytes": 306115
+    },
+    {
+      "filename": "kiwisolver-1.5.1-cp314-cp314-macosx_11_0_arm64.whl",
+      "sha256": "c2306e8bb53601979fcb3fa09cc65e031876d9ae01eff2fcbcd7a84ef94d5bc1",
+      "bytes": 64720
+    },
+    {
+      "filename": "matplotlib-3.10.8-cp314-cp314-macosx_11_0_arm64.whl",
+      "sha256": "32f8dce744be5569bebe789e46727946041199030db8aeb2954d26013a0eb26b",
+      "bytes": 8151473
+    },
+    {
+      "filename": "networkx-3.6.1-py3-none-any.whl",
+      "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762",
+      "bytes": 2068504
+    },
+    {
+      "filename": "numpy-2.4.2-cp314-cp314-macosx_14_0_arm64.whl",
+      "sha256": "7cdde6de52fb6664b00b056341265441192d1291c130e99183ec0d4b110ff8b1",
+      "bytes": 5208562
+    },
+    {
+      "filename": "packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "bytes": 129956
+    },
+    {
+      "filename": "pandas-3.0.3-cp314-cp314-macosx_11_0_arm64.whl",
+      "sha256": "bab900348131a7db1f69a7309ef141fd5680f1487094193bcbbb61791573bf8f",
+      "bytes": 9926101
+    },
+    {
+      "filename": "pillow-12.3.0-cp314-cp314-macosx_11_0_arm64.whl",
+      "sha256": "e158cb00350dc278f3b91551101aa7d12415a66ebf2c91d8d5ac14e56ddd3ad0",
+      "bytes": 4780131
+    },
+    {
+      "filename": "pluggy-1.6.0-py3-none-any.whl",
+      "sha256": "e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746",
+      "bytes": 20538
+    },
+    {
+      "filename": "pot-0.9.6.post1-cp314-cp314-macosx_26_0_arm64.whl",
+      "sha256": "23f72ccb94ae6ef1d3e9e5614650062f24285427d74257f92ee94b75b46788bc",
+      "bytes": 457214
+    },
+    {
+      "filename": "pygments-2.21.0-py3-none-any.whl",
+      "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+      "bytes": 1250147
+    },
+    {
+      "filename": "pyparsing-3.3.3-py3-none-any.whl",
+      "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+      "bytes": 126420
+    },
+    {
+      "filename": "pytest-9.0.2-py3-none-any.whl",
+      "sha256": "711ffd45bf766d5264d487b917733b453d917afd2b0ad65223959f59089f875b",
+      "bytes": 374801
+    },
+    {
+      "filename": "python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+      "bytes": 229892
+    },
+    {
+      "filename": "rdata-1.1.0-py3-none-any.whl",
+      "sha256": "12efb7597725d6db6cc78d84eb522a9634008f8fce1c2733b7fd42b9013bc41f",
+      "bytes": 287685
+    },
+    {
+      "filename": "scikit_learn-1.8.0-cp314-cp314-macosx_12_0_arm64.whl",
+      "sha256": "6b595b07a03069a2b1740dc08c2299993850ea81cce4fe19b2421e0c970de6b7",
+      "bytes": 8066524
+    },
+    {
+      "filename": "scipy-1.17.0-cp314-cp314-macosx_14_0_arm64.whl",
+      "sha256": "f7df7941d71314e60a481e02d5ebcb3f0185b8d799c70d03d8258f6c80f3d467",
+      "bytes": 20139125
+    },
+    {
+      "filename": "setuptools-80.9.0-py3-none-any.whl",
+      "sha256": "062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922",
+      "bytes": 1201486
+    },
+    {
+      "filename": "six-1.17.0-py2.py3-none-any.whl",
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "bytes": 11050
+    },
+    {
+      "filename": "threadpoolctl-3.7.0-py3-none-any.whl",
+      "sha256": "cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be",
+      "bytes": 26362
+    },
+    {
+      "filename": "typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "bytes": 45571
+    },
+    {
+      "filename": "xarray-2026.9.0-py3-none-any.whl",
+      "sha256": "fe349fa871628b1a0a5217af3fe1283a2862d5485156e6eda354fffb81c3bb7c",
+      "bytes": 1445445
+    }
+  ],
+  "requirements_input": "requirements/core.in",
+  "status": "HOST_OFFLINE_INSTALL_VERIFIED",
+  "validation": {
+    "offline_hash_locked_install": "passed",
+    "pip_check": "passed",
+    "clean_core_suite_initial": "155 passed; 4 optional legacy statsmodels import errors; fixture subsequently isolated exact historical numerical functions",
+    "clean_core_followup": "18 reference/regression tests passed; 7 additional regressions passed",
+    "host_full_real_pot_suite": "164 passed; then165 passed after compact-distance independent references",
+    "platform_scope": "CPython3.14 macOS26 arm64; remote GitHub Actions not executed in this session"
+  },
+  "built_pot_wheel": {
+    "path": "requirements/wheels/pot-0.9.6.post1-cp314-cp314-macosx_26_0_arm64.whl",
+    "sha256": "23f72ccb94ae6ef1d3e9e5614650062f24285427d74257f92ee94b75b46788bc",
+    "publisher_source": "https://files.pythonhosted.org/packages/42/8b/5f939eaf1fbeb7ff914fe540d659486951a056e5537b8f454362045b6c72/pot-0.9.6.post1.tar.gz",
+    "publisher_source_sha256": "9b6cc14a8daecfe1268268168cf46548f9130976b22b24a9e8ec62a734be6c43",
+    "build_command": "python -m pip wheel --no-deps POT==0.9.6.post1",
+    "native_dependencies": [
+      "/usr/lib/libc++.1.dylib",
+      "/usr/lib/libSystem.B.dylib"
+    ],
+    "compiler": "Clang21.0.0; Python3.14.7 host toolchain",
+    "license": "POT MIT license included inside the wheel; upstream https://github.com/PythonOT/POT"
+  }
+}

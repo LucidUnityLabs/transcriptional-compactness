@@ -1,0 +1,5 @@
+======================================================================
+E2  Forman-Ricci summary
+======================================================================
+Tirosh melanoma: FR Malignant=+14.1165  T cells=+44.0206  FR-delta=-29.9041  OR-delta-pub=+0.170  sign-match=False  |FR/OR|=175.91  FR-Cliff=-0.73  OR-Cliff=+0.68  Welch-p=3.3e-124  MWU-p=2e-106
+Darmanis GBM: FR Neoplastic=+42.2497  Immune=+33.0737  FR-delta=+9.1761  OR-delta-pub=+0.070  sign-match=True  |FR/OR|=131.09  FR-Cliff=+0.34  OR-Cliff=+0.28  Welch-p=1.3e-17  MWU-p=1.2e-24

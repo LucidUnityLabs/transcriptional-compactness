@@ -29,6 +29,8 @@ import numpy as np
 
 from . import METHOD_VERSION
 
+IMPORTED_SOURCE_SHA256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
 
 def _sha256_file(path):
     h = hashlib.sha256()
@@ -51,6 +53,15 @@ def digest_of_inputs(paths):
     h.update(b"inputs-v1")
     for p in paths:
         p = Path(p)
+        if p.is_dir():
+            files = sorted(f for f in p.rglob("*") if f.is_file())
+            if not files:
+                raise FileNotFoundError(f"cache input directory empty: {p}")
+            h.update(p.name.encode())
+            for file in files:
+                h.update(str(file.relative_to(p)).encode())
+                h.update(_sha256_file(file).encode())
+            continue
         if not p.is_file():
             raise FileNotFoundError(f"cache input missing: {p}")
         h.update(str(p.name).encode())
@@ -178,7 +189,7 @@ class ResultCache:
             return None, f"unreadable payload: {exc}"
         with open(npz_path, "rb") as f:
             payload_sha256 = _sha256_fileobj(f)
-        if meta.get("payload_sha256") not in (None, payload_sha256):
+        if meta.get("payload_sha256") != payload_sha256:
             return None, ("payload digest mismatch (tampered or corrupted "
                           "cache file is never served)")
         return arrays, meta

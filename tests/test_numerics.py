@@ -382,18 +382,34 @@ def test_one_sided_sf_convention_preserved():
 # ---------------------------------------------------------------------------
 # input-contract validation (ported from the audit's reference suite)
 # ---------------------------------------------------------------------------
-@pytest.mark.parametrize("alpha", [-0.1, 1.1, 0.0, 1.0,
-                                   float("nan"), float("inf")])
+@pytest.mark.parametrize("alpha", [-0.1, 1.1, float("nan"), float("inf")])
 def test_ricci_rejects_invalid_alpha(alpha):
-    """alpha is the lazy (self) mass and must lie strictly inside (0, 1);
-    the boundaries are rejected by the TC-1 contract (the reference
-    implementation accepts and computes them — a deliberate divergence,
-    fail-closed here)."""
+    """alpha is the lazy (self) mass and must lie in [0, 1]; values
+    outside are rejected.  The inclusive boundaries are ACCEPTED (the
+    lazy-walk measure degenerates but stays defined there — reference
+    ``test_alpha_boundaries``); see the boundary test below."""
     G = nx.cycle_graph(5)
     for u, v in G.edges():
         G[u][v]["weight"] = 1.0
     with pytest.raises(ValueError):
         ricci_edges(G, alpha=alpha)
+
+
+@pytest.mark.parametrize("alpha", [0.0, 1.0])
+def test_ricci_accepts_alpha_boundaries(alpha):
+    """alpha = 0 (no self mass) and alpha = 1 (all mass on self) compute
+    finite curvatures on the unit five-cycle: in both degenerate cases
+    W = d_G(u, v) = 1 and kappa = 0 — at alpha = 0 the neighbour measures
+    are transported at total cost 1 (identity-strength coupling), at
+    alpha = 1 both measures are point masses on the edge endpoints.
+    Verified against the checked transport adapter."""
+    G = nx.cycle_graph(5)
+    for u, v in G.edges():
+        G[u][v]["weight"] = 1.0
+    out = ricci_edges(G, alpha=alpha)
+    assert all(ec.kappa == pytest.approx(0.0, abs=1e-12)
+               for ec in out.values())
+    assert all(np.isfinite(ec.kappa) for ec in out.values())
 
 
 @pytest.mark.parametrize("bad", [0, -1, True, 1.5, np.int64(0)])

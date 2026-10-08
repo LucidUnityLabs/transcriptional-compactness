@@ -1,0 +1,18 @@
+{
+  "corrected_source_sha256": "7ab83d05d3ac97b6a6cb0d09ae998ed14dfaac74427b29c112441a421913700d",
+  "experiment": "N1_sadefeldman_icb",
+  "files": {
+    "geometry.json": "fd324886357cc6ca08e1663e6345e4436a3149001326cfa8c61f5c254fe74edf",
+    "n1_sadefeldman_per_cell.csv": "9484d075e818b9a4075a173e7c168ad93bc9a8cb4175e2763a66108c9f923c92",
+    "n1_sadefeldman_per_patient.csv": "54634844728d17742a8af046ca0c9998f43ebb8d262288442d7a9cc9acf7db72",
+    "n1_sadefeldman_summary.png": "47d61624fdee07817a568a4f797d8eb9e6fcefb36bf885237d2f12294a714bf2",
+    "n1_sadefeldman_summary.txt": "46cde1b11bc0def9affa135d5befa28e89edcd861ede60d1b48d551710ed1719"
+  },
+  "historical_source_sha256": "7ab83d05d3ac97b6a6cb0d09ae998ed14dfaac74427b29c112441a421913700d",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "loaded_numerics_sha256": "30ab876aa15cd2a581fe0a286ed74fc113da8133bae48c17984e6f690902b196",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 1,
+  "status": "exploratory_complete"
+}

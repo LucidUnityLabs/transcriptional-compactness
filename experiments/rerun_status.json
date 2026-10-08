@@ -1,8 +1,11 @@
 {
   "experiments": [
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/BATCH_CORRECTION/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py BATCH_CORRECTION",
       "data_references": [
         "GSE103322_HNSCC.txt",
         "GSE72056_melanoma.txt",
@@ -10,19 +13,19 @@
         "GSE84465_meta.txt"
       ],
       "experiment": "BATCH_CORRECTION",
+      "failure_reason": null,
       "historical_script": "experiments/BATCH_CORRECTION/run.py",
-      "missing_inputs": [
-        "GSE103322_HNSCC.txt",
-        "GSE72056_melanoma.txt",
-        "GSE84465_GBM.csv",
-        "GSE84465_meta.txt"
-      ],
+      "historical_source_sha256": "abed0d73bb5fcc1d7087a1657bd11fbd7008fa63c2b54fa9f58c1a173f41602c",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "superseded_requires_rerun",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/CLASSIFIER_AUC/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py CLASSIFIER_AUC",
       "data_references": [
         "GSE103322_HNSCC.txt",
         "GSE111672_PDAC-A-indrop-filtered-expMat.txt.gz",
@@ -35,217 +38,278 @@
         "GSE84465_meta.txt"
       ],
       "experiment": "CLASSIFIER_AUC",
+      "failure_reason": "First pass predates organoid exclusion, full-library denominator and unknown mitochondrial-metric gates; rerun required.",
       "historical_script": "experiments/CLASSIFIER_AUC/run.py",
-      "missing_inputs": [
-        "GSE103322_HNSCC.txt",
-        "GSE111672_PDAC-A-indrop-filtered-expMat.txt.gz",
-        "GSE111672_PDAC-B-indrop-filtered-expMat.txt.gz",
-        "GSE147082",
-        "GSE176031_chen",
-        "GSE72056_melanoma.txt",
-        "GSE81861_CRC_tumor_FPKM.csv",
-        "GSE84465_GBM.csv",
-        "GSE84465_meta.txt"
-      ],
+      "historical_source_sha256": "7d2198fe43a3cd905a35720fb917d9cb07ea20270fad758eb6ef31a935414da9",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "superseded_requires_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E1_within_patient/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E1_within_patient",
       "data_references": [
         "GSE72056_melanoma.txt",
         "GSE84465_GBM.csv",
         "GSE84465_meta.txt"
       ],
       "experiment": "E1_within_patient",
+      "failure_reason": null,
       "historical_script": "experiments/E1_within_patient/run.py",
-      "missing_inputs": [
-        "GSE72056_melanoma.txt",
-        "GSE84465_GBM.csv",
-        "GSE84465_meta.txt"
-      ],
+      "historical_source_sha256": "add7733d9cf02cd783537ecb6fa2b964c9a42691d0e6a2c51b8cff4438a1c44f",
+      "missing_inputs": [],
       "note": "origin of the copied OR primitives; kept as the historical reference implementation",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E1b_puram_mixed_effects/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E1b_puram_mixed_effects",
       "data_references": [],
       "experiment": "E1b_puram_mixed_effects",
+      "failure_reason": null,
       "historical_script": "experiments/E1b_puram_mixed_effects/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "3dd9472df670853512d639f6414fbe6f2d347e6cd70b1a10f81e7039999f7f4d",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E2_forman_ricci/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E2_forman_ricci",
       "data_references": [
         "GSE72056_melanoma.txt",
         "GSE84465_GBM.csv",
         "GSE84465_meta.txt"
       ],
       "experiment": "E2_forman_ricci",
+      "failure_reason": null,
       "historical_script": "experiments/E2_forman_ricci/run.py",
-      "missing_inputs": [
-        "GSE72056_melanoma.txt",
-        "GSE84465_GBM.csv",
-        "GSE84465_meta.txt"
-      ],
+      "historical_source_sha256": "a3842620633c75ecc55204c7b9df9d31a047048d1a675f21e0725d5d8daac12d",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E3_puram_hnscc/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E3_puram_hnscc",
       "data_references": [],
       "experiment": "E3_puram_hnscc",
+      "failure_reason": null,
       "historical_script": "experiments/E3_puram_hnscc/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "b65d79c30d5360e8af8444bef85c1f6b2824d796510e0111adb9a0d1a8274af3",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E4_li_crc/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E4_li_crc",
       "data_references": [
         "GSE81861_CRC_tumor_FPKM.csv"
       ],
       "experiment": "E4_li_crc",
+      "failure_reason": null,
       "historical_script": "experiments/E4_li_crc/run.py",
-      "missing_inputs": [
-        "GSE81861_CRC_tumor_FPKM.csv"
-      ],
+      "historical_source_sha256": "869ce72234cab8fc3497a6fe679f813489ec8e9e2331129c4f66f4af38e5f693",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": true,
+      "artifact_status": "absent",
+      "contains_legacy_or_routine": false,
+      "corrected_artifact": "experiments/E5_hparam_sweep/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E5_hparam_sweep",
+      "data_references": [
+        "GSE72056_melanoma.txt"
+      ],
+      "experiment": "E5_hparam_sweep",
+      "failure_reason": null,
+      "historical_script": "experiments/E5_hparam_sweep/run.py",
+      "historical_source_sha256": "ae0c20b4594a4db9b7d9f3c4051fb54dca021e4fbf419f0e3f4d9fcf99dcd9a3",
+      "missing_inputs": [],
+      "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
+      "status": "data_present_needs_rerun"
+    },
+    {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "superseded_requires_rerun",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E6_pseudotime_paul/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E6_pseudotime_paul",
       "data_references": [],
       "experiment": "E6_pseudotime_paul",
+      "failure_reason": "First pass predates explicit float64/full-SVD Scanpy PCA; rerun required.",
       "historical_script": "experiments/E6_pseudotime_paul/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "f23ed7ff4f345d9b9d6d6c6adf64248ce112d075f763e29b1a719e7aa3f71f8a",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "superseded_requires_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/E7_clonality/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py E7_clonality",
       "data_references": [],
       "experiment": "E7_clonality",
+      "failure_reason": null,
       "historical_script": "experiments/E7_clonality/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "a4d401fde6de8b9d6905dd0d907bac75e7e14cc80b2b620c73aae2977c96d68f",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/F1_aml_mm_liquid/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py F1_aml_mm_liquid",
       "data_references": [],
       "experiment": "F1_aml_mm_liquid",
+      "failure_reason": null,
       "historical_script": "experiments/F1_aml_mm_liquid/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "c064520108f1fba9ab7b5de38b17b44f666fa85e5edcef844a3da3c44b0b8b8a",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/F2_icb_stratified/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py F2_icb_stratified",
       "data_references": [],
       "experiment": "F2_icb_stratified",
+      "failure_reason": null,
       "historical_script": "experiments/F2_icb_stratified/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "e63ad8108f35c8943d70f40a97376ef0e0fd11bbb8cedb5da6bb0fad331bb969",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/F3_merfish_multi/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py F3_merfish_multi",
       "data_references": [
-        "T1_cbg.csv.gz",
-        "T1_meta.csv.gz"
+        "merfish/T1_cbg.csv.gz",
+        "merfish/T1_meta.csv.gz"
       ],
       "experiment": "F3_merfish_multi",
+      "failure_reason": null,
       "historical_script": "experiments/F3_merfish_multi/run.py",
-      "missing_inputs": [
-        "T1_cbg.csv.gz",
-        "T1_meta.csv.gz"
-      ],
+      "historical_source_sha256": "3f99072642c7d8e57c3fe72dd9c5d95d7da26672bab268d780ef1944a88041a5",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "superseded_requires_rerun",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/F4_hic_genome_wide/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py F4_hic_genome_wide",
       "data_references": [],
       "experiment": "F4_hic_genome_wide",
+      "failure_reason": "First pass predates max_edges-budget gate and consumed Hi-C slice checksum receipts; cell-line mechanism claims not accepted.",
       "historical_script": "experiments/F4_hic_genome_wide/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "0f60c73963d801fcfd275498a4c6970550326b9a870539b7f5b750c528be8087",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "superseded_requires_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "ok",
       "contains_legacy_or_routine": true,
+      "corrected_artifact": "experiments/HELDOUT_GSE131907/results_corrected.json",
       "corrected_driver": "run_corrected.py",
       "data_references": [
         "GSE131907_kim_nsclc"
       ],
       "experiment": "HELDOUT_GSE131907",
+      "failure_reason": null,
       "historical_script": "experiments/HELDOUT_GSE131907/run.py",
-      "missing_inputs": [
-        "GSE131907_kim_nsclc"
-      ],
+      "historical_source_sha256": "9e6c4d95665de22f1c158539b59d2ba408cbf8f98bdcf2a8a9f0c1ef974653a0",
+      "missing_inputs": [],
       "note": "corrected driver: run_corrected.py",
-      "status": "blocked_data_absent"
+      "status": "calculation_complete"
     },
     {
+      "accepted_run_created_utc": "2026-10-07T21:47:16Z",
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "ok",
+      "completed_scope": "primary/excluded only",
       "contains_legacy_or_routine": true,
+      "corrected_artifact": "experiments/HELDOUT_GSE161529/results_primary_excluded_corrected.json",
       "corrected_driver": "run_corrected.py (+ download_corrected.py)",
       "data_references": [
         "GSE161529"
       ],
+      "estimable_donors": 24,
       "experiment": "HELDOUT_GSE161529",
+      "failure_reason": null,
       "historical_script": "experiments/HELDOUT_GSE161529/run.py",
-      "missing_inputs": [
-        "GSE161529"
-      ],
+      "historical_source_sha256": "cfd593ce198153681d235e865efd1fdaa6bbf44b3aafe09f470b041ec6931d60",
+      "missing_inputs": [],
       "note": "corrected driver: run_corrected.py (+ download_corrected.py)",
-      "status": "blocked_data_absent"
+      "original_endpoint_coverage": "PARTIAL 26/27",
+      "remaining_work": "other arms/variants; final frozen repeats and controls; affirmative luminal annotation and ER_0001 same-cell restoration",
+      "status": "completed_primary_excluded_partial_26_of_27"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "blocked",
       "contains_legacy_or_routine": true,
+      "corrected_artifact": "experiments/LABEL_VALIDATION/results_corrected.json",
       "corrected_driver": "run_corrected.py",
       "data_references": [
         "GSE147082",
         "GSE176031_chen"
       ],
       "experiment": "LABEL_VALIDATION",
+      "failure_reason": null,
       "historical_script": "experiments/LABEL_VALIDATION/run.py",
-      "missing_inputs": [
-        "GSE147082",
-        "GSE176031_chen"
-      ],
+      "historical_source_sha256": "013dc6273612d589aa56b06dd26cc90d79e01811324fd79427f0658968ae953c",
+      "missing_inputs": [],
       "note": "corrected driver: run_corrected.py",
-      "status": "blocked_data_absent"
+      "ownership": {
+        "control": "preserve process and original timestamps; no restart/reset",
+        "owner": "original LABEL task",
+        "pid": 9089,
+        "started_local": "Wed Oct 7 13:24:45 2026"
+      },
+      "process_observation": "Rs   /opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python experiments/LABEL_VALIDATION/run_corrected.py",
+      "remaining_work": "current owner completion and final frozen repeats; no independent source-successor restart",
+      "status": "running_owned"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "ok",
       "contains_legacy_or_routine": true,
+      "corrected_artifact": "experiments/META_patient_level/results_corrected.json",
       "corrected_driver": "run_corrected.py",
       "data_references": [
         "GSE103322_HNSCC.txt",
@@ -260,163 +324,234 @@
         "<dynamic>"
       ],
       "experiment": "META_patient_level",
+      "failure_reason": null,
       "historical_script": "experiments/META_patient_level/run.py",
-      "missing_inputs": [
-        "GSE103322_HNSCC.txt",
-        "GSE111672_PDAC-A-indrop-filtered-expMat.txt.gz",
-        "GSE111672_PDAC-B-indrop-filtered-expMat.txt.gz",
-        "GSE147082",
-        "GSE176031_chen",
-        "GSE72056_melanoma.txt",
-        "GSE81861_CRC_tumor_FPKM.csv",
-        "GSE84465_GBM.csv",
-        "GSE84465_meta.txt",
-        "<dynamic>"
-      ],
+      "historical_source_sha256": "4f78ab1652824cd417acaa5edda941905bc0ec6a47901e8939eacdbeac41cf37",
+      "missing_inputs": [],
       "note": "corrected driver: run_corrected.py",
-      "status": "blocked_data_absent"
+      "status": "calculation_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/N1_sadefeldman_icb/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N1_sadefeldman_icb",
       "data_references": [
         "GSE120575_Sade_Feldman_melanoma_single_cells_TPM_GEO.txt.gz",
         "GSE120575_patient_ID_single_cells.txt.gz"
       ],
       "experiment": "N1_sadefeldman_icb",
+      "failure_reason": null,
       "historical_script": "experiments/N1_sadefeldman_icb/run.py",
-      "missing_inputs": [
-        "GSE120575_Sade_Feldman_melanoma_single_cells_TPM_GEO.txt.gz",
-        "GSE120575_patient_ID_single_cells.txt.gz"
-      ],
+      "historical_source_sha256": "7ab83d05d3ac97b6a6cb0d09ae998ed14dfaac74427b29c112441a421913700d",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/N2_visium_hd/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N2_visium_hd",
       "data_references": [
-        "GSM8594568_P2CRC_Metadata.parquet",
-        "GSM8594568_P2CRC_filtered_feature_bc_matrix.h5",
-        "GSM8594568_P2CRC_scalefactors_json.json",
-        "GSM8594568_P2CRC_tissue_positions.parquet"
+        "visium_hd/GSM8594568_P2CRC_Metadata.parquet",
+        "visium_hd/GSM8594568_P2CRC_filtered_feature_bc_matrix.h5",
+        "visium_hd/GSM8594568_P2CRC_scalefactors_json.json",
+        "visium_hd/GSM8594568_P2CRC_tissue_positions.parquet"
       ],
       "experiment": "N2_visium_hd",
+      "failure_reason": null,
       "historical_script": "experiments/N2_visium_hd/run.py",
-      "missing_inputs": [
-        "GSM8594568_P2CRC_Metadata.parquet",
-        "GSM8594568_P2CRC_filtered_feature_bc_matrix.h5",
-        "GSM8594568_P2CRC_scalefactors_json.json",
-        "GSM8594568_P2CRC_tissue_positions.parquet"
-      ],
+      "historical_source_sha256": "9071377a7a78768e5944531cac239c8b1f9fafa6a881c8f688f2675e822f2650",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/N3_hic_cancer_normal/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N3_hic_cancer_normal",
       "data_references": [],
       "experiment": "N3_hic_cancer_normal",
+      "failure_reason": null,
       "historical_script": "experiments/N3_hic_cancer_normal/run.py",
+      "historical_source_sha256": "0e329d20d5d4461877adbdc5a14d7e40a73231bdb1e4e93b1712bf95b6ec18d0",
+      "missing_inputs": [],
+      "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
+      "status": "data_present_needs_rerun"
+    },
+    {
+      "adjacent_identity_precision_solver_correction": true,
+      "artifact_status": "absent",
+      "contains_legacy_or_routine": false,
+      "corrected_artifact": "experiments/N4_subclone_stratification/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N4_subclone_stratification",
+      "data_references": [
+        "GSE72056_melanoma.txt",
+        "ensembl_gene_pos.csv"
+      ],
+      "experiment": "N4_subclone_stratification",
+      "failure_reason": null,
+      "historical_script": "experiments/N4_subclone_stratification/run.py",
+      "historical_source_sha256": "e0077f4bae0cb8618ee948559d516af10127337c7de0bd6958fe0c15084a6c01",
       "missing_inputs": [
-        "<entire data/ tree absent>"
+        "ensembl_gene_pos.csv"
       ],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
       "status": "blocked_data_absent"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/N5a_pdac/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N5a_pdac",
       "data_references": [],
       "experiment": "N5a_pdac",
+      "failure_reason": null,
       "historical_script": "experiments/N5a_pdac/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "736e8343faaaea3f4d9f165f0ef111260d0131aec2e9a9720cdd8da533f43b64",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "superseded_requires_rerun",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/N5b_prostate/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N5b_prostate",
       "data_references": [],
       "experiment": "N5b_prostate",
+      "failure_reason": "First pass predates explicit organoid exclusion; rerun required.",
       "historical_script": "experiments/N5b_prostate/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "6aea0cc62b7fc863c93d252efb6b2d15822a09081f3d0a6e2ce5e35223a8e576",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "superseded_requires_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/N5c_ovarian/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py N5c_ovarian",
       "data_references": [],
       "experiment": "N5c_ovarian",
+      "failure_reason": null,
       "historical_script": "experiments/N5c_ovarian/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
+      "historical_source_sha256": "c6d8a86c8f36f05517849a60d98e977d2e76b49a73784f0369e04e57a1667636",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "exploratory_complete"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "exploratory_complete",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/T1_umi_confound/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py T1_umi_confound",
       "data_references": [
         "GSE84465_GBM.csv",
         "GSE84465_meta.txt"
       ],
       "experiment": "T1_umi_confound",
+      "failure_reason": null,
       "historical_script": "experiments/T1_umi_confound/run.py",
-      "missing_inputs": [
+      "historical_source_sha256": "1cec2952d3a4274ccb9e43a1dd5b3d04acd18eb186f858efd10d67830d408707",
+      "missing_inputs": [],
+      "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
+      "status": "exploratory_complete"
+    },
+    {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
+      "contains_legacy_or_routine": true,
+      "corrected_artifact": "experiments/T2_wu_clonality/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py T2_wu_clonality",
+      "data_references": [],
+      "experiment": "T2_wu_clonality",
+      "failure_reason": null,
+      "historical_script": "experiments/T2_wu_clonality/run.py",
+      "historical_source_sha256": "aab3e6b400dd58886195a69dd9335d8f3267b083c812e0b1a92d5aaa40d602b6",
+      "missing_inputs": [],
+      "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
+      "status": "data_present_needs_rerun"
+    },
+    {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
+      "contains_legacy_or_routine": true,
+      "corrected_artifact": "experiments/T3_bakry_emery/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py T3_bakry_emery",
+      "data_references": [
+        "GSE72056_melanoma.txt",
         "GSE84465_GBM.csv",
         "GSE84465_meta.txt"
       ],
+      "experiment": "T3_bakry_emery",
+      "failure_reason": null,
+      "historical_script": "experiments/T3_bakry_emery/run.py",
+      "historical_source_sha256": "9faaf0b983edcdbfb432a9050876bbab9036272f409511f904631a3ec72d968f",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "absent",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
-      "data_references": [],
-      "experiment": "T2_wu_clonality",
-      "historical_script": "experiments/T2_wu_clonality/run.py",
-      "missing_inputs": [
-        "<entire data/ tree absent>"
-      ],
-      "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
-    },
-    {
-      "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/T4_visium_spatial/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py T4_visium_spatial",
       "data_references": [
-        "filtered_feature_bc_matrix.h5",
-        "spatial"
+        "visium/filtered_feature_bc_matrix.h5",
+        "visium/spatial"
       ],
       "experiment": "T4_visium_spatial",
+      "failure_reason": null,
       "historical_script": "experiments/T4_visium_spatial/run.py",
-      "missing_inputs": [
-        "filtered_feature_bc_matrix.h5",
-        "spatial"
-      ],
+      "historical_source_sha256": "738aee06601e9f196ece1bc045ed181f175e9d2db1ddecbf3540c7b85318f4a1",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
+      "adjacent_identity_precision_solver_correction": false,
+      "artifact_status": "failed",
       "contains_legacy_or_routine": true,
-      "corrected_driver": null,
+      "corrected_artifact": "experiments/T5_proliferating_immune/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py T5_proliferating_immune",
       "data_references": [
         "GSE72056_melanoma.txt"
       ],
       "experiment": "T5_proliferating_immune",
+      "failure_reason": "ResultCache.load() got an unexpected keyword argument 'params'",
       "historical_script": "experiments/T5_proliferating_immune/run.py",
-      "missing_inputs": [
+      "historical_source_sha256": "25ec712a3afbdb2e6a51c2a6f6b1ce0e93bc0cc7684802f66181e226e615eb66",
+      "missing_inputs": [],
+      "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed; failed artifact is historical diagnostic evidence, not a pass; corrected rerun remains open",
+      "status": "failed"
+    },
+    {
+      "adjacent_identity_precision_solver_correction": true,
+      "artifact_status": "absent",
+      "contains_legacy_or_routine": false,
+      "corrected_artifact": "experiments/T6_random_hvg_control/corrected/run_manifest.json",
+      "corrected_driver": "tools/rerun_extensions.py T6_random_hvg_control",
+      "data_references": [
         "GSE72056_melanoma.txt"
       ],
+      "experiment": "T6_random_hvg_control",
+      "failure_reason": null,
+      "historical_script": "experiments/T6_random_hvg_control/run.py",
+      "historical_source_sha256": "6f0f0dd1bbead5739462a75c4f7805bda7cdc457f8ee38718c5270c159ca1536",
+      "missing_inputs": [],
       "note": "exploratory/extension analysis; rerun under the corrected method after the discovery inputs are acquired (see experiments/lib) \u2014 historical outputs remain committed",
-      "status": "blocked_data_absent"
+      "status": "data_present_needs_rerun"
     },
     {
       "contains_legacy_or_routine": false,
@@ -441,7 +576,7 @@
   ],
   "generated_by": "experiments/rerun_status.py",
   "method_version": "TC-1",
-  "n_affected": 29,
-  "n_blocked": 27,
+  "n_affected": 33,
+  "n_blocked": 1,
   "protocol": "Historical analyses stay committed and unmodified. After the GEO/figshare inputs are acquired under data/ per REPRODUCING.md: run the four corrected drivers, then rerun the remaining affected analyses through experiments/lib (corrected metric), then regenerate FIGGEN figures and update manuscript numbers from the new artifacts only."
 }

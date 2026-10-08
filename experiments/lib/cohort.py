@@ -24,8 +24,14 @@ Index-level audit notes implemented here:
 from __future__ import annotations
 
 import json as _json
+import hashlib
+import importlib.metadata
+import platform
+from pathlib import Path
 
 import numpy as np
+
+IMPORTED_SOURCE_SHA256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 import pandas as pd
 from scipy.stats import norm as _norm
 
@@ -175,29 +181,18 @@ def stratified_sample_minima_first(patient, is_g1, is_g2,
         surplus = sel.size - total_cap
         # drop surplus cells uniformly from the surplus region (cells
         # above each patient's minimum), never from any minimum slot
-        drop = rng.choice(sel.size, size=surplus, replace=False)
         keep_mask = np.ones(sel.size, dtype=bool)
         # protect minimum slots: first min_per_group per group per patient
         protected = set()
         i = 0
         for pid, (a, b, ta, tb) in budgeted.items():
-            for _ in range(min(ta, min_per_group)):
-                protected.add(i)
-                i += 1
-            for _ in range(min(tb, min_per_group)):
-                protected.add(i)
-                i += 1
-            i += max(0, ta - min_per_group) + max(0, tb - min_per_group)
-        drop = [d for d in drop if d not in protected]
-        # if protection removed too many candidates, drop from the
-        # remaining unprotected surplus deterministically
-        need = sel.size - total_cap
-        if len(drop) < need:
-            unprotected = [d for d in range(sel.size) if d not in protected]
-            extra = list(rng.permutation(unprotected)[: need - len(drop)])
-            drop = drop + extra
-        for d in drop[:need]:
-            keep_mask[d] = False
+            for take in (ta, tb):
+                protected.update(range(i, i + min_per_group))
+                i += take
+        unprotected = np.array([j for j in range(sel.size)
+                                if j not in protected], dtype=int)
+        drop = rng.choice(unprotected, size=surplus, replace=False)
+        keep_mask[drop] = False
         sel = sel[keep_mask]
     audit = {
         "n_patients_total": int(np.unique(patient).size),
@@ -225,6 +220,28 @@ def compute_cohort_kappa(X_log, patient, is_mal, is_comp, *,
     params = {"k": k, "alpha": alpha, "n_edges": n_edges, "seed": seed,
               "min_per_group": min_per_group,
               "cap_per_group": cap_per_group, "total_cap": total_cap}
+    from . import cache as cache_module
+    params["loaded_implementation_sha256"] = {
+        "cohort": IMPORTED_SOURCE_SHA256,
+        "numerics": numerics.IMPORTED_SOURCE_SHA256,
+        "cache": cache_module.IMPORTED_SOURCE_SHA256,
+    }
+    # Bind the actual scientific input as well as raw-source bytes. A
+    # changed driver normalization, gene filter or label mask must not
+    # reuse a curvature cache merely because source files are unchanged.
+    identity = hashlib.sha256(_json.dumps({"shape": list(np.shape(X_log)),
+        "patient": [str(p) for p in patient]}, sort_keys=True).encode())
+    for row in np.asarray(X_log):
+        identity.update(np.ascontiguousarray(row, dtype=np.float64).tobytes())
+    identity.update(np.asarray(is_mal, dtype=np.bool_).tobytes())
+    identity.update(np.asarray(is_comp, dtype=np.bool_).tobytes())
+    params["scientific_input_sha256"] = identity.hexdigest()
+    params["environment"] = {p: importlib.metadata.version(p) for p in
+                             ("numpy", "scipy", "scikit-learn", "networkx", "POT")}
+    params["python"] = platform.python_version()
+    import ot.lp.emd_wrap
+    params["pot_binary_sha256"] = hashlib.sha256(
+        Path(ot.lp.emd_wrap.__file__).read_bytes()).hexdigest()
     pdg = digest_of_params(params)
     key = None
     if cache is not None and cache_inputs_digest is not None:
@@ -326,7 +343,10 @@ def per_patient_contrasts(df, min_cells=10):
                      "delta": res.delta, "se": res.se,
                      "se_estimable": bool(res.estimable),
                      "cliff_status": res.status})
-    tab = pd.DataFrame(rows)
+    tab = pd.DataFrame(rows, columns=[
+        "patient_id", "ok", "n_malignant", "n_comparator", "reason",
+        "mean_kappa_mal", "mean_kappa_comp", "delta", "se",
+        "se_estimable", "cliff_status"])
     estimable = tab[(tab.get("ok", False) == True) &  # noqa: E712
                     (tab.get("se_estimable", False) == True)]  # noqa: E712
     excluded = tab[(tab.get("ok", True) != False) &
@@ -346,6 +366,11 @@ def per_patient_contrasts(df, min_cells=10):
 
 def pool_cohort(tab, estimable, label="", seed=0, B=1000):
     """DL pooling + validating bootstrap over estimable patients."""
+    if estimable.empty:
+        return {"k": 0, "status": "INSUFFICIENT_PATIENTS", "label": label,
+                "delta": None, "se": None, "ci_lo": None, "ci_hi": None,
+                "p": None, "z": None, "one_sided_p_delta_gt_0": None,
+                "bootstrap": {"B": 0, "status": "insufficient_patients"}}
     meta = numerics.dl_meta(estimable["delta"].values,
                             estimable["se"].values, label=label)
     boot = numerics.bootstrap_dl(estimable["delta"].values,

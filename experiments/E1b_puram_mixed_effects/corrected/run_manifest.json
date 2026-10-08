@@ -1,0 +1,16 @@
+{
+  "experiment": "E1b_puram_mixed_effects",
+  "files": {
+    "e1b_mixed_effects.csv": "6fd61e92b394b38983d13c7c98404e3cbde1535fba50862c3732a7233508515d",
+    "e1b_per_cell_kappa.csv": "e4e489c46e323d46586d3cf0b502cd1038789a60c0422ac6392120499de65dcd",
+    "e1b_per_patient.csv": "872f55a923e65c039e77b547908f480ec539860f070f3db16eb481a0f267f380",
+    "geometry.json": "1cd2e025ba6a0f0dccbecb44ac0341fd707cafa797daba57597c6cb81fe7f8e9",
+    "results.json": "5051ff2d87958f2efbc8584a977867dc8cb29e2e471eeeed5a8f3cbfd78e957d"
+  },
+  "historical_source_sha256": "3dd9472df670853512d639f6414fbe6f2d347e6cd70b1a10f81e7039999f7f4d",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 1,
+  "status": "exploratory_complete"
+}

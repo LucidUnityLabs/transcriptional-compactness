@@ -1,0 +1,59 @@
+Sade-Feldman 2018 GSE120575 -- per-cell kappa as ICB biomarker
+================================================================
+seed=20260508
+baseline CD8 T cells: 2414 from 19 patients (R=9, NR=10)
+
+[per-cell] (treats cells iid, ignores patient correlation)
+  R cells: n=931  kappa = -0.0989 +- 0.1386
+  NR cells:n=1483 kappa = -0.1033 +- 0.1197
+  Cliff's delta (R - NR) = +0.0042
+  Welch t = 0.792  p = 0.4283
+  MWU U  = 693237.0 p = 0.8619
+
+[per-patient] (proper clinically informative test)
+  R  mean_kappa = -0.1006 +- 0.0501
+  NR mean_kappa = -0.0986 +- 0.0220
+  MWU U = 36.0  p = 0.48766835345893045
+  AUC high-kappa-=-R   = 0.4000
+  AUC high-kappa-=-NR  = 0.6000
+  best directional AUC = 0.6000  (high-kappa = Non-responder)
+
+[logistic regression responder ~ mean_kappa + n_cells]
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                      y   No. Observations:                   19
+Model:                          Logit   Df Residuals:                       16
+Method:                           MLE   Df Model:                            2
+Date:                Wed, 07 Oct 2026   Pseudo R-squ.:                  0.1092
+Time:                        14:02:34   Log-Likelihood:                -11.708
+converged:                       True   LL-Null:                       -13.143
+Covariance Type:            nonrobust   LLR p-value:                    0.2380
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          1.2505      1.628      0.768      0.443      -1.941       4.442
+x1            -4.1632     12.722     -0.327      0.743     -29.098      20.772
+x2            -0.0141      0.009     -1.561      0.119      -0.032       0.004
+==============================================================================
+
+Per-patient table:
+patient_id  n_cells  mean_kappa  std_kappa      response        therapy
+        P1      118   -0.014737   0.159499     Responder     anti-CTLA4
+       P12      181   -0.123147   0.111034 Non-responder       anti-PD1
+       P15       82   -0.106995   0.140387 Non-responder       anti-PD1
+        P2      204   -0.133565   0.130445 Non-responder       anti-PD1
+       P20      170   -0.127666   0.108401 Non-responder       anti-PD1
+       P24      141   -0.127057   0.113948     Responder       anti-PD1
+       P25      162   -0.092995   0.113128 Non-responder       anti-PD1
+       P26       41   -0.086497   0.134519     Responder anti-CTLA4+PD1
+       P27      218   -0.094715   0.104974 Non-responder       anti-PD1
+       P28      119   -0.141220   0.134625     Responder anti-CTLA4+PD1
+       P29       68   -0.157813   0.100268     Responder       anti-PD1
+        P3       84   -0.072921   0.131554 Non-responder       anti-PD1
+       P31      234   -0.086409   0.107613 Non-responder       anti-PD1
+       P33      189   -0.080621   0.104943     Responder       anti-PD1
+       P35       44   -0.132623   0.133761     Responder       anti-PD1
+        P4      117   -0.075376   0.135486 Non-responder anti-CTLA4+PD1
+        P6       31   -0.071950   0.142889 Non-responder     anti-CTLA4
+        P7      129   -0.143017   0.127566     Responder anti-CTLA4+PD1
+        P8       82   -0.022038   0.171122     Responder anti-CTLA4+PD1

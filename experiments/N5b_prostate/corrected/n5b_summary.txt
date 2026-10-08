@@ -1,0 +1,53 @@
+N5b Prostate (Chen 2021 GSE176031) Ollivier-Ricci summary
+============================================================
+
+Seed: 20260508
+Cells passing QC: 23979
+Cell-type counts (overall):
+  Unknown      8629
+  basal        6606
+  luminal      5255
+  myeloid      1181
+  tcell        776
+  endo         771
+  fibro        761
+
+Cell-type x tissue:
+tissue       N     T
+celltype            
+Unknown   4363  4266
+basal     3265  3341
+endo       404   367
+fibro      354   407
+luminal   2371  2884
+myeloid    588   593
+tcell      514   262
+
+Results:
+
+Chen PRAD: Malignant vs Benign luminal
+  Malignant          kappa = -0.0240 +- 0.1162  (n=599)
+  Benign-luminal     kappa = -0.0608 +- 0.0861  (n=599)
+  delta_mean = +0.0368  (MAL > NON)
+  Cliff's delta = +0.157
+  Welch p = 6.901e-10    MWU p = 2.556e-06
+
+Chen PRAD: Malignant vs Immune
+  Malignant          kappa = +0.0235 +- 0.0950  (n=600)
+  Immune             kappa = -0.0029 +- 0.1207  (n=596)
+  delta_mean = +0.0265  (MAL > NON)
+  Cliff's delta = +0.177
+  Welch p = 2.81e-05    MWU p = 1.17e-07
+
+Chen PRAD: Malignant vs Basal
+  Malignant          kappa = +0.0231 +- 0.0903  (n=600)
+  Basal              kappa = +0.0003 +- 0.0958  (n=599)
+  delta_mean = +0.0229  (MAL > NON)
+  Cliff's delta = +0.180
+  Welch p = 2.346e-05    MWU p = 7.208e-08
+
+Reference panel (per-cell mean kappa, malignant - non-malignant):
+  Tirosh   melanoma (E1):  Cliff +0.74
+  Puram    HNSCC    (E3):  Cliff +0.41
+  Darmanis GBM      (P1):  Cliff +0.38
+  Li       CRC      (E4):  Cliff +0.20

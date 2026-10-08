@@ -1,0 +1,30 @@
+{
+  "format_version": 1,
+  "samples": {
+    "ER_0001": {
+      "donor": "0001",
+      "gsm": "GSM4909296",
+      "label_file_sha256": {
+        "cells_primary.tsv.gz": "0f20433925b7e3ff5ca159bdada997889c76ac850906faf4dc42136988ea40d7",
+        "cells_secondary.tsv.gz": "8ead897a54ac72f8aa0bf952a1948103d875f3a24e513bddb6775f1463b08b49"
+      },
+      "observed": {
+        "primary_exact_matches": 59,
+        "primary_labels": 5462,
+        "raw_cells": 7375,
+        "secondary_exact_matches": 58,
+        "secondary_labels": 5303
+      },
+      "raw_barcode_file": "GSM4909296_ER-MH0001-barcodes.tsv.gz",
+      "raw_barcode_sha256": "d80461f6e4fae947d9a62245aa4f3bbf961bb03871b46bc3e1d4d12eba402439",
+      "reason": "Author RDS-derived cell universe does not join deposited GEO raw barcode axis; entire sample excluded, including coincidental barcode overlaps. No inferred barcode repair.",
+      "required_to_restore": "Author-corrected full raw count matrix and exact feature/barcode axes for the RDS ER_0001 cells, or authenticated same-cell crosswalk to deposited raw columns; not normalized RDS counts.",
+      "sources": [
+        "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM4909296",
+        "https://doi.org/10.6084/m9.figshare.17058077",
+        "https://github.com/yunshun/HumanBreast10X/blob/65cc0fe3fa1a72af8cfff0d3ba32c7545091cc4f/RCode/ER.R"
+      ]
+    }
+  },
+  "status": "explicit source identity exclusions; partial coverage is not complete preregistered replication"
+}

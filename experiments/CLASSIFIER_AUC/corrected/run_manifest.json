@@ -1,0 +1,17 @@
+{
+  "benchmark": "balanced cohort-transductive cell-split benchmark; split SD is not a donor confidence interval; assay-expression sums are not universally UMI depth",
+  "experiment": "CLASSIFIER_AUC",
+  "files": {
+    "geometry.json": "c3cbf869f1c8d57f49bec3daba29881fac6ec746b0f6017bac8723e84dcb09b1",
+    "leave_one_out_auc.csv": "ac8e2ede0c687b993b80ea15559659aaa7a81143b8429f92e61f244a3fa26ec0",
+    "per_cohort_auc.csv": "df295aa795dd38af4b549eb9cf931193cae9ba435f4e8233a9c0669b6323d986",
+    "results.json": "df7fe597cf40f05b0b0912c91458f7f68e07fa7eef3ad9584cf935d6712b2176"
+  },
+  "historical_source_sha256": "7d2198fe43a3cd905a35720fb917d9cb07ea20270fad758eb6ef31a935414da9",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 7,
+  "release_blocker": "First pass predates organoid exclusion, full-library denominator and unknown mitochondrial-metric gates; rerun required.",
+  "status": "superseded_requires_rerun"
+}

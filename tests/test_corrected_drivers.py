@@ -75,6 +75,7 @@ def test_lung_driver_blocked_artifact(lung_driver, lung_fixture, tmp_path,
                                       monkeypatch, capsys):
     monkeypatch.setattr(lung_driver, "KIM_MTX", tmp_path / "missing.gz")
     monkeypatch.setattr(lung_driver, "KIM_ANN", lung_fixture[1])
+    monkeypatch.setattr(lung_driver, "REQUIRED_INPUTS", [("umi_matrix", tmp_path / "missing.gz", "synthetic GSE131907 fixture")])
     out = tmp_path / "results_corrected.json"
     with pytest.raises(SystemExit) as ei:
         lung_driver.run_or_block("t", lung_driver.REQUIRED_INPUTS, out,
@@ -93,6 +94,8 @@ def test_lung_driver_end_to_end_and_self_reproduction(lung_driver,
     umi, ann = lung_fixture
     monkeypatch.setattr(lung_driver, "KIM_MTX", umi)
     monkeypatch.setattr(lung_driver, "KIM_ANN", ann)
+    monkeypatch.setattr(lung_driver, "DONOR_MAP_PATH", tmp_path / "absent_map.tsv")
+    monkeypatch.setattr(lung_driver, "HERE", tmp_path)
     cache = tmp_path / "cache"
     payload1 = lung_driver.run(cache_root=cache)
     assert payload1["method_version"] == "TC-1"
@@ -144,9 +147,11 @@ def test_lung_driver_end_to_end_and_self_reproduction(lung_driver,
 # synthetic GSE161529-shaped layout
 # ---------------------------------------------------------------------------
 @pytest.fixture(scope="module")
-def breast_driver():
-    return load_driver("experiments/HELDOUT_GSE161529/run_corrected.py",
-                       "breast_corrected")
+def breast_driver(tmp_path_factory):
+    driver = load_driver("experiments/HELDOUT_GSE161529/run_corrected.py",
+                         "breast_corrected")
+    driver.SOURCE_EXCLUSIONS = tmp_path_factory.mktemp('source-exclusions') / 'absent.json'
+    return driver
 
 
 @pytest.fixture(scope="module")

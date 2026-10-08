@@ -23,6 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "experiments"))
 
+from lib.publication import resolve_table_result
 from lib.runner import load_json_strict          # noqa: E402
 from lib.verification import (VerificationError,  # noqa: E402
                               verify_patient_meta)
@@ -45,7 +46,8 @@ def main():
     parser.add_argument("--pointer", default="/dl_meta")
     parser.add_argument("--cohort")
     args = parser.parse_args()
-    with args.table.open(newline="", encoding="utf-8") as handle:
+    table_path, result_path = resolve_table_result(args.result, args.table)
+    with table_path.open(newline="", encoding="utf-8") as handle:
         records = list(csv.DictReader(handle))
     rows = []
     for record in records:
@@ -57,7 +59,7 @@ def main():
         rows.append({"patient_id": donor,
                      "delta": float(record["delta"]),
                      "se": float(record["se"])})
-    reported = resolve_pointer(load_json_strict(args.result), args.pointer)
+    reported = resolve_pointer(load_json_strict(result_path), args.pointer)
     try:
         outcome = verify_patient_meta(rows, reported)
     except VerificationError as exc:

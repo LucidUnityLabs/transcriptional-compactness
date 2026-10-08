@@ -60,96 +60,68 @@ def _read_all_lines(handle, path):
 # ---------------------------------------------------------------------------
 # Strict UMI TSV reader (D01)
 # ---------------------------------------------------------------------------
-def read_umi_tsv_selected(path, cell_ids, expect_genes=None):
-    """Stream a genes-x-cells UMI TSV strictly, retaining requested cells.
+def read_umi_tsv_selected(path, cell_ids, expect_genes=None, detection_cell_ids=None):
+    """Validate every count, stream to gzip EOF, retain requested columns.
 
-    File shape: the header row is ``<label>\\t<cell_1>\\t...\\t<cell_n>``
-    and every data row is ``<gene>\\t<count_1>\\t...\\t<count_n>``.
-
-    Contract: cell ids in the header are nonempty and unique; every row
-    has EXACTLY the header column count; every token in EVERY count
-    column (selected or not) is a nonnegative integer; gene ids are
-    nonempty and unique; all requested cells exist exactly once; the
-    returned matrix columns follow the REQUESTED order.
-
-    Returns ``(counts, gene_names)`` where ``counts`` is a float64 dense
-    array of shape (n_genes, n_requested).
+    Optional detection_cell_ids records gene detection over a larger named
+    universe without allocating that universe's dense matrix. Return order
+    always follows cell_ids. All accepted counts are exact float64 integers.
     """
-    cell_ids = [str(c) for c in cell_ids]
-    if not cell_ids:
-        raise DataValidationError("empty requested cell list")
-    req = list(cell_ids)
-    if len(set(req)) != len(req):
-        raise DataValidationError("duplicate requested cell ids")
-
-    with _open_maybe_gzip(path) as f:
-        lines = _read_all_lines(f, path)
-
-    if not lines:
-        raise DataValidationError(f"{path}: empty file")
-    header = lines[0].rstrip("\n").split("\t")
-    if len(header) < 2:
-        raise DataValidationError(f"{path}: header has no cell columns")
-    file_cells = header[1:]
-    if any(not c for c in file_cells):
-        raise DataValidationError(f"{path}: empty cell id in header")
-    if len(set(file_cells)) != len(file_cells):
-        from collections import Counter
-        dup = [c for c, n in Counter(file_cells).items() if n > 1]
-        raise DataValidationError(
-            f"{path}: duplicate cell ids in header: {sorted(dup)[:5]}")
-    col_pos = {c: i for i, c in enumerate(file_cells)}
-    missing = [c for c in req if c not in col_pos]
-    if missing:
-        raise DataValidationError(
-            f"{path}: requested cells absent from header: {missing[:5]} "
-            f"({len(missing)} of {len(req)} missing)")
-    keep = [col_pos[c] for c in req]           # requested order, exact
-    n_cols = len(file_cells)
-
-    n_rows = len(lines) - 1
-    if expect_genes is not None and n_rows != expect_genes:
-        raise DataValidationError(
-            f"{path}: expected {expect_genes} gene rows, found {n_rows}")
-    out = np.zeros((n_rows, len(req)), dtype=np.float64)
-    seen_genes = set()
-    gene_order = []
-    for row_no, raw in enumerate(lines[1:], start=2):
-        line = raw.rstrip("\n")
-        if line == "":
-            raise DataValidationError(f"{path}: empty row at line {row_no}")
-        parts = line.split("\t")
-        if len(parts) != n_cols + 1:
-            raise DataValidationError(
-                f"{path}: line {row_no} has {len(parts) - 1} count "
-                f"columns, expected {n_cols} (parsing is strict — no "
-                "padding or truncation)")
-        gene = parts[0]
-        if not gene:
-            raise DataValidationError(
-                f"{path}: empty gene id at line {row_no}")
-        if gene in seen_genes:
-            raise DataValidationError(
-                f"{path}: duplicate gene id {gene!r} at line {row_no}")
-        seen_genes.add(gene)
-        gene_order.append(gene)
-        for tok in parts[1:]:
-            if tok == "":
-                raise DataValidationError(
-                    f"{path}: empty count token at line {row_no}")
-            # integer tokens only; reject '1.0', '1e3', '-1', 'nan'
-            body = tok[1:] if tok[:1] == "+" else tok
-            if not body.isdigit():
-                raise DataValidationError(
-                    f"{path}: non-integer count token {tok!r} at line "
-                    f"{row_no} (lossless decimal parsers require an "
-                    "explicit method version; add fixtures first)")
-            if tok[:1] == "-":
-                raise DataValidationError(
-                    f"{path}: negative count {tok!r} at line {row_no}")
-        out[row_no - 2, :] = [int(parts[1 + c]) for c in keep]
-
-    return out, gene_order
+    import re
+    req = [str(c) for c in cell_ids]
+    if not req or len(set(req)) != len(req):
+        raise DataValidationError("empty or duplicate requested cell ids")
+    rows, genes, detected = [], [], []
+    seen = set()
+    try:
+        with _open_maybe_gzip(path) as f:
+            first = f.readline()
+            if not first:
+                raise DataValidationError(f"{path}: empty file")
+            cells = first.rstrip("\n").split("\t")[1:]
+            if not cells or any(not c for c in cells):
+                raise DataValidationError(f"{path}: header has no cells or empty cell id")
+            if len(set(cells)) != len(cells):
+                raise DataValidationError(f"{path}: duplicate cell ids in header")
+            pos = {c: i for i, c in enumerate(cells)}
+            missing = set(req) - set(pos)
+            if missing:
+                raise DataValidationError(f"{path}: requested cells absent from header: {sorted(missing)[:5]}")
+            keep = np.array([pos[c] for c in req])
+            detection = None
+            if detection_cell_ids is not None:
+                ids = list(detection_cell_ids)
+                if len(set(ids)) != len(ids) or set(ids) - set(pos):
+                    raise DataValidationError("invalid detection cell universe")
+                detection = np.array([pos[c] for c in ids])
+            for row_no, raw in enumerate(f, 2):
+                line = raw.rstrip("\n")
+                parts = line.split("\t", 1)
+                if len(parts) != 2:
+                    raise DataValidationError(f"{path}: empty row or missing counts at line {row_no}")
+                gene, counts_text = parts
+                if not gene:
+                    raise DataValidationError(f"{path}: empty gene id at line {row_no}")
+                if gene in seen:
+                    raise DataValidationError(f"{path}: duplicate gene id at line {row_no}")
+                seen.add(gene)
+                if counts_text.count("\t") + 1 != len(cells):
+                    raise DataValidationError(f"{path}: count columns mismatch at line {row_no}; expected {len(cells)}")
+                if re.fullmatch(r"[+]?[0-9]+(?:\t[+]?[0-9]+)*", counts_text, flags=re.ASCII) is None:
+                    raise DataValidationError(f"{path}: non-integer or empty count token at line {row_no}")
+                values = np.fromstring(counts_text, dtype=np.float64, sep="\t")
+                if len(values) != len(cells) or not np.all(np.isfinite(values)) or np.any(values >= COUNT_SUM_LIMIT):
+                    raise DataValidationError(f"{path}: count outside exact float64 integer range at line {row_no}")
+                rows.append(values[keep])
+                genes.append(gene)
+                if detection is not None:
+                    detected.append(int(np.count_nonzero(values[detection])))
+    except (OSError, EOFError) as exc:
+        raise DataValidationError(f"{path}: gzip stream failed before EOF: {exc}") from exc
+    if expect_genes is not None and len(genes) != expect_genes:
+        raise DataValidationError(f"{path}: expected {expect_genes} gene rows, found {len(genes)}")
+    out = np.asarray(rows, dtype=np.float64).reshape(len(genes), len(req))
+    return (out, genes, np.asarray(detected)) if detection_cell_ids is not None else (out, genes)
 
 
 # ---------------------------------------------------------------------------
@@ -163,9 +135,10 @@ class MTXSelected:
     n_entries_declared: int
     n_entries_read: int
     n_duplicate_entries_summed: int
+    gene_detection: np.ndarray | None = None
 
 
-def read_mtx_selected(path, wanted_cols, banner_required=True):
+def read_mtx_selected(path, wanted_cols, banner_required=True, detection_cols=None, expected_n_cols=None):
     """Strict streaming Matrix Market coordinate reader, selected columns.
 
     ``wanted_cols`` are 1-based column indices in the exact order the
@@ -176,112 +149,122 @@ def read_mtx_selected(path, wanted_cols, banner_required=True):
     capped below 2^53 so float64 accumulation cannot silently round.
     """
     wanted = [int(c) for c in wanted_cols]
-    if not wanted:
+    if not wanted and detection_cols is None:
         raise DataValidationError("empty requested column list")
     if len(set(wanted)) != len(wanted):
         raise DataValidationError("duplicate requested columns")
 
     with _open_maybe_gzip(path) as f:
-        lines = _read_all_lines(f, path)
+        first = f.readline()
+        if not first:
+            raise DataValidationError(f"{path}: empty file")
+        banner = first.strip()
+        if banner_required:
+            parts = banner.split()
+            if len(parts) < 5 or parts[0] != "%%MatrixMarket" \
+                    or parts[1] != "matrix" or parts[2] != "coordinate":
+                raise DataValidationError(
+                    f"{path}: bad MatrixMarket banner {banner!r}")
+            if parts[3] != "integer":
+                raise DataValidationError(
+                    f"{path}: field {parts[3]!r} != 'integer' (the strict "
+                    "reference reader requires integer counts)")
+            if parts[4] != "general":
+                raise DataValidationError(
+                    f"{path}: symmetry {parts[4]!r} != 'general'")
 
-    idx = 0
-    if idx >= len(lines):
-        raise DataValidationError(f"{path}: empty file")
-    banner = lines[idx].strip()
-    idx += 1
-    if banner_required:
-        parts = banner.split()
-        if len(parts) < 5 or parts[0] != "%%MatrixMarket" \
-                or parts[1] != "matrix" or parts[2] != "coordinate":
+        # skip comment lines
+        dimension_line = f.readline()
+        while dimension_line.lstrip().startswith("%"):
+            dimension_line = f.readline()
+        if not dimension_line:
+            raise DataValidationError(f"{path}: missing dimensions line")
+        dims = dimension_line.split()
+        if len(dims) != 3:
             raise DataValidationError(
-                f"{path}: bad MatrixMarket banner {banner!r}")
-        if parts[3] != "integer":
-            raise DataValidationError(
-                f"{path}: field {parts[3]!r} != 'integer' (the strict "
-                "reference reader requires integer counts)")
-        if parts[4] != "general":
-            raise DataValidationError(
-                f"{path}: symmetry {parts[4]!r} != 'general'")
-
-    # skip comment lines
-    while idx < len(lines) and lines[idx].lstrip().startswith("%"):
-        idx += 1
-    if idx >= len(lines):
-        raise DataValidationError(f"{path}: missing dimensions line")
-    dims = lines[idx].split()
-    idx += 1
-    if len(dims) != 3:
-        raise DataValidationError(
-            f"{path}: dimensions line must be 'rows cols nnz', got "
-            f"{lines[idx - 1]!r}")
-    try:
-        n_rows, n_cols, nnz = (int(x) for x in dims)
-    except ValueError as exc:
-        raise DataValidationError(
-            f"{path}: non-integer dimensions {dims!r}") from exc
-    if n_rows < 0 or n_cols < 0 or nnz < 0:
-        raise DataValidationError(f"{path}: negative dimensions {dims!r}")
-
-    for c in wanted:
-        if not (1 <= c <= n_cols):
-            raise DataValidationError(
-                f"{path}: requested column {c} out of range 1..{n_cols}")
-
-    pos = {c: i for i, c in enumerate(wanted)}
-    # int64 holds exact integers far beyond the 2^53 float64-exactness
-    # guard below, so duplicate-entry summing stays exact.
-    acc = np.zeros((len(wanted), n_rows), dtype=np.int64)
-    n_dup = 0
-    n_read = 0
-    while idx < len(lines):
-        line = lines[idx].strip()
-        idx += 1
-        if line == "":
-            raise DataValidationError(
-                f"{path}: blank data line at entry {n_read + 1} (the "
-                "declared nnz must be matched exactly)")
-        parts = line.split()
-        if len(parts) != 3:
-            raise DataValidationError(
-                f"{path}: data line {n_read + 1} must have 3 fields, got "
-                f"{line!r}")
+                f"{path}: dimensions line must be 'rows cols nnz', got "
+                f"{dimension_line!r}")
         try:
-            r, c, v = int(parts[0]), int(parts[1]), int(parts[2])
+            n_rows, n_cols, nnz = (int(x) for x in dims)
         except ValueError as exc:
             raise DataValidationError(
-                f"{path}: non-integer coordinate/count {line!r}") from exc
-        if not (1 <= r <= n_rows) or not (1 <= c <= n_cols):
+                f"{path}: non-integer dimensions {dims!r}") from exc
+        if n_rows < 0 or n_cols < 0 or nnz < 0:
+            raise DataValidationError(f"{path}: negative dimensions {dims!r}")
+
+        if expected_n_cols is not None and n_cols != expected_n_cols:
             raise DataValidationError(
-                f"{path}: coordinate ({r}, {c}) out of bounds "
-                f"1..{n_rows}, 1..{n_cols}")
-        if v < 0:
+                f"{path}: MTX columns {n_cols} != complete barcode count {expected_n_cols}")
+
+        for c in wanted:
+            if not (1 <= c <= n_cols):
+                raise DataValidationError(
+                    f"{path}: requested column {c} out of range 1..{n_cols}")
+
+        detection_set = set(detection_cols) if detection_cols is not None else set()
+        if any(not 1 <= c <= n_cols for c in detection_set):
+            raise DataValidationError("detection column out of range")
+        detected = np.zeros(n_rows, dtype=np.int64) if detection_cols is not None else None
+        seen_detection = set()
+        pos = {c: i for i, c in enumerate(wanted)}
+        # int64 holds exact integers far beyond the 2^53 float64-exactness
+        # guard below, so duplicate-entry summing stays exact.
+        acc = np.zeros((len(wanted), n_rows), dtype=np.int64)
+        n_dup = 0
+        n_read = 0
+        for raw in f:
+            line = raw.strip()
+            if line == "":
+                raise DataValidationError(
+                    f"{path}: blank data line at entry {n_read + 1} (the "
+                    "declared nnz must be matched exactly)")
+            parts = line.split()
+            if len(parts) != 3:
+                raise DataValidationError(
+                    f"{path}: data line {n_read + 1} must have 3 fields, got "
+                    f"{line!r}")
+            try:
+                r, c, v = int(parts[0]), int(parts[1]), int(parts[2])
+            except ValueError as exc:
+                raise DataValidationError(
+                    f"{path}: non-integer coordinate/count {line!r}") from exc
+            if not (1 <= r <= n_rows) or not (1 <= c <= n_cols):
+                raise DataValidationError(
+                    f"{path}: coordinate ({r}, {c}) out of bounds "
+                    f"1..{n_rows}, 1..{n_cols}")
+            if v < 0:
+                raise DataValidationError(
+                    f"{path}: negative count {v} at ({r}, {c})")
+            n_read += 1
+            if n_read > nnz:
+                raise DataValidationError(
+                    f"{path}: more data lines than declared nnz={nnz}")
+            if v > 0 and c in detection_set:
+                coordinate = (c - 1) * n_rows + r - 1
+                if coordinate not in seen_detection:
+                    detected[r - 1] += 1
+                    seen_detection.add(coordinate)
+            j = pos.get(c)
+            if j is None:
+                continue
+            cur = int(acc[j, r - 1])
+            if cur != 0:
+                n_dup += 1
+            total = cur + v
+            if total >= COUNT_SUM_LIMIT:
+                raise DataValidationError(
+                    f"{path}: summed duplicate count at ({r}, {c}) reaches "
+                    f"2^53 ({total}); float64 cannot represent it exactly — "
+                    "split the entry set or use exact integer storage")
+            acc[j, r - 1] = total
+        if n_read != nnz:
             raise DataValidationError(
-                f"{path}: negative count {v} at ({r}, {c})")
-        n_read += 1
-        if n_read > nnz:
-            raise DataValidationError(
-                f"{path}: more data lines than declared nnz={nnz}")
-        j = pos.get(c)
-        if j is None:
-            continue
-        cur = int(acc[j, r - 1])
-        if cur != 0:
-            n_dup += 1
-        total = cur + v
-        if total >= COUNT_SUM_LIMIT:
-            raise DataValidationError(
-                f"{path}: summed duplicate count at ({r}, {c}) reaches "
-                f"2^53 ({total}); float64 cannot represent it exactly — "
-                "split the entry set or use exact integer storage")
-        acc[j, r - 1] = total
-    if n_read != nnz:
-        raise DataValidationError(
-            f"{path}: read {n_read} data lines, declared nnz={nnz}")
+                f"{path}: read {n_read} data lines, declared nnz={nnz}")
 
     counts = acc.astype(np.float64)
     return MTXSelected(counts=counts, n_rows=n_rows, n_cols=n_cols,
                        n_entries_declared=nnz, n_entries_read=n_read,
-                       n_duplicate_entries_summed=n_dup)
+                       n_duplicate_entries_summed=n_dup, gene_detection=detected)
 
 
 # ---------------------------------------------------------------------------

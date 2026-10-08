@@ -1,0 +1,14 @@
+{
+  "experiment": "E3_puram_hnscc",
+  "files": {
+    "e3_puram_distributions.png": "d2aed880a3afb8fffa00c5714c28ad13d55de095c79853ec3dad9a1beda8d94e",
+    "e3_puram_summary.csv": "917e11d0c399d19d391d0d563080bdeceb369aaa123e4380d1a8cf6a8ff1286d",
+    "geometry.json": "8dc3718a44386191290865bbe7488ab8c5d4619aa52b43a8e7dcfa03a458e8ac"
+  },
+  "historical_source_sha256": "b65d79c30d5360e8af8444bef85c1f6b2824d796510e0111adb9a0d1a8274af3",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 2,
+  "status": "exploratory_complete"
+}

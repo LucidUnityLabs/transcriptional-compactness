@@ -1,0 +1,3 @@
+patient_id,ok,n_malignant,n_comparator,reason,mean_kappa_mal,mean_kappa_comp,delta,se,se_estimable,cliff_status,cohort
+PDAC-A,True,60,60,,0.13111198697537982,0.1246393943466662,0.07277777777777777,0.10841546454496481,True,ok,Peng_PDAC
+PDAC-B,True,60,60,,0.11610467002466689,0.10138657500640366,0.10333333333333332,0.10563650380120558,True,ok,Peng_PDAC

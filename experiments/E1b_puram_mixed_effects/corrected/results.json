@@ -1,0 +1,104 @@
+{
+  "dataset": "Puram_HNSCC_GSE103322",
+  "analysis": "within_patient_mixed_effects_E1b",
+  "protocol": "PCA-50, kNN k=15, Ollivier-Ricci alpha=0.5, 4000 edges, 600 mal + 600 non stratified sample, MixedLM kappa~malignant+(1|patient)",
+  "seed": 20260507,
+  "n_cells_with_valid_kappa": 1199,
+  "n_patients_in_mixed_model": 17,
+  "n_patients_in_per_patient_table": 9,
+  "mixed_effects": {
+    "fixed_effect_malignant": 0.04345293377386061,
+    "fixed_effect_se": 0.0077854971269910025,
+    "fixed_effect_ci_95": [
+      0.02819363980321818,
+      0.058712227744503034
+    ],
+    "fixed_effect_p": 2.38773546270113e-08,
+    "random_intercept_variance": 0.0020879477443888884,
+    "residual_variance": 0.014709430218434062,
+    "icc": 0.12430200409909632,
+    "optimizer_fe_bfgs_powell_cg": [
+      0.04345293755626694,
+      0.043452923960666474,
+      0.043452915646570826
+    ],
+    "optimizer_fe_spread": 2.1909696112931698e-08
+  },
+  "naive_pooled": {
+    "diff_mal_minus_non": 0.04363518719307692,
+    "welch_p": 2.7907795716755405e-09,
+    "cliff_delta": 0.2665943238731219
+  },
+  "shrink_pct_of_naive": 99.58232465370234,
+  "per_patient_cliffs_delta": {
+    "16": {
+      "n_malignant": 41,
+      "n_non_malignant": 46,
+      "diff_mal_minus_non": 0.020900421492096977,
+      "welch_p": 0.31761729410023243,
+      "cliff_delta": 0.14952279957582185
+    },
+    "17": {
+      "n_malignant": 60,
+      "n_non_malignant": 40,
+      "diff_mal_minus_non": 0.065207844943594,
+      "welch_p": 0.0035260292951062085,
+      "cliff_delta": 0.45666666666666667
+    },
+    "18": {
+      "n_malignant": 50,
+      "n_non_malignant": 39,
+      "diff_mal_minus_non": 0.11713692463302233,
+      "welch_p": 7.027768297181034e-07,
+      "cliff_delta": 0.64
+    },
+    "22": {
+      "n_malignant": 45,
+      "n_non_malignant": 36,
+      "diff_mal_minus_non": 0.06493581029200213,
+      "welch_p": 0.022785726647544018,
+      "cliff_delta": 0.45308641975308644
+    },
+    "25": {
+      "n_malignant": 57,
+      "n_non_malignant": 49,
+      "diff_mal_minus_non": 0.020794151448646,
+      "welch_p": 0.32688072957673414,
+      "cliff_delta": 0.20515574650912996
+    },
+    "26": {
+      "n_malignant": 70,
+      "n_non_malignant": 36,
+      "diff_mal_minus_non": 0.13871053094534044,
+      "welch_p": 6.961798954702645e-10,
+      "cliff_delta": 0.7571428571428571
+    },
+    "28": {
+      "n_malignant": 54,
+      "n_non_malignant": 46,
+      "diff_mal_minus_non": 0.07686556449027605,
+      "welch_p": 0.00012783835707804857,
+      "cliff_delta": 0.4428341384863124
+    },
+    "5": {
+      "n_malignant": 49,
+      "n_non_malignant": 39,
+      "diff_mal_minus_non": -0.06296916718338809,
+      "welch_p": 0.05362023721426084,
+      "cliff_delta": -0.22762951334379905
+    },
+    "6": {
+      "n_malignant": 46,
+      "n_non_malignant": 40,
+      "diff_mal_minus_non": 0.10645539674490534,
+      "welch_p": 0.0009540781888703996,
+      "cliff_delta": 0.4097826086956522
+    }
+  },
+  "per_patient_direction": {
+    "n_delta_positive": 8,
+    "n_delta_negative": 1,
+    "n_total": 9,
+    "fraction_positive": 0.8888888888888888
+  }
+}

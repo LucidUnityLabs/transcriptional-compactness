@@ -32,15 +32,20 @@ def main():
     parser.add_argument("--requirements", type=Path, required=True)
     parser.add_argument("--wheelhouse", type=Path, required=True)
     parser.add_argument("--lock", type=Path, required=True)
+    parser.add_argument("--find-links", type=Path,
+                        help="retained locally built wheels, with separately recorded build provenance")
     args = parser.parse_args()
     if args.lock.exists() or args.wheelhouse.exists():
         raise SystemExit(
             "Refusing to overwrite a lock/wheelhouse; use new versioned "
             "paths")
     with tempfile.TemporaryDirectory() as temporary:
-        subprocess.run([sys.executable, "-m", "pip", "download",
-                        "--only-binary=:all:", "--dest", temporary,
-                        "-r", str(args.requirements)], check=True)
+        command = [sys.executable, "-m", "pip", "download",
+                   "--only-binary=:all:", "--dest", temporary,
+                   "-r", str(args.requirements)]
+        if args.find_links:
+            command += ["--find-links", str(args.find_links)]
+        subprocess.run(command, check=True)
         wheels = sorted(Path(temporary).glob("*.whl"))
         if not wheels:
             raise SystemExit("No wheels resolved")
@@ -49,7 +54,7 @@ def main():
         for wheel in wheels:
             with ZipFile(wheel) as archive:
                 metadata = [n for n in archive.namelist()
-                            if n.endswith(".dist-info/METADATA")]
+                            if n.endswith(".dist-info/METADATA") and n.count("/") == 1]
                 if len(metadata) != 1:
                     raise SystemExit(
                         f"Unexpected wheel metadata: {wheel.name}")

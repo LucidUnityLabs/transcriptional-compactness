@@ -25,7 +25,7 @@ KNOWN = {
     "networkx": "networkx", "rdata": "rdata",
     "statsmodels": "statsmodels", "scanpy": "scanpy",
     "harmonypy": "harmonypy", "anndata": "anndata", "h5py": "h5py",
-    "hicstraw": "hicstraw",
+    "hicstraw": "hic-straw",
 }
 ROOT = Path(__file__).resolve().parents[1]
 LOCAL_TOPS = {"lib", "experiments", "tools"}

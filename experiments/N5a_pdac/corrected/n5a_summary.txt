@@ -1,0 +1,33 @@
+N5a — PDAC Ollivier-Ricci replication
+============================================================
+Dataset: GSE111672 (Peng/Moncada PDAC inDrop scRNA-seq)
+  PDAC-A + PDAC-B combined
+  total cells: 3659
+  malignant (Cancer clone A+B): 635
+  non-malignant ductal: 2480
+  all non-malignant: 3024
+
+seed = 20260508
+pipeline: log1p, HVG-2000 by var, PCA-50, kNN k=15, OR alpha=0.5, 4000 sampled edges
+
+PDAC: Malignant vs Non-malignant
+  Malignant                       kappa=0.0568 +- 0.0886  n=599
+  Non-malignant                   kappa=0.0616 +- 0.1247  n=600
+  delta_mean = -0.0048  (MAL < NON)
+  Welch t  p=0.4465
+  MWU U    p=0.9765
+  Cliff's delta = -0.001
+
+PDAC: Malignant vs Ductal-non-mal
+  Malignant                       kappa=0.0578 +- 0.0873  n=599
+  Ductal-non-mal                  kappa=0.0373 +- 0.0962  n=599
+  delta_mean = +0.0205  (MAL > NON)
+  Welch t  p=0.0001207
+  MWU U    p=7.25e-05
+  Cliff's delta = +0.132
+
+Comparison anchors (per-cell kappa malignant > non-malignant):
+  Tirosh melanoma   Cliff d = +0.74
+  Puram HNSCC       Cliff d = +0.41
+  Darmanis GBM      Cliff d = +0.38
+  Li CRC            Cliff d = +0.20

@@ -5,6 +5,23 @@ Independent
 mail2@tylersinbox.com
 
 **Status:** preprint draft, not peer-reviewed.
+
+**Historical draft; corrected scientific release remains open.** Numerical
+claims below retain their original method and have not been reconciled into
+a complete corrected campaign. The corrected bounded breast primary contrast
+is conditional on inferred labels, selected cells and edges, a shared fitted
+graph, and a whole-specimen source exclusion; it does not restore the original
+complete endpoint or establish independent-donor causal significance.
+Corrected Harmony sensitivities attenuate melanoma and GBM and reverse HNSCC.
+High heterogeneity and graph dependence constrain the positive narrative.
+Welch/MWU cell tests and balanced transductive splits cannot establish donor
+independence or clinical deployment performance. Frozen repeats, complete
+controls, reference/environment verification, figures, and manuscript
+reconciliation remain open. Restoration of the excluded breast specimen
+requires authenticated same-cell raw data; the normal-luminal endpoint
+requires affirmative per-cell annotation on the exact analyzed universe.
+See `../SOURCE_PROTOCOL.md` and `../experiments/rerun_status.json`.
+
 **Code, data, and per-experiment scripts:** `biology c+/bio_paths/`. Each
 validation experiment is in `bio_paths/exp/EN_*/` with its own `run.py`,
 CSV outputs, and figures.

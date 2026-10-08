@@ -1,0 +1,16 @@
+{
+  "experiment": "N5c_ovarian",
+  "files": {
+    "geometry.json": "f097b9df77a51537e20664450900687a0a8d2d4df9529d887d558aab2bb10e8c",
+    "n5c_cell_types.csv": "0c551a2b952611c2024717f7f998edb670cf2551b4c225d99e8b36c520624c56",
+    "n5c_ovarian_distributions.png": "e0554379448c5686c560caa7cebd8b2ad1ac5b38b5371d4b63fbc4dd8310d76a",
+    "n5c_ovarian_summary.csv": "53ad4893d242e843d5a805acb35eecd7ae7ceaa8e7b711d75e46f6f1ce10a612",
+    "n5c_summary.txt": "d37e2a757ddccfba2053c7d6b5e5a9d44d79ba54a55bb5a6b21dbb5c1ae857eb"
+  },
+  "historical_source_sha256": "c6d8a86c8f36f05517849a60d98e977d2e76b49a73784f0369e04e57a1667636",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 4,
+  "status": "exploratory_complete"
+}

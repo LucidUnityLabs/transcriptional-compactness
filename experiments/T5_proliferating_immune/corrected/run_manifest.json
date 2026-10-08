@@ -1,0 +1,8 @@
+{
+  "exception_type": "TypeError",
+  "experiment": "T5_proliferating_immune",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 0,
+  "reason": "ResultCache.load() got an unexpected keyword argument 'params'",
+  "status": "failed"
+}

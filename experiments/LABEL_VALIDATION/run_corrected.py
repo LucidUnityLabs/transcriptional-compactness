@@ -82,7 +82,16 @@ def run():
         sys.modules.setdefault("ot", stub)
     spec = _ilu.spec_from_file_location("lv_legacy", HERE / "run.py")
     legacy = _ilu.module_from_spec(spec)
-    spec.loader.exec_module(legacy)
+    import ast
+    source = (HERE / "run.py").read_text().replace("np.float32", "np.float64")
+    source = source.replace("X_counts = X_counts[:, keep]\n    cell_pids", "X_counts = X_counts[:, keep]\n    full_library = X_counts.sum(axis=0)\n    cell_pids")
+    source = source.replace("libsize = X_counts.sum(axis=0)\n    libsize[libsize == 0] = 1", "libsize = full_library")
+    source = source.replace('if patient is None:\n            continue', 'if patient is None or "org" in f.lower():\n            continue')
+    exec(compile(ast.parse(source), str(HERE / "run.py"), "exec"), legacy.__dict__)
+    # The annotators resolve these globals at call time: wire the
+    # corrected routines before ANY scheme is evaluated (C11, R04).
+    legacy.build_knn_graph = numerics.knn_graph
+    legacy.louvain_communities = lambda G, seed: community_annotation_unweighted(G, seed)[0]
 
     out = {}
     for cohort_key, loader_name, annotator_name, data_dir in (
@@ -140,7 +149,7 @@ def run():
             }
 
         # ---- corrected decomposition: geometry frozen ONCE (C12)
-        X_all = expr_log.values.T.astype(np.float64)
+        X_all, pca_facts = cohort.hvg_pca(expr_log.values.astype(np.float64))
         pat_all = np.array(["all"] * X_all.shape[0], dtype=object)
         frozen = freeze_geometry(X_all, k=15, alpha=0.5, n_edges=4000,
                                  seed=SEED,
@@ -159,6 +168,7 @@ def run():
                 PUBLISHED_DESCRIPTION[cohort_key],
             "schemes": scheme_results,
             "frozen_geometry_decomposition": decomp,
+            "frozen_geometry_pca": pca_facts,
             "verdict": verdict,
         }
 

@@ -1,0 +1,30 @@
+N5c -- HGSOC (Olalekan 2021, GSE147082) Ollivier-Ricci summary
+================================================================
+Seed: 20260508
+Patients: 6 (PT-2834, PT-3232, PT-3401, PT-4806, PT-5150, PT-6885)
+Cells (post QC, post Unknown filter): 8925
+Cell-type counts:
+  Fibroblast     3036
+  Epithelial     2609
+  Bcell          1379
+  Unknown        960
+  Tcell          789
+  Macrophage     706
+  Endothelial    406
+
+Contrasts (Cliff's delta = Epithelial vs comparator; positive => malignant > comparator kappa):
+  Epithelial vs Tcell               delta=+0.445  Welch p=3.2e-31  MWU p=1.08e-40  n_a=600 n_b=600
+  Epithelial vs Fibroblast          delta=+0.267  Welch p=7.54e-13  MWU p=1.3e-15  n_a=599 n_b=599
+  Epithelial vs Macrophage          delta=+0.315  Welch p=7.38e-18  MWU p=3.44e-21  n_a=600 n_b=600
+  Epithelial vs Other               delta=+0.025  Welch p=0.414  MWU p=0.455  n_a=599 n_b=599
+
+Reference Cliff's delta (malignant vs lymphocyte/immune):
+  Tirosh melanoma    +0.74
+  Puram HNSCC        +0.41
+  Darmanis GBM       +0.38
+  Li CRC             +0.20
+
+HGSOC primary contrast (Epithelial vs Tcell): delta=+0.445
+Verdict: REPLICATE (delta in line with prior tumour types)
+
+Wallclock: 203.9s

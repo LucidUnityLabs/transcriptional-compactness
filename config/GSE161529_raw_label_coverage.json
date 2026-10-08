@@ -1,0 +1,774 @@
+{
+  "excluded_specimens": [
+    "ER_0001"
+  ],
+  "exclusions_sha256": "79150fb3545d7dff67be612aec8168ffea464c89a6c011b29ef85bcde26a0c0f",
+  "label_extraction_manifest_sha256": "047ec5077cac4e0789b0865800f29dbc257ea501ae6ebed5a6bddfa250c65f4c",
+  "label_file_sha256": {
+    "cells_primary.tsv.gz": "0f20433925b7e3ff5ca159bdada997889c76ac850906faf4dc42136988ea40d7",
+    "cells_secondary.tsv.gz": "8ead897a54ac72f8aa0bf952a1948103d875f3a24e513bddb6775f1463b08b49"
+  },
+  "loaded_verifier_sha256": "bb6c813093b4df93423eabdce04ca959736ba52e96665423263b1262735b6da1",
+  "n_eligible_source_specimens": 26,
+  "n_original_source_specimens": 27,
+  "original_endpoint_coverage": "incomplete; explicit whole-source exclusions",
+  "rows": [
+    {
+      "donors": [
+        "0001"
+      ],
+      "gsm": "GSM4909296",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 5403,
+      "n_exact_matches": 59,
+      "n_labels": 5462,
+      "n_raw_cells": 7375,
+      "raw_barcode_sha256": "d80461f6e4fae947d9a62245aa4f3bbf961bb03871b46bc3e1d4d12eba402439",
+      "sample": "ER_0001",
+      "status": "whole specimen excluded: source cell-universe mismatch"
+    },
+    {
+      "donors": [
+        "0025"
+      ],
+      "gsm": "GSM4909302",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5169,
+      "n_labels": 5169,
+      "n_raw_cells": 10592,
+      "raw_barcode_sha256": "53cfb67d1686ab115551e8bb9c18b3f1df0caa84671469e156e3c055452be983",
+      "sample": "ER_0025",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0032"
+      ],
+      "gsm": "GSM4909300",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 729,
+      "n_labels": 729,
+      "n_raw_cells": 1445,
+      "raw_barcode_sha256": "ac1146f80e9562e18ea448d0fb0c9673973e631690af76e6d155110ddbe36244",
+      "sample": "ER_0032",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0040"
+      ],
+      "gsm": "GSM4909307",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5764,
+      "n_labels": 5764,
+      "n_raw_cells": 6468,
+      "raw_barcode_sha256": "48e682bcd8cc0956f6c76ef6fdbe0710acc8bea70218caa751ab90b9d596adf4",
+      "sample": "ER_0040_T",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0042"
+      ],
+      "gsm": "GSM4909301",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 4313,
+      "n_labels": 4313,
+      "n_raw_cells": 5439,
+      "raw_barcode_sha256": "9ede5138cc6c120a09f191a30349f3cd7cca3fc5e9f9d0942911ef2ec806ba4f",
+      "sample": "ER_0042",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0043"
+      ],
+      "gsm": "GSM4909309",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 3765,
+      "n_labels": 3765,
+      "n_raw_cells": 5572,
+      "raw_barcode_sha256": "18bd515bc828a347fc8201e9d01cd0759c151d51e4d7ee552e0827fef5c088a7",
+      "sample": "ER_0043_T",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0114"
+      ],
+      "gsm": "GSM4909299",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 6891,
+      "n_labels": 6891,
+      "n_raw_cells": 8822,
+      "raw_barcode_sha256": "ca45779b845ccf9dd36b87d7ccd5dd456a8a6d8030e9c2fb2aaecc7ee412fdcd",
+      "sample": "ER_0114_T3",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0125"
+      ],
+      "gsm": "GSM4909297",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 3866,
+      "n_labels": 3866,
+      "n_raw_cells": 7289,
+      "raw_barcode_sha256": "37872d69e448b3195f565d5670a9f5770fdcb2d3339b4dbff0e2a66a689510cd",
+      "sample": "ER_0125",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0151"
+      ],
+      "gsm": "GSM4909303",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 1819,
+      "n_labels": 1819,
+      "n_raw_cells": 3357,
+      "raw_barcode_sha256": "cd35151b0fd1c743cd3c75622798dc2ae66cd657d3c35d0138c1b2b1940b5a4d",
+      "sample": "ER_0151",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0163"
+      ],
+      "gsm": "GSM4909304",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5769,
+      "n_labels": 5769,
+      "n_raw_cells": 7334,
+      "raw_barcode_sha256": "7aee74151432746d390fc3a9afcf0a6445b06e55940e9523a344916a3a5a5e32",
+      "sample": "ER_0163",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0167"
+      ],
+      "gsm": "GSM4909315",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 6745,
+      "n_labels": 6745,
+      "n_raw_cells": 13848,
+      "raw_barcode_sha256": "63f0031fa1b5a63619a04d582943c93f4a13d380f57b464fa2ebee99cd4dee14",
+      "sample": "ER_0167_T",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0319"
+      ],
+      "gsm": "GSM4909295",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2381,
+      "n_labels": 2381,
+      "n_raw_cells": 3406,
+      "raw_barcode_sha256": "f88198b4b8e89782da47c3f269a6c590a4342b1b235a36fe79d2b98c1d526090",
+      "sample": "ER_0319",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0360"
+      ],
+      "gsm": "GSM4909298",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 3307,
+      "n_labels": 3307,
+      "n_raw_cells": 6676,
+      "raw_barcode_sha256": "2b99b8d1a27ad2374c583df6d9d819f767f6993f97c50709a4e5492933bf2ba7",
+      "sample": "ER_0360",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0031"
+      ],
+      "gsm": "GSM4909291",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2498,
+      "n_labels": 2498,
+      "n_raw_cells": 4737,
+      "raw_barcode_sha256": "de0949996e85e0023da5255973b4e8b164a031e27c626a81df69a42e7bcee966",
+      "sample": "HER2_0031",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0069"
+      ],
+      "gsm": "GSM4909292",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 366,
+      "n_labels": 366,
+      "n_raw_cells": 618,
+      "raw_barcode_sha256": "31fb101fe60bed9a64b0d319abf0dbdbc0fdc7e8453440e0591e78f987e883ec",
+      "sample": "HER2_0069",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0161"
+      ],
+      "gsm": "GSM4909293",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 4746,
+      "n_labels": 4746,
+      "n_raw_cells": 6561,
+      "raw_barcode_sha256": "6fc00b78c5b1283640efc6f7122b8781eddcbc4db2ae2106e33c3312c0b07fb1",
+      "sample": "HER2_0161",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0176"
+      ],
+      "gsm": "GSM4909294",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 8696,
+      "n_labels": 8696,
+      "n_raw_cells": 19027,
+      "raw_barcode_sha256": "17f0c4fa62d8216c648fd153ede4cbb8f85c3e163fdfdbc99d9293c763256800",
+      "sample": "HER2_0176",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0308"
+      ],
+      "gsm": "GSM4909289",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 4009,
+      "n_labels": 4009,
+      "n_raw_cells": 4779,
+      "raw_barcode_sha256": "b02981e4d994ae4f88a3f80b8b5210fe0a68ce3325719754eba3cc1ca814d755",
+      "sample": "HER2_0308",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0337"
+      ],
+      "gsm": "GSM4909290",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 6260,
+      "n_labels": 6260,
+      "n_raw_cells": 12288,
+      "raw_barcode_sha256": "b86934f507d416ff75306aadb2c2dab90d1ec147ae9986425b118253b7e33bab",
+      "sample": "HER2_0337",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0106"
+      ],
+      "gsm": "GSM4909283",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 747,
+      "n_labels": 747,
+      "n_raw_cells": 1065,
+      "raw_barcode_sha256": "a3575403a8271931a59a49e87000a88817898e29c990c6e6d74e0127c9ce602a",
+      "sample": "TN_0106",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0114"
+      ],
+      "gsm": "GSM4909284",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 1409,
+      "n_labels": 1409,
+      "n_raw_cells": 2015,
+      "raw_barcode_sha256": "02b26ea675169e518409e1f6e36fc040c23a0bfd06563f1c58f02e9fb63171e8",
+      "sample": "TN_0114_T2",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0126"
+      ],
+      "gsm": "GSM4909281",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2606,
+      "n_labels": 2606,
+      "n_raw_cells": 3666,
+      "raw_barcode_sha256": "9b313512ff034b4f05b94dc349c8df9ec579d0627c8ebbbf64772e5d5c0ada86",
+      "sample": "TN_0126",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0135"
+      ],
+      "gsm": "GSM4909282",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 15032,
+      "n_labels": 15032,
+      "n_raw_cells": 15870,
+      "raw_barcode_sha256": "4d4a7c7f6550d9ada0f5e19a5c995d25a621b233417011bb5b73f3c807d92dc7",
+      "sample": "TN_0135",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0131"
+      ],
+      "gsm": "GSM4909286",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5582,
+      "n_labels": 5582,
+      "n_raw_cells": 6456,
+      "raw_barcode_sha256": "d9e33d99f78e03798cd610ae07c8af8c39f280bc1da0e99609c3a1d076a7bcbb",
+      "sample": "TN_B1_0131",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0177"
+      ],
+      "gsm": "GSM4909288",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 15473,
+      "n_labels": 15473,
+      "n_raw_cells": 21130,
+      "raw_barcode_sha256": "ec3099b7d44ead3a845cf7f194a7b764684b7252d384f02cd1b93c86963d8415",
+      "sample": "TN_B1_0177",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0554"
+      ],
+      "gsm": "GSM4909287",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 6130,
+      "n_labels": 6130,
+      "n_raw_cells": 9593,
+      "raw_barcode_sha256": "970535df81f9a5e1fc86708fb2ba51e23ac35ce469808efac60ac78d21dfee11",
+      "sample": "TN_B1_0554",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "4031"
+      ],
+      "gsm": "GSM4909285",
+      "label_file": "cells_primary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5180,
+      "n_labels": 5180,
+      "n_raw_cells": 5581,
+      "raw_barcode_sha256": "5602f4b57313b8b7b961cb7fad67f02f6de5466348f2e8d33526de59e73e7dd6",
+      "sample": "TN_B1_4031",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0001"
+      ],
+      "gsm": "GSM4909296",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 5245,
+      "n_exact_matches": 58,
+      "n_labels": 5303,
+      "n_raw_cells": 7375,
+      "raw_barcode_sha256": "d80461f6e4fae947d9a62245aa4f3bbf961bb03871b46bc3e1d4d12eba402439",
+      "sample": "ER_0001",
+      "status": "whole specimen excluded: source cell-universe mismatch"
+    },
+    {
+      "donors": [
+        "0025"
+      ],
+      "gsm": "GSM4909302",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 4541,
+      "n_labels": 4541,
+      "n_raw_cells": 10592,
+      "raw_barcode_sha256": "53cfb67d1686ab115551e8bb9c18b3f1df0caa84671469e156e3c055452be983",
+      "sample": "ER_0025",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0032"
+      ],
+      "gsm": "GSM4909300",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 576,
+      "n_labels": 576,
+      "n_raw_cells": 1445,
+      "raw_barcode_sha256": "ac1146f80e9562e18ea448d0fb0c9673973e631690af76e6d155110ddbe36244",
+      "sample": "ER_0032",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0040"
+      ],
+      "gsm": "GSM4909307",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5586,
+      "n_labels": 5586,
+      "n_raw_cells": 6468,
+      "raw_barcode_sha256": "48e682bcd8cc0956f6c76ef6fdbe0710acc8bea70218caa751ab90b9d596adf4",
+      "sample": "ER_0040_T",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0042"
+      ],
+      "gsm": "GSM4909301",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2901,
+      "n_labels": 2901,
+      "n_raw_cells": 5439,
+      "raw_barcode_sha256": "9ede5138cc6c120a09f191a30349f3cd7cca3fc5e9f9d0942911ef2ec806ba4f",
+      "sample": "ER_0042",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0043"
+      ],
+      "gsm": "GSM4909309",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2831,
+      "n_labels": 2831,
+      "n_raw_cells": 5572,
+      "raw_barcode_sha256": "18bd515bc828a347fc8201e9d01cd0759c151d51e4d7ee552e0827fef5c088a7",
+      "sample": "ER_0043_T",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0114"
+      ],
+      "gsm": "GSM4909299",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 6503,
+      "n_labels": 6503,
+      "n_raw_cells": 8822,
+      "raw_barcode_sha256": "ca45779b845ccf9dd36b87d7ccd5dd456a8a6d8030e9c2fb2aaecc7ee412fdcd",
+      "sample": "ER_0114_T3",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0125"
+      ],
+      "gsm": "GSM4909297",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 3756,
+      "n_labels": 3756,
+      "n_raw_cells": 7289,
+      "raw_barcode_sha256": "37872d69e448b3195f565d5670a9f5770fdcb2d3339b4dbff0e2a66a689510cd",
+      "sample": "ER_0125",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0151"
+      ],
+      "gsm": "GSM4909303",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 803,
+      "n_labels": 803,
+      "n_raw_cells": 3357,
+      "raw_barcode_sha256": "cd35151b0fd1c743cd3c75622798dc2ae66cd657d3c35d0138c1b2b1940b5a4d",
+      "sample": "ER_0151",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0163"
+      ],
+      "gsm": "GSM4909304",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5416,
+      "n_labels": 5416,
+      "n_raw_cells": 7334,
+      "raw_barcode_sha256": "7aee74151432746d390fc3a9afcf0a6445b06e55940e9523a344916a3a5a5e32",
+      "sample": "ER_0163",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0167"
+      ],
+      "gsm": "GSM4909315",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 4711,
+      "n_labels": 4711,
+      "n_raw_cells": 13848,
+      "raw_barcode_sha256": "63f0031fa1b5a63619a04d582943c93f4a13d380f57b464fa2ebee99cd4dee14",
+      "sample": "ER_0167_T",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0319"
+      ],
+      "gsm": "GSM4909295",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 619,
+      "n_labels": 619,
+      "n_raw_cells": 3406,
+      "raw_barcode_sha256": "f88198b4b8e89782da47c3f269a6c590a4342b1b235a36fe79d2b98c1d526090",
+      "sample": "ER_0319",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0360"
+      ],
+      "gsm": "GSM4909298",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2029,
+      "n_labels": 2029,
+      "n_raw_cells": 6676,
+      "raw_barcode_sha256": "2b99b8d1a27ad2374c583df6d9d819f767f6993f97c50709a4e5492933bf2ba7",
+      "sample": "ER_0360",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0031"
+      ],
+      "gsm": "GSM4909291",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 1606,
+      "n_labels": 1606,
+      "n_raw_cells": 4737,
+      "raw_barcode_sha256": "de0949996e85e0023da5255973b4e8b164a031e27c626a81df69a42e7bcee966",
+      "sample": "HER2_0031",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0069"
+      ],
+      "gsm": "GSM4909292",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 198,
+      "n_labels": 198,
+      "n_raw_cells": 618,
+      "raw_barcode_sha256": "31fb101fe60bed9a64b0d319abf0dbdbc0fdc7e8453440e0591e78f987e883ec",
+      "sample": "HER2_0069",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0161"
+      ],
+      "gsm": "GSM4909293",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 4275,
+      "n_labels": 4275,
+      "n_raw_cells": 6561,
+      "raw_barcode_sha256": "6fc00b78c5b1283640efc6f7122b8781eddcbc4db2ae2106e33c3312c0b07fb1",
+      "sample": "HER2_0161",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0176"
+      ],
+      "gsm": "GSM4909294",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5079,
+      "n_labels": 5079,
+      "n_raw_cells": 19027,
+      "raw_barcode_sha256": "17f0c4fa62d8216c648fd153ede4cbb8f85c3e163fdfdbc99d9293c763256800",
+      "sample": "HER2_0176",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0308"
+      ],
+      "gsm": "GSM4909289",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 3458,
+      "n_labels": 3458,
+      "n_raw_cells": 4779,
+      "raw_barcode_sha256": "b02981e4d994ae4f88a3f80b8b5210fe0a68ce3325719754eba3cc1ca814d755",
+      "sample": "HER2_0308",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0337"
+      ],
+      "gsm": "GSM4909290",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 3926,
+      "n_labels": 3926,
+      "n_raw_cells": 12288,
+      "raw_barcode_sha256": "b86934f507d416ff75306aadb2c2dab90d1ec147ae9986425b118253b7e33bab",
+      "sample": "HER2_0337",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0106"
+      ],
+      "gsm": "GSM4909283",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 54,
+      "n_labels": 54,
+      "n_raw_cells": 1065,
+      "raw_barcode_sha256": "a3575403a8271931a59a49e87000a88817898e29c990c6e6d74e0127c9ce602a",
+      "sample": "TN_0106",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0114"
+      ],
+      "gsm": "GSM4909284",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 177,
+      "n_labels": 177,
+      "n_raw_cells": 2015,
+      "raw_barcode_sha256": "02b26ea675169e518409e1f6e36fc040c23a0bfd06563f1c58f02e9fb63171e8",
+      "sample": "TN_0114_T2",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0126"
+      ],
+      "gsm": "GSM4909281",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 1235,
+      "n_labels": 1235,
+      "n_raw_cells": 3666,
+      "raw_barcode_sha256": "9b313512ff034b4f05b94dc349c8df9ec579d0627c8ebbbf64772e5d5c0ada86",
+      "sample": "TN_0126",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0135"
+      ],
+      "gsm": "GSM4909282",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 14333,
+      "n_labels": 14333,
+      "n_raw_cells": 15870,
+      "raw_barcode_sha256": "4d4a7c7f6550d9ada0f5e19a5c995d25a621b233417011bb5b73f3c807d92dc7",
+      "sample": "TN_0135",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0131"
+      ],
+      "gsm": "GSM4909286",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5513,
+      "n_labels": 5513,
+      "n_raw_cells": 6456,
+      "raw_barcode_sha256": "d9e33d99f78e03798cd610ae07c8af8c39f280bc1da0e99609c3a1d076a7bcbb",
+      "sample": "TN_B1_0131",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0177"
+      ],
+      "gsm": "GSM4909288",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 1575,
+      "n_labels": 1575,
+      "n_raw_cells": 21130,
+      "raw_barcode_sha256": "ec3099b7d44ead3a845cf7f194a7b764684b7252d384f02cd1b93c86963d8415",
+      "sample": "TN_B1_0177",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "0554"
+      ],
+      "gsm": "GSM4909287",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 2337,
+      "n_labels": 2337,
+      "n_raw_cells": 9593,
+      "raw_barcode_sha256": "970535df81f9a5e1fc86708fb2ba51e23ac35ce469808efac60ac78d21dfee11",
+      "sample": "TN_B1_0554",
+      "status": "complete exact source barcode coverage"
+    },
+    {
+      "donors": [
+        "4031"
+      ],
+      "gsm": "GSM4909285",
+      "label_file": "cells_secondary.tsv.gz",
+      "n_absent": 0,
+      "n_exact_matches": 5129,
+      "n_labels": 5129,
+      "n_raw_cells": 5581,
+      "raw_barcode_sha256": "5602f4b57313b8b7b961cb7fad67f02f6de5466348f2e8d33526de59e73e7dd6",
+      "sample": "TN_B1_4031",
+      "status": "complete exact source barcode coverage"
+    }
+  ],
+  "status": "all eligible specimens have complete exact barcode coverage"
+}

@@ -1,0 +1,13 @@
+{
+  "experiment": "BATCH_CORRECTION",
+  "files": {
+    "geometry.json": "de3a53ad569cc15cb924cf07a783f663eb82117f208d39e1ab1fa64fceb9374e",
+    "results.json": "dbf3c8c78956015a82d0cf50e3667c13a851e3a37a7c96011ee1d45ef3588a6c"
+  },
+  "historical_source_sha256": "abed0d73bb5fcc1d7087a1657bd11fbd7008fa63c2b54fa9f58c1a173f41602c",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 18,
+  "status": "exploratory_complete"
+}

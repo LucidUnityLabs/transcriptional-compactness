@@ -33,6 +33,7 @@ Exits 2 with a blocked artifact if the GEO inputs are absent.
 """
 
 import importlib.util
+import ast
 import json
 import sys
 import types
@@ -70,6 +71,9 @@ COHORTS = [
 ]
 
 REQUIRED_INPUTS = [(name, path, prov) for name, _l, path, prov in COHORTS]
+REQUIRED_INPUTS += [
+    ("darmanis_metadata", DATA / "GSE84465_meta.txt", "GEO GSE84465 series matrix metadata"),
+    ("pdac_b", DATA / "GSE111672_PDAC-B-indrop-filtered-expMat.txt.gz", "GEO GSE111672 second specimen")]
 
 
 def _load_legacy_module():
@@ -89,7 +93,18 @@ def _load_legacy_module():
     spec = importlib.util.spec_from_file_location(
         "meta_legacy_loaders", HERE / "run.py")
     mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
+    # Preserve historical files, but do not round deposited data to
+    # float32 before the corrected pipeline receives them (R04).
+    source = (HERE / "run.py").read_text().replace("np.float32", "np.float64")
+    # Ovarian normalization denominator must precede the gene filter.
+    source = source.replace("X_counts = X_counts[:, keep]\n    patient = patient[keep]",
+                            "X_counts = X_counts[:, keep]\n    full_library = X_counts.sum(axis=0)\n    patient = patient[keep]")
+    source = source.replace("libsize = X_counts.sum(axis=0)\n    libsize[libsize == 0] = 1",
+                            "libsize = full_library")
+    # Organoid libraries do not constitute in-vivo tumor/normal specimens.
+    source = source.replace('if not m:\n            continue',
+                            'if not m or "org" in f.lower():\n            continue')
+    exec(compile(ast.parse(source), str(HERE / "run.py"), "exec"), mod.__dict__)
     return mod
 
 
@@ -101,7 +116,13 @@ def run():
     for cohort_name, loader_name, input_path, provenance in COHORTS:
         loader = getattr(legacy, loader_name)
         X_log, patient, is_mal, is_comp = loader()
-        inputs_digest = digest_of_inputs([input_path])
+        if cohort_name == "Darmanis_GBM":
+            input_paths = [input_path, DATA / "GSE84465_meta.txt"]
+        elif cohort_name == "Peng_PDAC":
+            input_paths = [input_path, DATA / "GSE111672_PDAC-B-indrop-filtered-expMat.txt.gz"]
+        else:
+            input_paths = [input_path]
+        inputs_digest = digest_of_inputs(input_paths)
         cache = ResultCache(cache_root, f"META/{cohort_name}/corrected")
         kdf, facts = cohort.compute_cohort_kappa(
             X_log, patient, is_mal, is_comp,
@@ -120,10 +141,12 @@ def run():
             "n_patients_estimable": int(len(estimable)),
             "exclusions": exclusions,
             "dl_meta": meta,
-            "pipeline_facts": {k: facts[k] for k in
-                               ("graph_nodes", "graph_edges",
-                                "or_edges_computed")},
+            "pipeline_facts": {k: v for k, v in facts.items()
+                               if k != "cache_hit_reason"},
         }
+        from lib.runner import atomic_json
+        atomic_json(HERE / f"results_{cohort_name}_corrected.json", cohort_out[cohort_name])
+        tab.to_csv(HERE / f"per_patient_{cohort_name}_corrected.csv", index=False)
     all_pp = pd.concat([t for t in patient_tables if len(t)],
                        ignore_index=True)
     estimable_all = all_pp[all_pp.get("se_estimable", False) == True]  # noqa: E712

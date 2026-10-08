@@ -1,0 +1,18 @@
+{
+  "experiment": "F4_hic_genome_wide",
+  "files": {
+    "f4_hic_distributions.png": "2523bc56945bf6d97efd037ada5643a6d9e1533ba58eab7150f0e98d88d5739e",
+    "f4_hic_genome_wide_summary.csv": "51ec8fc2a40da822e14f969111f0553b470812c149abb0bb8688f02e3b744470",
+    "f4_hic_per_chromosome.csv": "634c9fcbfe0473f76083ba88f0c5b69fbfae896b5510afca8aeaec29c54e70aa",
+    "f4_hic_per_chromosome.png": "cef3853d917247c9e8b3665888279e156a620d9456a3dcbee7a3289998b29008",
+    "f4_summary.txt": "7fa1803358bbe0a98e8a2d0140eea081f9b4bb61c07d3deb345f0c6a0bc6adb4",
+    "geometry.json": "6088909d2ca8ef206efe69d41df45220d9625461593b58c894b8d69db374ac14"
+  },
+  "historical_source_sha256": "0f60c73963d801fcfd275498a4c6970550326b9a870539b7f5b750c528be8087",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 46,
+  "release_blocker": "First pass predates max_edges-budget gate and consumed Hi-C slice checksum receipts; cell-line mechanism claims not accepted.",
+  "status": "superseded_requires_rerun"
+}

@@ -1,0 +1,33 @@
+T1 UMI / library-size confound test — Darmanis 2017 GBM
+seed=20260507
+======================================================================
+
+Reference (no stratification, all neoplastic + immune cells):
+  n_neo=1091  n_imm=1847
+  mean_kappa_neo = +0.0678  mean_kappa_imm = -0.0172
+  diff (neo - imm) = +0.0849
+  Welch p = 8.38e-45   MWU p = 5.02e-53
+  Cliff d = +0.380 [+0.336, +0.425]
+
+Within UMI quintiles:
+  Q1  UMI=[181-626982]  n=588 (neo=160 imm=428)  diff_kappa=+0.0690  Welch p=3.83e-16  MWU p=9.34e-16  Cliff d=+0.430 [+0.332, +0.516]
+  Q2  UMI=[627240-811713]  n=587 (neo=160 imm=427)  diff_kappa=+0.1091  Welch p=3.94e-29  MWU p=1.28e-30  Cliff d=+0.616 [+0.541, +0.700]
+  Q3  UMI=[811723-965032]  n=588 (neo=184 imm=404)  diff_kappa=+0.0961  Welch p=7.01e-21  MWU p=8.37e-23  Cliff d=+0.505 [+0.409, +0.597]
+  Q4  UMI=[965277-1131903]  n=587 (neo=277 imm=310)  diff_kappa=+0.0482  Welch p=8.17e-10  MWU p=2.36e-12  Cliff d=+0.335 [+0.249, +0.422]
+  Q5  UMI=[1132464-2132208]  n=588 (neo=310 imm=278)  diff_kappa=+0.0449  Welch p=4.17e-09  MWU p=3.84e-12  Cliff d=+0.331 [+0.249, +0.412]
+
+Decision criteria:
+  quintiles with |Cliff d| < 0.15: 0/5
+  quintiles with Cliff d > +0.20 (neo > imm): 5/5
+  quintiles with Cliff d < -0.20 (imm > neo): 0/5
+  quintiles with Welch p > 0.05: 0/5
+
+VERDICT: SURVIVES — kappa signal is biology, not depth
+
+======================================================================
+Inverse stratification: by mean kNN distance (geometric depth proxy)
+  Q1  knnd=[4.2435-28.2113]  n=588 (neo=168 imm=420)  diff_kappa=+0.0766  Welch p=1.03e-15  MWU p=1.24e-16  Cliff d=+0.437 [+0.335, +0.534]
+  Q2  knnd=[28.2184-30.8717]  n=587 (neo=222 imm=365)  diff_kappa=+0.1043  Welch p=1.09e-27  MWU p=1.23e-28  Cliff d=+0.546 [+0.454, +0.635]
+  Q3  knnd=[30.8785-33.3352]  n=588 (neo=244 imm=344)  diff_kappa=+0.0606  Welch p=9.36e-13  MWU p=5.8e-13  Cliff d=+0.348 [+0.249, +0.442]
+  Q4  knnd=[33.3383-36.6196]  n=587 (neo=247 imm=340)  diff_kappa=+0.0531  Welch p=1.9e-12  MWU p=3.92e-12  Cliff d=+0.335 [+0.251, +0.428]
+  Q5  knnd=[36.6237-57.9019]  n=588 (neo=210 imm=378)  diff_kappa=+0.0576  Welch p=2.7e-15  MWU p=8.91e-14  Cliff d=+0.371 [+0.283, +0.458]

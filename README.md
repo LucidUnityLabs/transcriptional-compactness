@@ -18,7 +18,17 @@ alternative annotations, batch correction).
 
 Preprint manuscript, not peer reviewed. No DOI yet.
 
-## Headline results (honest summary)
+The original transport routine used shortest paths restricted to endpoint
+neighborhoods. Its numerical results and original manuscript are preserved
+as a historical baseline, and must not be cited as validated TC-1 results.
+Corrected rerun status is recorded in [experiments/rerun_status.json](experiments/rerun_status.json).
+The source-backed lung specimen-to-donor map resolves 58 specimens to 44
+donors; the historical sample-level inference does not establish donor-level
+replication. Breast cells lacking a malignant call do not establish a normal
+luminal comparator. Corrected claims will be reported only from validated
+outputs, with those endpoint limitations explicit.
+
+## Historical results — superseded by the TC-1 metric correction
 
 - **Discovery meta-analysis:** pooled patient-level Cliff's delta
   = +0.51 [95% CI +0.44, +0.59], p = 7.5e-38 (35 patients, 6 cohorts).
@@ -29,10 +39,9 @@ Preprint manuscript, not peer reviewed. No DOI yet.
 - **Held-out breast (GSE161529), epithelial comparator:** reverses —
   pooled delta = -0.41 (1/11 patients positive).
 
-The effect replicates in lung but is heterogeneous, tissue- and
-comparator-dependent, and in breast sensitive to annotation choices. It does
-not constitute a universal cancer detector. Full narrative, methods, and
-limitations: `manuscript/MANUSCRIPT.md`.
+These historical conclusions await corrected metric, identity, and donor
+reruns. The original narrative remains in `manuscript/MANUSCRIPT.md` for
+comparison; its retained figures and numbers are not corrected evidence.
 
 ## Repository layout
 

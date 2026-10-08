@@ -69,7 +69,7 @@ REQUIRED_INPUTS = [
 #: Reviewed specimen->donor map (C08).  Absent until the authoritative
 #: metadata is acquired and reviewed; then it must be committed as a
 #: machine-readable file {specimen: donor} with source evidence.
-DONOR_MAP_PATH = DATA / "GSE131907_kim_nsclc" / "specimen_donor_map.tsv"
+DONOR_MAP_PATH = HERE.parent.parent / "config" / "GSE131907_specimen_donor.tsv"
 
 
 def load_annotation():
@@ -92,33 +92,56 @@ def load_annotation():
 
 def run(cache_root=None):
     labels, _ann = load_annotation()
+    donor_map = None
+    if DONOR_MAP_PATH.exists():
+        mapping = pd.read_csv(DONOR_MAP_PATH, sep="\t", dtype=str, keep_default_na=False)
+        if mapping["sample"].duplicated().any() or (mapping["donor"] == "").any():
+            raise DataValidationError("invalid specimen donor map")
+        donor_map = dict(zip(mapping["sample"], mapping["donor"]))
+        if set(_ann["Sample"]) != set(donor_map):
+            raise DataValidationError("donor map does not cover exact annotation specimen universe")
+        labels["patient"] = labels["sample"].map(donor_map)
     # D03: identity structure is a gate, not an observation
     validate_label_identity(labels, dual_label_rule="reject")
 
+    # Sample identities before allocating counts; gene detection still
+    # uses the COMPLETE eligible label universe. This preserves the gene
+    # filter while avoiding a 40+ GB dense lung matrix.
+    universe = labels["barcode"].tolist()
+    sel, sample_audit = cohort.stratified_sample_minima_first(
+        labels["patient"].values, (labels["label"] == "malignant").values,
+        (labels["label"] == "immune").values, seed=SEED)
+    labels = labels.iloc[sel].reset_index(drop=True)
     barcodes = labels["barcode"].tolist()
-    counts, gene_names = read_umi_tsv_selected(KIM_MTX, barcodes)
+    counts, gene_names, detected = read_umi_tsv_selected(KIM_MTX, barcodes, detection_cell_ids=universe)
     if counts.shape[1] != len(barcodes):
         raise DataValidationError("strict reader returned wrong width")
     # log1p-CPM(1e6) float64 with the R04 denominator contract: the
     # per-cell library size uses ALL raw genes BEFORE the >=5-cell gene
     # filter (the legacy path filtered first, making the denominator
     # filter-dependent); empty libraries fail explicitly (no 0 -> 1).
-    X_log, gene_keep, norm_facts = cohort.log_cpm_full_library(counts)
+    library = counts.sum(axis=0)
+    if np.any(library <= 0):
+        raise DataValidationError("empty selected raw libraries")
+    gene_keep = np.flatnonzero(detected >= 5)
+    X_log = np.log1p(counts[gene_keep] / library * 1e6)
+    norm_facts = {"denominator": "full raw library before gene filtering", "gene_detection_universe": len(universe)}
     gene_names = [gene_names[i] for i in gene_keep]
 
-    specimen = labels["sample"].values
+    specimen = labels["patient"].values
     is_mal = (labels["label"] == "malignant").values
     is_comp = (labels["label"] == "immune").values
 
-    donor_map = None
     donor_verified, donor_evidence = cohort.donor_unit_flag(donor_map)
+    if donor_verified:
+        donor_evidence["source"] = "GEO GSE131907 Lung_Cancer_Feature_Summary.xlsx, FeatureSummary columns B/C, rows 4-61"
     unit = "specimen (Sample proxy — specimen-level/exploratory inference)"
     if donor_verified:
         unit = "patient (verified specimen->donor map applied)"
 
     cache = ResultCache(cache_root or HERE / "cache",
                         "HELDOUT_GSE131907/corrected")
-    inputs_digest = digest_of_inputs([KIM_MTX, KIM_ANN])
+    inputs_digest = digest_of_inputs([KIM_MTX, KIM_ANN] + ([DONOR_MAP_PATH] if donor_map else []))
     kdf, facts = cohort.compute_cohort_kappa(
         X_log, specimen, is_mal, is_comp,
         k=15, alpha=0.5, n_edges=4000, seed=SEED,
@@ -128,7 +151,8 @@ def run(cache_root=None):
     tab, estimable, exclusions = cohort.per_patient_contrasts(kdf,
                                                               min_cells=10)
     meta = cohort.pool_cohort(tab, estimable, label="GSE131907_corrected",
-                              seed=SEED, B=1000)
+                                seed=SEED, B=1000)
+    tab.to_csv(HERE / "per_patient_delta_corrected.csv", index=False)
 
     def _clean(o):
         if isinstance(o, dict):
@@ -171,7 +195,9 @@ def run(cache_root=None):
                         "exclusions (R05)",
             "normalization": "log1p-CPM(1e6) float64; genes detected in "
                              ">=5 cells",
-            "pipeline_facts": _clean(facts),
+            "pipeline_facts": _clean({k: v for k, v in facts.items() if k != "cache_hit_reason"}),
+            "upstream_sampling": sample_audit,
+            "normalization_facts": norm_facts,
         },
         "n_cells_measured": int(len(measured)),
         "n_patients_passing_filter": int(len(estimable)),

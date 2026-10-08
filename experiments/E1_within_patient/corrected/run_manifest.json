@@ -1,0 +1,15 @@
+{
+  "experiment": "E1_within_patient",
+  "files": {
+    "e1_mixed_effects.csv": "277dc4695bb039592d0c0c2f97bd84db6495a2600341e45abe60e82c6838987a",
+    "e1_per_patient.csv": "c875f15dbc96653ea2a7ed66e0286034501d7f88221fee87671ea1994dccaa17",
+    "e1_summary.png": "082543bea2256ca99cb4b74cec46dc54c729b42c8400fafad83b6b79d5f71f96",
+    "geometry.json": "ae5534af3260d2bb20215f804228b1ca35f3fe96187d6b0e6b08d9988bb0777f"
+  },
+  "historical_source_sha256": "add7733d9cf02cd783537ecb6fa2b964c9a42691d0e6a2c51b8cff4438a1c44f",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 2,
+  "status": "exploratory_complete"
+}

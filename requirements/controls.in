@@ -17,4 +17,6 @@ harmonypy
 scanpy
 anndata
 h5py
-hicstraw
+hic-straw
+pyarrow
+openpyxl

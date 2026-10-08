@@ -185,7 +185,7 @@ def label_verdict(scheme_results, expected_schemes, null_band=0.05,
             problems.append(f"scheme {s!r} did not complete")
             continue
         d = r.get("delta")
-        p = r.get("p_welch", 1.0)
+        p = r.get("p_welch")
         if d is None or not np.isfinite(d):
             problems.append(f"scheme {s!r} has nonfinite delta {d!r}")
             continue

@@ -1,0 +1,21 @@
+{
+  "status": "HOST_ACTIVE_HIC_IMPORT_AND_RANGE_READ_VERIFIED; clean locked controls-profile install pending",
+  "python": "CPython3.14.7",
+  "platform": "macOS26.6.2 arm64",
+  "wheel": "hic_straw-1.3.1-cp314-cp314-macosx_26_0_arm64.whl",
+  "sha256": "42fcbacfc538f2ee48efd88c69c43d8300fcc9af7dc44db9fa5eab4688fcb161",
+  "bytes": 157682,
+  "source": {
+    "url": "https://files.pythonhosted.org/packages/8e/ec/431c76970f8973ea5937a9b5f2d1689a641b3fe6475246a32451274fa2dd/hic-straw-1.3.1.tar.gz",
+    "sha256": "fb0f878127f6b1d096303c67793477c83fddf3f4a1a8e29a9d92952634989876"
+  },
+  "build": "native pip source build on target CPython3.14/macOS26 arm64; Clang21",
+  "native_dependencies": [
+    "/usr/lib/libcurl.4.dylib",
+    "/usr/lib/libz.1.dylib",
+    "/usr/lib/libc++.1.dylib",
+    "/usr/lib/libSystem.B.dylib"
+  ],
+  "upstream_license": "MIT",
+  "metadata_source": "https://pypi.org/pypi/hic-straw/1.3.1/json"
+}

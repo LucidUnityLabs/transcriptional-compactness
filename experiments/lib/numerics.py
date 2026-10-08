@@ -32,6 +32,10 @@ Fixes relative to the historical per-experiment implementations:
 from __future__ import annotations
 
 import warnings
+import hashlib
+from pathlib import Path
+
+IMPORTED_SOURCE_SHA256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 from dataclasses import dataclass, field
 from math import lgamma
 
@@ -283,20 +287,56 @@ def _lazy_masses(G, u, v, alpha):
     return ([u] + nu, [v] + nv, w_u, w_v)
 
 
-def _dijkstra(G, source, cache, cache_limit=4096):
-    import networkx as nx
+_DISTANCE_GRAPH_KEY = object()
 
-    got = cache.get(source)
-    if got is None:
-        if len(cache) >= cache_limit:
-            cache.clear()
-        got = nx.single_source_dijkstra_path_length(G, source, weight="weight")
-        cache[source] = got
+
+class _NamedDistances:
+    def __init__(self, distances, index):
+        self.distances = distances
+        self.index = index
+
+    def get(self, node, default=None):
+        i = self.index.get(node)
+        if i is None or not np.isfinite(self.distances[i]):
+            return default
+        return float(self.distances[i])
+
+
+def _dijkstra(G, source, cache, cache_limit=4096):
+    """Exact full-graph Dijkstra with compact, bounded distance rows.
+
+    A shared named-node crosswalk retains arbitrary graph identities.
+    Float64 rows replace millions of Python node/float dictionary entries;
+    the sparse graph is built once. This changes storage/backend, never
+    restricts the metric to a support neighborhood.
+    """
+    import networkx as nx
+    from scipy.sparse.csgraph import dijkstra
+    from collections import OrderedDict
+    if _DISTANCE_GRAPH_KEY not in cache:
+        nodes = list(G.nodes())
+        index = {node: i for i, node in enumerate(nodes)}
+        matrix = nx.to_scipy_sparse_array(G, nodelist=nodes, weight="weight", dtype=np.float64, format="csr")
+        if matrix.shape[0] > np.iinfo(np.int32).max or matrix.nnz > np.iinfo(np.int32).max:
+            raise NumericsError("graph exceeds supported sparse index ABI")
+        # csgraph uses the supported C-int index ABI on this SciPy build.
+        matrix.indices = matrix.indices.astype(np.int32)
+        matrix.indptr = matrix.indptr.astype(np.int32)
+        cache[_DISTANCE_GRAPH_KEY] = (matrix, index, OrderedDict())
+    matrix, index, rows = cache[_DISTANCE_GRAPH_KEY]
+    if source in rows:
+        rows.move_to_end(source)
+        return rows[source]
+    distances = dijkstra(matrix, directed=False, indices=index[source])
+    got = _NamedDistances(distances, index)
+    rows[source] = got
+    if len(rows) > cache_limit:
+        rows.popitem(last=False)
     return got
 
 
 def ricci_edges(G, alpha=0.5, n_edges=None, rng=None, backend="auto",
-                verbose=False):
+                verbose=False, selected_edges=None):
     """Ollivier-Ricci curvature on sampled edges, full-graph metric.
 
     For each sampled edge ``(u, v)`` the support measures (lazy random walk
@@ -322,10 +362,18 @@ def ricci_edges(G, alpha=0.5, n_edges=None, rng=None, backend="auto",
                 f"edge ({u}, {v}) has nonpositive/nonfinite weight {w!r}; "
                 "require positive finite lengths (no absolute cutoffs — "
                 "rescale-invariance is part of the method contract)")
-    if not (0.0 < alpha < 1.0):
-        raise ValueError(f"alpha must be in (0, 1), got {alpha!r}")
+    if not (0.0 <= alpha <= 1.0):
+        raise ValueError(f"alpha must be in [0, 1], got {alpha!r}")
 
     edges = list(G.edges())
+    if selected_edges is not None:
+        if n_edges is not None:
+            raise ValueError('explicit edges and an edge budget are mutually exclusive')
+        edges = list(selected_edges)
+        identities = [frozenset(e) for e in edges]
+        if len(set(identities)) != len(identities) or any(
+                len(e) != 2 or not G.has_edge(*e) for e in edges):
+            raise ValueError('explicit edges must be unique actual graph edges')
     if n_edges is not None:
         if (isinstance(n_edges, (bool, np.bool_))
                 or not isinstance(n_edges, (int, np.integer))

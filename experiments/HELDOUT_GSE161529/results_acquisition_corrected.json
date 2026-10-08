@@ -1,25 +1,186 @@
 {
-  "blocked_reason": "required inputs absent; rerun wiring only \u2014 results are never fabricated",
-  "created_utc": "2026-10-07T05:36:28Z",
+  "created_utc": "2026-10-07T21:18:00Z",
   "driver": "HELDOUT_GSE161529/download_corrected.py",
-  "missing_inputs": [
-    {
-      "path": "data/GSE161529/GSE161529_family.soft.gz",
-      "provenance": "GEO GSE161529 family SOFT file (series GSE161529); the SOFT itself is a discovery input \u2014 acquire it from https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161529/soft/ and record its hash in the reviewed lock",
-      "role": "family_soft"
+  "lock_note": "NO reviewed lock supplied: files were verified for transport integrity only \u2014 acquisition of a candidate is not authentication (commit a reviewed lock before release verification)",
+  "lock_used": false,
+  "mapping": {
+    "ER_0001": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909296/suppl/GSM4909296_ER-MH0001-barcodes.tsv.gz",
+      "gsm": "GSM4909296",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909296/suppl/GSM4909296_ER-MH0001-matrix.mtx.gz",
+      "stem": "GSM4909296_ER-MH0001"
     },
-    {
-      "path": "data/GSE161529/labels/cells_primary.tsv.gz",
-      "provenance": "labels produced by extract_labels.py from the figshare Seurat objects (figshare 10.6084/m9.figshare.17058077)",
-      "role": "labels_primary"
+    "ER_0025": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909302/suppl/GSM4909302_ER-MH0025-barcodes.tsv.gz",
+      "gsm": "GSM4909302",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909302/suppl/GSM4909302_ER-MH0025-matrix.mtx.gz",
+      "stem": "GSM4909302_ER-MH0025"
     },
-    {
-      "path": "data/GSE161529/labels/cells_secondary.tsv.gz",
-      "provenance": "secondary-arm labels from the same deposit",
-      "role": "labels_secondary"
+    "ER_0032": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909300/suppl/GSM4909300_ER-MH0032-barcodes.tsv.gz",
+      "gsm": "GSM4909300",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909300/suppl/GSM4909300_ER-MH0032-matrix.mtx.gz",
+      "stem": "GSM4909300_ER-MH0032"
+    },
+    "ER_0040_T": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909307/suppl/GSM4909307_ER-MH0040-barcodes.tsv.gz",
+      "gsm": "GSM4909307",
+      "identity_source": "yunshun/HumanBreast10X 65cc0fe3fa1a72af8cfff0d3ba32c7545091cc4f RCode/ER.R and QC.R: primary ER-0040-T specimen; GEO GSM4909307: ER+ tumour Total cells from Patient 0040, filename ER-MH0040. Distinct lymph-node specimen GSM4909308 has ER-MH0040-LN. Explicit identity curation; suffix rules remain strict for every other specimen.",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909307/suppl/GSM4909307_ER-MH0040-matrix.mtx.gz",
+      "stem": "GSM4909307_ER-MH0040"
+    },
+    "ER_0042": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909301/suppl/GSM4909301_ER-MH0042-barcodes.tsv.gz",
+      "gsm": "GSM4909301",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909301/suppl/GSM4909301_ER-MH0042-matrix.mtx.gz",
+      "stem": "GSM4909301_ER-MH0042"
+    },
+    "ER_0043_T": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909309/suppl/GSM4909309_ER-MH0043-T-barcodes.tsv.gz",
+      "gsm": "GSM4909309",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909309/suppl/GSM4909309_ER-MH0043-T-matrix.mtx.gz",
+      "stem": "GSM4909309_ER-MH0043-T"
+    },
+    "ER_0114_T3": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909299/suppl/GSM4909299_ER-MH0114-T3-barcodes.tsv.gz",
+      "gsm": "GSM4909299",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909299/suppl/GSM4909299_ER-MH0114-T3-matrix.mtx.gz",
+      "stem": "GSM4909299_ER-MH0114-T3"
+    },
+    "ER_0125": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909297/suppl/GSM4909297_ER-MH0125-barcodes.tsv.gz",
+      "gsm": "GSM4909297",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909297/suppl/GSM4909297_ER-MH0125-matrix.mtx.gz",
+      "stem": "GSM4909297_ER-MH0125"
+    },
+    "ER_0151": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909303/suppl/GSM4909303_ER-MH0151-barcodes.tsv.gz",
+      "gsm": "GSM4909303",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909303/suppl/GSM4909303_ER-MH0151-matrix.mtx.gz",
+      "stem": "GSM4909303_ER-MH0151"
+    },
+    "ER_0163": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909304/suppl/GSM4909304_ER-MH0163-barcodes.tsv.gz",
+      "gsm": "GSM4909304",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909304/suppl/GSM4909304_ER-MH0163-matrix.mtx.gz",
+      "stem": "GSM4909304_ER-MH0163"
+    },
+    "ER_0167_T": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909315/suppl/GSM4909315_ER-MH0167-T-barcodes.tsv.gz",
+      "gsm": "GSM4909315",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909315/suppl/GSM4909315_ER-MH0167-T-matrix.mtx.gz",
+      "stem": "GSM4909315_ER-MH0167-T"
+    },
+    "ER_0319": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909295/suppl/GSM4909295_ER-AH0319-barcodes.tsv.gz",
+      "gsm": "GSM4909295",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909295/suppl/GSM4909295_ER-AH0319-matrix.mtx.gz",
+      "stem": "GSM4909295_ER-AH0319"
+    },
+    "ER_0360": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909298/suppl/GSM4909298_ER-PM0360-barcodes.tsv.gz",
+      "gsm": "GSM4909298",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909298/suppl/GSM4909298_ER-PM0360-matrix.mtx.gz",
+      "stem": "GSM4909298_ER-PM0360"
+    },
+    "HER2_0031": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909291/suppl/GSM4909291_HER2-MH0031-barcodes.tsv.gz",
+      "gsm": "GSM4909291",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909291/suppl/GSM4909291_HER2-MH0031-matrix.mtx.gz",
+      "stem": "GSM4909291_HER2-MH0031"
+    },
+    "HER2_0069": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909292/suppl/GSM4909292_HER2-MH0069-barcodes.tsv.gz",
+      "gsm": "GSM4909292",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909292/suppl/GSM4909292_HER2-MH0069-matrix.mtx.gz",
+      "stem": "GSM4909292_HER2-MH0069"
+    },
+    "HER2_0161": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909293/suppl/GSM4909293_HER2-MH0161-barcodes.tsv.gz",
+      "gsm": "GSM4909293",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909293/suppl/GSM4909293_HER2-MH0161-matrix.mtx.gz",
+      "stem": "GSM4909293_HER2-MH0161"
+    },
+    "HER2_0176": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909294/suppl/GSM4909294_HER2-MH0176-barcodes.tsv.gz",
+      "gsm": "GSM4909294",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909294/suppl/GSM4909294_HER2-MH0176-matrix.mtx.gz",
+      "stem": "GSM4909294_HER2-MH0176"
+    },
+    "HER2_0308": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909289/suppl/GSM4909289_HER2-AH0308-barcodes.tsv.gz",
+      "gsm": "GSM4909289",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909289/suppl/GSM4909289_HER2-AH0308-matrix.mtx.gz",
+      "stem": "GSM4909289_HER2-AH0308"
+    },
+    "HER2_0337": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909290/suppl/GSM4909290_HER2-PM0337-barcodes.tsv.gz",
+      "gsm": "GSM4909290",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909290/suppl/GSM4909290_HER2-PM0337-matrix.mtx.gz",
+      "stem": "GSM4909290_HER2-PM0337"
+    },
+    "TN_0106": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909283/suppl/GSM4909283_TN-SH0106-barcodes.tsv.gz",
+      "gsm": "GSM4909283",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909283/suppl/GSM4909283_TN-SH0106-matrix.mtx.gz",
+      "stem": "GSM4909283_TN-SH0106"
+    },
+    "TN_0114_T2": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909284/suppl/GSM4909284_TN-MH0114-T2-barcodes.tsv.gz",
+      "gsm": "GSM4909284",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909284/suppl/GSM4909284_TN-MH0114-T2-matrix.mtx.gz",
+      "stem": "GSM4909284_TN-MH0114-T2"
+    },
+    "TN_0126": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909281/suppl/GSM4909281_TN-MH0126-barcodes.tsv.gz",
+      "gsm": "GSM4909281",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909281/suppl/GSM4909281_TN-MH0126-matrix.mtx.gz",
+      "stem": "GSM4909281_TN-MH0126"
+    },
+    "TN_0135": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909282/suppl/GSM4909282_TN-MH0135-barcodes.tsv.gz",
+      "gsm": "GSM4909282",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909282/suppl/GSM4909282_TN-MH0135-matrix.mtx.gz",
+      "stem": "GSM4909282_TN-MH0135"
+    },
+    "TN_B1_0131": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909286/suppl/GSM4909286_TN-B1-MH0131-barcodes.tsv.gz",
+      "gsm": "GSM4909286",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909286/suppl/GSM4909286_TN-B1-MH0131-matrix.mtx.gz",
+      "stem": "GSM4909286_TN-B1-MH0131"
+    },
+    "TN_B1_0177": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909288/suppl/GSM4909288_TN-B1-MH0177-barcodes.tsv.gz",
+      "gsm": "GSM4909288",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909288/suppl/GSM4909288_TN-B1-MH0177-matrix.mtx.gz",
+      "stem": "GSM4909288_TN-B1-MH0177"
+    },
+    "TN_B1_0554": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909287/suppl/GSM4909287_TN-B1-Tum0554-barcodes.tsv.gz",
+      "gsm": "GSM4909287",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909287/suppl/GSM4909287_TN-B1-Tum0554-matrix.mtx.gz",
+      "stem": "GSM4909287_TN-B1-Tum0554"
+    },
+    "TN_B1_4031": {
+      "barcodes_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909285/suppl/GSM4909285_TN-B1-MH4031-barcodes.tsv.gz",
+      "gsm": "GSM4909285",
+      "matrix_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4909nnn/GSM4909285/suppl/GSM4909285_TN-B1-MH4031-matrix.mtx.gz",
+      "stem": "GSM4909285_TN-B1-MH4031"
     }
-  ],
-  "note": "Corrected acquisition wiring (audit TC-1). Requires the family SOFT file and the extracted label files to already exist (extract_labels.py runs on the figshare Seurat objects) \u2014 the documented clean-start order is now explicit instead of impossible.",
-  "status": "blocked",
-  "wallclock_seconds": 0.0
+  },
+  "method_version": "TC-1",
+  "n_files_verified": 55,
+  "n_samples": 27,
+  "stage": "corrected acquisition (audit D06-D08)",
+  "status": "ok",
+  "supersedes": {
+    "first_differences": [
+      "[self-reproduction] .compressed_bytes_remaining: missing in observed",
+      "[self-reproduction] .n_matrices: missing in observed",
+      "[self-reproduction] .status: 'ok' != 'planned'"
+    ],
+    "n_changed_fields": 3,
+    "previous_created_utc": "2026-10-07T20:37:06Z"
+  },
+  "wallclock_seconds": 2430.7687299251556
 }

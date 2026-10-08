@@ -1,0 +1,17 @@
+{
+  "experiment": "E6_pseudotime_paul",
+  "files": {
+    "e6_paul_per_cell.csv": "144100f55110a6dddbd6f25b125346a60b08c8b326ed21140a8ee3c3ffd6df13",
+    "e6_paul_per_cluster.csv": "8e9732803aa953e27f6cdfa44079301d78e7aa547942f893cc0b796b342fced9",
+    "e6_paul_pseudotime.png": "4ef6ef3f4725087aed94b61c873078b5d61fc697e90636033800d952673eb5ae",
+    "e6_paul_summary.csv": "69169b8438f65e1ac79204ea1446fb1fecfcd2e391343f64259a4f6fcb858c33",
+    "geometry.json": "496e1ed1a596d026cf2714b84515d75311fa18414903f2aeb9e2542a3ed30e50"
+  },
+  "historical_source_sha256": "f23ed7ff4f345d9b9d6d6c6adf64248ce112d075f763e29b1a719e7aa3f71f8a",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 1,
+  "release_blocker": "First pass predates explicit float64/full-SVD Scanpy PCA; rerun required.",
+  "status": "superseded_requires_rerun"
+}

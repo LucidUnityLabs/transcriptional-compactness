@@ -1,0 +1,17 @@
+{
+  "experiment": "T1_umi_confound",
+  "files": {
+    "geometry.json": "22da6dbd6c8a3870730f8b62e17bf94fff4e8cc22f94c38bac37bfa9fab43aaf",
+    "t1_knn_distance_quintiles.csv": "5fae14b7e30469fbe6117f70485f75dcab153eb00014e97220e09ad86495cb25",
+    "t1_knn_distance_summary.png": "fabe6d3149d7620a777178caca0944b54a7918bd1cab384d3733e22370a85060",
+    "t1_summary.txt": "95663767e41a7a405e72f6cf92415350946d58e6d9c4a3fe94c9d068bec0edce",
+    "t1_umi_confound_summary.png": "d62a07e4463fc527c8dbf5d12c71bf48efca782076f5c3d7735a053583625236",
+    "t1_umi_quintiles.csv": "f67a4628072d39e2d589ebf15a9e1fc7b7df1f72bf1f977173be2463f8f084a6"
+  },
+  "historical_source_sha256": "1cec2952d3a4274ccb9e43a1dd5b3d04acd18eb186f858efd10d67830d408707",
+  "implementation": "float64/full-SVD, identity-safe kNN, full-graph verified POT transport, measured-incidence means",
+  "inference": "historical exploratory design; dependent cell-level tests are descriptive, not donor validation",
+  "method_version": "TC-1",
+  "n_corrected_geometries": 11,
+  "status": "exploratory_complete"
+}

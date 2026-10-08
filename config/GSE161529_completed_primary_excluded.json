@@ -1,0 +1,34 @@
+{
+  "coverage": {
+    "eligible_specimens": 26,
+    "estimable_donors": 24,
+    "excluded_specimens": [
+      "ER_0001"
+    ],
+    "original_specimens": 27
+  },
+  "created_utc": "2026-10-07T21:47:16Z",
+  "files": {
+    "experiments/HELDOUT_GSE161529/cache/HELDOUT_GSE161529__primary__excluded_5b0eacf61f67ddaf49c4fb3ddd09ed078b0a187c5f00f49789c8f2f9572b1236.meta.json": {
+      "bytes": 508,
+      "sha256": "0a33a05b05a8b50a218f5d41284de34faed0ddf83c79a1f67aa01d15feb210f5"
+    },
+    "experiments/HELDOUT_GSE161529/cache/HELDOUT_GSE161529__primary__excluded_5b0eacf61f67ddaf49c4fb3ddd09ed078b0a187c5f00f49789c8f2f9572b1236.npz": {
+      "bytes": 467359,
+      "sha256": "692823466d131d9785588057694dcb2f4d4b63e9ae63cfec0ebbb47503cf89f3"
+    },
+    "experiments/HELDOUT_GSE161529/per_patient_primary_excluded_corrected.csv": {
+      "bytes": 2637,
+      "sha256": "d9b4a5696407880ebb6899cb5a14bde4c050d451e54b3b6ef6c70915aac9ce76"
+    },
+    "experiments/HELDOUT_GSE161529/results_primary_excluded_corrected.json": {
+      "bytes": 258171,
+      "sha256": "dabe0129c1903fee06e96cd3b24c462259bef275e55e3214191d298ea868ed6b"
+    }
+  },
+  "loaded_driver_sha256": "ce871e054fd421fc193c8944b6bfab18ca9c32fbdef5307861eaf652294e47fe",
+  "method_version": "TC-1",
+  "scope": "primary/excluded conditional numerical evidence only; other arms/variants and frozen repeat/control/release work open; source successor has not numerically rerun",
+  "source_freeze_sha256": "73ded77b3bf1366379e0b0855b1f5901e35b1f6628ca399ea690f9faec739eda",
+  "status": "conditionally_accepted_historical_run"
+}
